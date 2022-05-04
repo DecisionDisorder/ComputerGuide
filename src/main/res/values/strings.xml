@@ -1,5 +1,30 @@
 <resources>
     <string name="app_name">ComputerGuide</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desktop">Desktop</string>
+    <string name="laptop">Laptop</string>
+    <string name="game">Game</string>
+    <string name="professional_work">Professional Work</string>
+    <string name="simple_work">Simple Work</string>
+    <string name="game_usage_title">Game Usage in Detail</string>
+    <string name="t">Middle Spec\n<small>(Lost Ark, OverWatch)</small></string>
+    <string-array name="game_category">
+        <item>Low Spec\n<small>(LoL, FIFA online 4)</small></item>
+        <item>Middle Spec\n<small>(Lost Ark, OverWatch)</small></item>
+        <item>Middle-High Spec\n<small>(PUBG)</small></item>
+        <item>High Spec\n<small>(Steam games, Elden Ring)</small></item>
+    </string-array>
+    <string name="major_brand">Major company\n<small>(easy AS)</small>\n\n<small><small>(Samsung, LG)</small></small></string>
+    <string name="sme_brand">SME company\n<small>(Cost-Effective)</small>\n\n<small><small>(MSI, ASUS, HP, ...)</small></small></string>
+    <string name="set1">Set 1</string>
+    <string name="set2">Set 2</string>
+    <string name="cpu">CPU</string>
+    <string name="cooler">Cooler</string>
+    <string name="mainboard">Mainboard</string>
+    <string name="ram">RAM</string>
+    <string name="vga">Graphic Card</string>
+    <string name="ssd">SSD</string>
+    <string name="hdd">HDD</string>
+    <string name="computer_case">Case</string>
+    <string name="power">Power Supply</string>
 </resources>

@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/main_background"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
+    tools:context=".UsageSelectionActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,18 +18,18 @@
         android:textSize="25dp"/>
 
     <Button
-        android:id="@+id/desktopBtn"
+        android:id="@+id/gameBtn"
         android:layout_margin="30dp"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
-        android:text="Desktop"
+        android:text="@string/game"
         android:textSize="35dp"
         android:textAllCaps="false"/>
     <Button
-        android:id="@+id/laptopBtn"
+        android:id="@+id/professionBtn"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="30dp"
@@ -39,7 +38,20 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
-        android:text="Laptop"
+        android:text="@string/professional_work"
+        android:textSize="35dp"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/simpleWorkBtn"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:background="@drawable/round_button"
+        android:text="Simple Work"
         android:textSize="35dp"
         android:textAllCaps="false"/>
 
@@ -48,6 +60,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="com.threebro.computerguide.BottomBarFragment"/>
-
 
 </LinearLayout>

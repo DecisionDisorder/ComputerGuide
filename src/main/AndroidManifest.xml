@@ -10,6 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerGuide">
         <activity
+            android:name=".PastModelListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EstimateListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProductListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaptopBrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaptopWeightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaptopSizeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BudgetSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetailedUsageActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".UsageSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
