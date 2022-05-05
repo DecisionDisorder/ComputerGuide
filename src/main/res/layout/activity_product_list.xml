@@ -32,6 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/godo_m"
             android:text="@string/set1"
             android:textSize="30dp"
             android:textColor="@color/black"
@@ -54,7 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="i5-12400\n16GB\nRTX 3050\n500GB\n1,200,000"
+                android:fontFamily="@font/godo_m"
+                android:text="i5-12400\n16GB\nRTX 3050\n500GB\n\\1,200,000"
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:textAlignment="gravity"/>
@@ -75,6 +77,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/godo_m"
             android:text="@string/set2"
             android:textSize="30dp"
             android:textColor="@color/black"
@@ -97,7 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="i5-12400\n16GB\nRTX 3050\n500GB\n1,200,000"
+                android:fontFamily="@font/godo_m"
+                android:text="i5-12400\n16GB\nRTX 3050\n500GB\n\\1,200,000"
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:textAlignment="gravity"/>

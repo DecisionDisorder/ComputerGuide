@@ -25,6 +25,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
+        android:fontFamily="@font/godo_m"
         android:text="@string/game"
         android:textSize="35dp"
         android:textAllCaps="false"/>
@@ -38,6 +39,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
+        android:fontFamily="@font/godo_m"
         android:text="@string/professional_work"
         android:textSize="35dp"
         android:textAllCaps="false"/>
@@ -51,6 +53,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
+        android:fontFamily="@font/godo_m"
         android:text="Simple Work"
         android:textSize="35dp"
         android:textAllCaps="false"/>

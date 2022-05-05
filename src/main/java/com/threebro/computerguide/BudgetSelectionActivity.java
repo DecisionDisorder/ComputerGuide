@@ -4,6 +4,7 @@ import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -57,9 +58,11 @@ public class BudgetSelectionActivity extends AppCompatActivity {
 
         for(int i = 0; i < length; i++) {
             int price = budgetMin + interval * i;
+            Typeface font = Typeface.createFromAsset(getAssets(), "godo_m.TTF");
             budgetButtons[i] = new Button(this);
-            budgetButtons[i].setText(formatter.format(price) + "s");
+            budgetButtons[i].setText("\\" + formatter.format(price) + "s");
             budgetButtons[i].setAllCaps(false);
+            budgetButtons[i].setTypeface(font);
             budgetButtons[i].setTextSize(Dimension.DP, 60);
             if(i >= length - 1)
                 budgetButtons[i].setLayoutParams(lastParam);

@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:background="@drawable/price_background"
-        android:text="Total: 1,200,000"
+        android:text="Total: \\1,200,000"
+        android:fontFamily="@font/godo_m"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25dp"/>

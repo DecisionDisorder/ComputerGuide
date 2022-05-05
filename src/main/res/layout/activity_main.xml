@@ -26,6 +26,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
+        android:fontFamily="@font/godo_m"
         android:text="Desktop"
         android:textSize="35dp"
         android:textAllCaps="false"/>
@@ -39,6 +40,7 @@
         android:layout_weight="1"
         android:layout_gravity="center"
         android:background="@drawable/round_button"
+        android:fontFamily="@font/godo_m"
         android:text="Laptop"
         android:textSize="35dp"
         android:textAllCaps="false"/>

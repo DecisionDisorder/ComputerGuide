@@ -21,21 +21,33 @@ public class UsageSelectionActivity extends AppCompatActivity {
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGamePopup(type);
+                openDetailedPopup(type, "game");
+            }
+        });
+
+        Button proWorkButton = findViewById(R.id.professionBtn);
+        proWorkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDetailedPopup(type, "professional");
+            }
+        });
+
+        Button simpleWorkButton = findViewById(R.id.simpleWorkBtn);
+        simpleWorkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDetailedPopup(type, "simple_work");
             }
         });
     }
 
-    private void openGamePopup(String computerType)
-    {
-        String[] gameList = getResources().getStringArray(R.array.game_category);
+    private void openDetailedPopup(String computerType, String detailedType) {
         Intent gamePopup = new Intent(this, DetailedUsageActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("type", "game");
+        bundle.putString("type", detailedType);
         bundle.putString("computerType", computerType);
-        bundle.putStringArray("gameList", gameList);
         gamePopup.putExtra("typeBundle", bundle);
         startActivity(gamePopup);
     }
-
 }
