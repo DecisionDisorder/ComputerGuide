@@ -8,10 +8,20 @@ public class MainBoard {
     private String Size;
     private String DDR;
     private String MemoryMaxClock;
+
     private String SlotAmount;
     private String MemoryMaxSize;
     private String Stock;
     private int Price;
+    private int CPUMbPrice;
+
+    public int getCPUMbPrice() {
+        return CPUMbPrice;
+    }
+
+    public void setCPUMbPrice(int CPUMbPrice) {
+        this.CPUMbPrice = CPUMbPrice;
+    }
 
     public String getManufacturer() {
         return Manufacturer;
@@ -101,6 +111,7 @@ public class MainBoard {
         Price = price;
     }
 
+
     @Override
     public String toString() {
         return "MainBoard{" +
@@ -115,6 +126,8 @@ public class MainBoard {
                 ", MemoryMaxSize='" + MemoryMaxSize + '\'' +
                 ", Stock='" + Stock + '\'' +
                 ", Price=" + Price +
+                ", CPUMbPrice=" + CPUMbPrice +
                 '}';
     }
+
 }

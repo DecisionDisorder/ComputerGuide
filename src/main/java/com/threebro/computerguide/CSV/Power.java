@@ -7,6 +7,15 @@ public class Power {
     private int Specification;
     private String Certification;
     private int Price;
+    private int GPWPrice;
+
+    public int getGPWPrice() {
+        return GPWPrice;
+    }
+
+    public void setGPWPrice(int GPWPrice) {
+        this.GPWPrice = GPWPrice;
+    }
 
     public String getName() {
         return Name;
@@ -53,9 +62,10 @@ public class Power {
         return "Power{" +
                 "Name='" + Name + '\'' +
                 ", Type='" + Type + '\'' +
-                ", Specifiaction=" + Specification +
+                ", Specification=" + Specification +
                 ", Certification='" + Certification + '\'' +
                 ", Price=" + Price +
+                ", GPWPrice=" + GPWPrice +
                 '}';
     }
 }
