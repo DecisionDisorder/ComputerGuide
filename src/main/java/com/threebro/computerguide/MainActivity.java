@@ -16,6 +16,8 @@ import com.threebro.computerguide.CSV.MainBoard;
 import com.threebro.computerguide.CSV.Power;
 import com.threebro.computerguide.CSV.RAM;
 import com.threebro.computerguide.CSV.Storage;
+import com.threebro.computerguide.Combi.CpuMbCom;
+import com.threebro.computerguide.Combi.GPWCom;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Case> CaseList = new ArrayList<>();
     private List<Cooler> CLList = new ArrayList<>();
     private List<Storage> STList = new ArrayList<>();
+    private List<CpuMbCom> CMList = new ArrayList<>();
+    private List<GPWCom> GPWList = new ArrayList<>();
+
+
 
 
     private void readStorageData(){
@@ -54,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 st.setCapacity(tokens[3]);
                 st.setPrice(Integer.parseInt(tokens[4]));
                 STList.add(st);
-                Log.d("MyActivity", "Just created: " + st);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -78,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 cl.setPrice(Integer.parseInt(tokens[2]));
                 cl.setRPM(Integer.parseInt(tokens[3]));
                 CLList.add(cl);
-                Log.d("MyActivity", "Just created: " + cl);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -102,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 cs.setSize(tokens[2]);
                 cs.setPrice(Integer.parseInt(tokens[3]));
                 CaseList.add(cs);
-                Log.d("MyActivity", "Just created: " + cs);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -129,7 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 pw.setPrice(Integer.parseInt(tokens[4]));
 
                 PWList.add(pw);
-                Log.d("MyActivity", "Just created: " + pw);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -157,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
                 gpu.setDP(Boolean.parseBoolean(tokens[5]));
                 gpu.setDVI(Boolean.parseBoolean(tokens[6]));
                 GPUList.add(gpu);
-                Log.d("MyActivity", "Just created: " + gpu);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -184,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 rm.setStock(tokens[4]);
                 rm.setPrice(Integer.parseInt(tokens[5]));
                 RAMList.add(rm);
-                Log.d("MyActivity", "Just created: " + rm);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -215,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
                 mb.setStock(tokens[9]);
                 mb.setPrice(Integer.parseInt(tokens[10]));
                 mbList.add(mb);
-                Log.d("MyActivity", "Just created: " + mb);
             }
         } catch (IOException e) {
             Log.d("MyActivity", "Error reading data file "+line,e);
@@ -253,7 +252,6 @@ public class MainActivity extends AppCompatActivity {
                 cpu.setStock(tokens[15]);
 
                 CPUList.add(cpu);
-                Log.d("MyActivity", "Just created: " + cpu);
 
             }
 
@@ -261,6 +259,51 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MyActivity", "Error reading data file "+line,e);
             e.printStackTrace();
         }
+    }
+
+    public void MakeCPUMB(){
+        for(int i=0;i<CPUList.size();i++){
+            CpuMbCom CPU = new CpuMbCom();
+            CPU.setCPUList(CPUList.get(i));
+            CMList.add(CPU);
+
+            for(int j=0;j<mbList.size();j++){
+                if(CMList.get(i).getCPUList().getSocket().equals(mbList.get(j).getSocket())){
+                    MainBoard mb = new MainBoard();
+                    mb = mbList.get(j);
+                    mb.setCPUMbPrice(CMList.get(i).getCPUList().getPrice()+mb.getPrice());// cpu가격과 메인보드 가격의 핪ㅇ르 mbPrice에 저장
+                    CMList.get(i).getMbList().add(mb);
+                }
+            }
+        }
+    }
+
+    public void MakeGPUPW(){
+        for(int i=0; i<GPUList.size();i++){
+            GPWCom GPU = new GPWCom();
+            GPU.setGPU(GPUList.get(i));
+            GPWList.add(GPU);
+
+            for(int j=0;j<PWList.size();j++){
+                if((GPWList.get(i).getGPU().getPower())==(PWList.get(j).getSpecification())){
+                    Power pw = new Power();
+                    pw = PWList.get(j);
+                    pw.setGPWPrice(GPWList.get(i).getGPU().getPrice()+pw.getPrice());
+                    GPWList.get(i).getPower().add(pw);
+                }
+            }
+
+        }
+    }
+
+    public void CheckCombi(){
+        for(int i=0;i<GPWList.size();i++){
+            Log.d("MyActivity", "CMList GPU 정보: " + GPWList.get(i).getGPU());
+            for(int j=0; j<GPWList.get(i).getPower().size(); j++){
+                Log.d("MyActivity", "CMList Power 정보: " + GPWList.get(i).getPower().get(j));
+            }
+        }
+
     }
 
     @Override
@@ -276,6 +319,12 @@ public class MainActivity extends AppCompatActivity {
         readCaseData();// case 데이터 입력
         readCoolData();// cooler 데이터 입력
         readStorageData();// storage 데이터 입력
+        MakeCPUMB();
+
+        MakeGPUPW();
+        CheckCombi();
+
+
 
         Button desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {
