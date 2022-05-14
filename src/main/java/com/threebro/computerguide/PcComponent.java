@@ -3,6 +3,7 @@ package com.threebro.computerguide;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -44,7 +45,7 @@ public class PcComponent extends LinearLayout {
         nameAndPriceTextView.setText(name + "\n" + price);
     }
 
-    public void setIcon(Bitmap img) {
-        componentIconImageView.setImageBitmap(img);
+    public void setIcon(Drawable img) {
+        componentIconImageView.setImageDrawable(img);
     }
 }

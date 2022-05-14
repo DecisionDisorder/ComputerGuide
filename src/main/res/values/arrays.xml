@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="game_category">
+        <item>Low Spec</item>
+        <item>Middle Spec</item>
+        <item>Middle-High Spec</item>
+        <item>High Spec</item>
+    </string-array>
+    <string-array name="game_category_example">
+        <item>(LoL, FIFA online 4)</item>
+        <item>(Lost Ark, OverWatch)</item>
+        <item>(PUBG)</item>
+        <item>(Steam games, Elden Ring)</item>
+    </string-array>
+    <string-array name="pro_category">
+        <item>Video Editing</item>
+        <item>Coding</item>
+        <item>2D design</item>
+        <item>3D modeling</item>
+    </string-array>
+    <string-array name="simple_work_category">
+        <item>Paperwork</item>
+        <item>Family use</item>
+    </string-array>
+    <array name="icon_array">
+        <item>@drawable/cpu</item>
+        <item>@drawable/cooler</item>
+        <item>@drawable/mainboard</item>
+        <item>@drawable/ram</item>
+        <item>@drawable/graphic_card</item>
+        <item>@drawable/ssd</item>
+        <item>@drawable/hdd</item>
+        <item>@drawable/computer_case</item>
+        <item>@drawable/power_supply</item>
+    </array>
+    <string-array name="computer_components">
+        <item>@string/cpu</item>
+        <item>@string/cooler</item>
+        <item>@string/mainboard</item>
+        <item>@string/ram</item>
+        <item>@string/vga</item>
+        <item>@string/ssd</item>
+        <item>@string/hdd</item>
+        <item>@string/computer_case</item>
+        <item>@string/power</item>
+    </string-array>
+    <string-array name="computer_type">
+        <item>Desktop</item>
+        <item>Laptop</item>
+    </string-array>
+</resources>

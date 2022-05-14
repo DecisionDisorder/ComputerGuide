@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerGuide">
         <activity
+            android:name=".CompareActivity"
+            android:exported="false" />
+        <activity
             android:name=".PastModelListActivity"
             android:exported="false" />
         <activity

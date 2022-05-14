@@ -2,6 +2,7 @@ package com.threebro.computerguide;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,6 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class BottomBarFragment extends Fragment {
 
@@ -18,19 +22,29 @@ public class BottomBarFragment extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_bottom_bar, container, false);
 
-        Button homeButton = view.findViewById(R.id.homeButton);
-        Button listButton = view.findViewById(R.id.listButton);
+        LinearLayout homeContainer = view.findViewById(R.id.homeContainer);
+        LinearLayout listContainer = view.findViewById(R.id.listContainer);
+
+        TextView homeTextView = view.findViewById(R.id.homeTextView);
+        TextView listTextView = view.findViewById(R.id.listTextView);
+
+        ImageView homeImageView = view.findViewById(R.id.homeImageView);
+        ImageView listImageView = view.findViewById(R.id.listImageView);
 
         if(!isListActivity()) {
-            homeButton.setTextColor(getResources().getColor(R.color.active_color));
-            listButton.setTextColor(Color.WHITE);
+            homeTextView.setTextColor(getResources().getColor(R.color.active_color));
+            homeImageView.setColorFilter(getResources().getColor(R.color.active_color));
+            listTextView.setTextColor(Color.WHITE);
+            listImageView.setColorFilter(Color.WHITE);
         }
         else {
-            listButton.setTextColor(getResources().getColor(R.color.active_color));
-            homeButton.setTextColor(Color.WHITE);
+            listTextView.setTextColor(getResources().getColor(R.color.active_color));
+            listImageView.setColorFilter(getResources().getColor(R.color.active_color));
+            homeTextView.setTextColor(Color.WHITE);
+            homeImageView.setColorFilter(Color.WHITE);
         }
 
-        homeButton.setOnClickListener(new View.OnClickListener() {
+        homeContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(isListActivity()) {
@@ -39,7 +53,7 @@ public class BottomBarFragment extends Fragment {
             }
         });
 
-        listButton.setOnClickListener(new View.OnClickListener() {
+        listContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!isListActivity()) {

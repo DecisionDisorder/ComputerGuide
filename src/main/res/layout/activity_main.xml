@@ -18,32 +18,52 @@
         android:textColor="@color/black"
         android:textSize="25dp"/>
 
-    <Button
-        android:id="@+id/desktopBtn"
+
+    <LinearLayout
         android:layout_margin="30dp"
+        android:id="@+id/desktopBtn"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
-        android:text="Desktop"
-        android:textSize="35dp"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/laptopBtn"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:src="@drawable/desktop"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/godo_m"
+            android:text="@string/desktop"
+            android:textSize="35dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/laptopBtn"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
-        android:text="Laptop"
-        android:textSize="35dp"
-        android:textAllCaps="false"/>
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/laptop"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/godo_m"
+            android:text="@string/laptop"
+            android:textSize="35dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 
     <fragment
         android:id="@+id/bottomBarFragment"

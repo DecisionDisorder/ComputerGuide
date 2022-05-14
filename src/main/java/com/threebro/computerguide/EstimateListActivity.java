@@ -2,6 +2,8 @@ package com.threebro.computerguide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
@@ -17,20 +19,14 @@ public class EstimateListActivity extends AppCompatActivity {
         LinearLayout componentContainer = findViewById(R.id.componentContainer);
         PcComponent[] pcComponents = new PcComponent[PcComponentType.values().length];
 
-        for(int i = 0; i < pcComponents.length; i++)
+        String[] componentsNameArr = getResources().getStringArray(R.array.computer_components);
+        TypedArray iconIdArr = getResources().obtainTypedArray(R.array.icon_array);
+
+        for(int i = 0; i < pcComponents.length; i++) {
             pcComponents[i] = new PcComponent(this);
-
-        pcComponents[PcComponentType.CPU.ordinal()].setTitle(getResources().getString(R.string.cpu));
-        pcComponents[PcComponentType.COOLER.ordinal()].setTitle(getResources().getString(R.string.cooler));
-        pcComponents[PcComponentType.MB.ordinal()].setTitle(getResources().getString(R.string.mainboard));
-        pcComponents[PcComponentType.RAM.ordinal()].setTitle(getResources().getString(R.string.ram));
-        pcComponents[PcComponentType.VGA.ordinal()].setTitle(getResources().getString(R.string.vga));
-        pcComponents[PcComponentType.SSD.ordinal()].setTitle(getResources().getString(R.string.ssd));
-        pcComponents[PcComponentType.HDD.ordinal()].setTitle(getResources().getString(R.string.hdd));
-        pcComponents[PcComponentType.CASE.ordinal()].setTitle(getResources().getString(R.string.computer_case));
-        pcComponents[PcComponentType.POWER.ordinal()].setTitle(getResources().getString(R.string.power));
-
-        for(int i = 0; i < pcComponents.length; i++)
+            pcComponents[i].setTitle(componentsNameArr[i]);
+            pcComponents[i].setIcon(iconIdArr.getDrawable(i));
             componentContainer.addView(pcComponents[i]);
+        }
     }
 }

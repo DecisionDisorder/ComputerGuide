@@ -8,6 +8,56 @@
     android:orientation="vertical"
     tools:context=".PastModelListActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/round_button">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/filter"/>
+
+        <Spinner
+            android:id="@+id/computerTypeSpinner"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:entries="@array/computer_type"/>
+
+        <LinearLayout
+            android:id="@+id/compareButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/unactive_color">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/compare"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="@string/compare"
+                android:textColor="@color/black"
+                android:fontFamily="@font/godo_m"
+                android:textSize="15dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,6 +69,21 @@
             android:orientation="vertical"/>
     </ScrollView>
 
+    <Button
+        android:id="@+id/startCompareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="20dp"
+        android:visibility="gone"
+        android:background="@drawable/blue_button"
+        android:text="@string/start_compare"
+        android:textSize="17dp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/godo_m"/>
 
     <fragment
         android:id="@+id/bottomBarFragment"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import com.threebro.computerguide.CSV.CPU;
 import com.threebro.computerguide.CSV.Case;
@@ -326,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button desktopButton = findViewById(R.id.desktopBtn);
+        LinearLayout desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -336,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button laptopButton = findViewById(R.id.laptopBtn);
+        LinearLayout laptopButton = findViewById(R.id.laptopBtn);
         laptopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class ProductListActivity extends AppCompatActivity {
@@ -31,5 +32,20 @@ public class ProductListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView productSet1ImageView = findViewById(R.id.productSet1ImageView);
+        ImageView productSet2ImageView = findViewById(R.id.productSet2ImageView);
+
+        Intent budgetIntent = getIntent();
+        Bundle budgetBundle = budgetIntent.getBundleExtra("budgetBundle");
+        String computerType = budgetBundle.getString("computerType");
+        if(computerType.equals(ComputerType.DESKTOP.toString())) {
+            productSet1ImageView.setImageResource(R.drawable.desktop);
+            productSet2ImageView.setImageResource(R.drawable.desktop);
+        }
+        else {
+            productSet1ImageView.setImageResource(R.drawable.laptop);
+            productSet2ImageView.setImageResource(R.drawable.laptop);
+        }
     }
 }

@@ -1,34 +1,12 @@
 <resources>
     <string name="app_name">ComputerGuide</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="desktop">Desktop</string>
     <string name="laptop">Laptop</string>
     <string name="game">Game</string>
     <string name="professional_work">Professional Work</string>
     <string name="simple_work">Simple Work</string>
     <string name="game_usage_title">Game Usage in Detail</string>
-    <string-array name="game_category">
-        <item>Low Spec</item>
-        <item>Middle Spec</item>
-        <item>Middle-High Spec</item>
-        <item>High Spec</item>
-    </string-array>
-    <string-array name="game_category_example">
-        <item>(LoL, FIFA online 4)</item>
-        <item>(Lost Ark, OverWatch)</item>
-        <item>(PUBG)</item>
-        <item>(Steam games, Elden Ring)</item>
-    </string-array>
-    <string-array name="pro_category">
-        <item>Video Editing</item>
-        <item>Coding</item>
-        <item>2D design</item>
-        <item>3D modeling</item>
-    </string-array>
-    <string-array name="simple_work_category">
-        <item>Paperwork</item>
-        <item>Family use</item>
-    </string-array>
     <string name="major_brand">Major company\n<small>(easy AS)</small>\n\n<small><small>(Samsung, LG)</small></small></string>
     <string name="sme_brand">SME company\n<small>(Cost-Effective)</small>\n\n<small><small>(MSI, ASUS, HP, ...)</small></small></string>
     <string name="set1">Set 1</string>
@@ -42,4 +20,12 @@
     <string name="hdd">HDD</string>
     <string name="computer_case">Case</string>
     <string name="power">Power Supply</string>
+
+    <string name="bottom_home">Home</string>
+    <string name="bottom_list">List</string>
+
+    <string name="computer_type_title">Computer Type Filter |</string>
+    <string name="compare">Compare</string>
+    <string name="maximum_compare_check">You can select up to two sets.</string>
+    <string name="start_compare">Start Compare</string>
 </resources>
