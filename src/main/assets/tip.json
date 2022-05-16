@@ -1,0 +1,87 @@
+{
+  "tips": [
+    {
+      "activity": "MainActivity",
+      "tip_contents": [
+        {
+          "content": "게임용으로는 데스크탑이 좋아요."
+        }
+      ]
+    },
+    {
+      "activity": "UsageSelectionActivity",
+      "tip_contents": [
+        {
+          "content": "고사양 게임용 사두면 웬만한 작업이 가능해요."
+        }
+      ]
+    },
+    {
+      "activity": "BudgetSelectionActivity",
+      "tip_contents": [
+        {
+          "content": "조금만 더 좋은거 사야지 하다가 예산이 너무 커질 수 있어요."
+        }
+      ]
+    },
+    {
+      "activity": "ProductListActivity",
+      "tip_contents": [
+        {
+          "content": "사실 비슷한 가격대에선 엄청난 차이는 없어서 아무거나 고르면 돼요."
+        },
+        {
+          "content": "노트북은 비슷한 가격대더라도 리뷰를 찾아보는게 좋아요",
+          "tag": "laptop"
+        }
+      ]
+    },
+    {
+      "activity": "EstimateListActivity",
+      "tip_contents": [
+        {
+          "content": "RAM이 크면 동시에 더 많은 프로그램을 켜둘 수 있어요."
+        },
+        {
+          "content": "메인보드는 후면 USB 포트 개수도 고려하는게 좋아요."
+        }
+      ]
+    },
+    {
+      "activity": "LaptopSizeActivity",
+      "tip_contents": [
+        {
+          "content": "노트북은 성능/무게/가격 중에 포기할걸 선택해야해요."
+        },
+        {
+          "content": "작업용은 15인치 이상이 좋아요."
+        },
+        {
+          "content": "휴대용을 중요시하면 13인치가 적당해요."
+        }
+      ]
+    },
+    {
+      "activity": "LaptopWeightActivity",
+      "tip_contents": [
+        {
+          "content": "무게가 2kg를 넘어가면 들고 다닐때 후회하게 돼요."
+        },
+        {
+          "content": "게임을 위해서는 무게가 무거워질 수 밖에 없어요."
+        }
+      ]
+    },
+    {
+      "activity": "LaptopBrandActivity",
+      "tip_contents": [
+        {
+          "content": "삼성, LG는 AS센터가 많아서 서비스 받기 편해요."
+        },
+        {
+          "content": "중소기업 노트북은 같은 조건이면 가격이 조금 더 저렴해요."
+        }
+      ]
+    }
+  ]
+}
