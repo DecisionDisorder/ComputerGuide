@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -18,19 +19,54 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.threebro.computerguide.CSV.Usage;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailedUsageActivity extends Activity {
 
     private LinearLayout layout;
+    private List<Usage> Usage = new ArrayList<>();
+
+    private void readUsageData(){
+        InputStream is = getResources().openRawResource(R.raw.usage);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
+
+        String line ="";
+        try{
+            reader.readLine();
+            while( (line = reader.readLine()) != null){
+                String[] tokens = line.split(",");
+                Usage us = new Usage();
+                us.setUsage(tokens[0]);
+                us.setCpuPriority(Integer.parseInt(tokens[1]));
+                us.setGpuPriority(Integer.parseInt(tokens[2]));
+                Usage.add(us);
+            }
+        } catch (IOException e) {
+            Log.d("MyActivity", "Error reading data file "+line,e);
+            e.printStackTrace();
+        }
+    }//용도에 만
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        readUsageData();// 우선순위 정보 입력
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_detailed_usage);
 
         layout = findViewById(R.id.detailedUsageContainer);
+
 
         Intent receivedIntent = getIntent();
         Bundle rcvBundle = receivedIntent.getBundleExtra("typeBundle");
