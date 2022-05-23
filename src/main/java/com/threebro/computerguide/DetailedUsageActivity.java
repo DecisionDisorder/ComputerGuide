@@ -32,34 +32,11 @@ import java.util.List;
 public class DetailedUsageActivity extends Activity {
 
     private LinearLayout layout;
-    private List<Usage> Usage = new ArrayList<>();
-
-    private void readUsageData(){
-        InputStream is = getResources().openRawResource(R.raw.usage);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
-        String line ="";
-        try{
-            reader.readLine();
-            while( (line = reader.readLine()) != null){
-                String[] tokens = line.split(",");
-                Usage us = new Usage();
-                us.setUsage(tokens[0]);
-                us.setCpuPriority(Integer.parseInt(tokens[1]));
-                us.setGpuPriority(Integer.parseInt(tokens[2]));
-                Usage.add(us);
-            }
-        } catch (IOException e) {
-            Log.d("MyActivity", "Error reading data file "+line,e);
-            e.printStackTrace();
-        }
-    }//용도에 만
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        readUsageData();// 우선순위 정보 입력
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
