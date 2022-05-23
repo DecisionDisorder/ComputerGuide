@@ -19,6 +19,15 @@ public class FinalTwo {
     private GPU gpu = new GPU();
     private MainBoard mb = new MainBoard();
     private Power pw = new Power();
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public MainBoard getMb() {
         return mb;
