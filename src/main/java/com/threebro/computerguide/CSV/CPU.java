@@ -17,141 +17,160 @@ public class CPU {
     private String InternalGraphic;
     private String BundleCooler;
     private String Stock;
+    private int PriorityGaming;
+    private int PriorityTask;
+
 
     public String getManufacturer() {
         return Manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        Manufacturer = manufacturer;
     }
 
     public String getName() {
         return Name;
     }
 
+    public void setName(String name) {
+        Name = name;
+    }
+
     public int getPrice() {
         return Price;
-    }
-
-    public String getSocket() {
-        return Socket;
-    }
-
-    public String getProcess() {
-        return process;
-    }
-
-    public String getCore() {
-        return Core;
-    }
-
-    public String getThread() {
-        return Thread;
-    }
-
-    public String getBaseClock() {
-        return BaseClock;
-    }
-
-    public String getMaxClock() {
-        return MaxClock;
-    }
-
-    public String getL3Cache() {
-        return L3Cache;
-    }
-
-    public String getTDP() {
-        return TDP;
-    }
-
-    public String getMemoryStandard() {
-        return MemoryStandard;
-    }
-
-    public String getMemoryMaxClock() {
-        return MemoryMaxClock;
-    }
-
-    public String getInternalGraphic() {
-        return InternalGraphic;
-    }
-
-    public String getBundleCooler() {
-        return BundleCooler;
-    }
-
-    public String getStock() {
-        return Stock;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.Manufacturer = manufacturer;
-    }
-
-    public void setName(String name) {
-        this.Name = name;
     }
 
     public void setPrice(int price) {
         Price = price;
     }
 
+    public String getSocket() {
+        return Socket;
+    }
+
     public void setSocket(String socket) {
         Socket = socket;
+    }
+
+    public String getProcess() {
+        return process;
     }
 
     public void setProcess(String process) {
         this.process = process;
     }
 
+    public String getCore() {
+        return Core;
+    }
+
     public void setCore(String core) {
         Core = core;
+    }
+
+    public String getThread() {
+        return Thread;
     }
 
     public void setThread(String thread) {
         Thread = thread;
     }
 
+    public String getBaseClock() {
+        return BaseClock;
+    }
+
     public void setBaseClock(String baseClock) {
         BaseClock = baseClock;
+    }
+
+    public String getMaxClock() {
+        return MaxClock;
     }
 
     public void setMaxClock(String maxClock) {
         MaxClock = maxClock;
     }
 
+    public String getL3Cache() {
+        return L3Cache;
+    }
+
     public void setL3Cache(String l3Cache) {
         L3Cache = l3Cache;
+    }
+
+    public String getTDP() {
+        return TDP;
     }
 
     public void setTDP(String TDP) {
         this.TDP = TDP;
     }
 
+    public String getMemoryStandard() {
+        return MemoryStandard;
+    }
+
     public void setMemoryStandard(String memoryStandard) {
         MemoryStandard = memoryStandard;
+    }
+
+    public String getMemoryMaxClock() {
+        return MemoryMaxClock;
     }
 
     public void setMemoryMaxClock(String memoryMaxClock) {
         MemoryMaxClock = memoryMaxClock;
     }
 
+    public String getInternalGraphic() {
+        return InternalGraphic;
+    }
+
     public void setInternalGraphic(String internalGraphic) {
         InternalGraphic = internalGraphic;
+    }
+
+    public String getBundleCooler() {
+        return BundleCooler;
     }
 
     public void setBundleCooler(String bundleCooler) {
         BundleCooler = bundleCooler;
     }
 
+    public String getStock() {
+        return Stock;
+    }
+
     public void setStock(String stock) {
         Stock = stock;
     }
 
+    public int getPriorityGaming() {
+        return PriorityGaming;
+    }
+
+    public void setPriorityGaming(int priorityGaming) {
+        PriorityGaming = priorityGaming;
+    }
+
+    public int getPriorityTask() {
+        return PriorityTask;
+    }
+
+    public void setPriorityTask(int priorityTask) {
+        PriorityTask = priorityTask;
+    }
+
     @Override
     public String toString() {
-        return "test{" +
+        return "CPU{" +
                 "Manufacturer='" + Manufacturer + '\'' +
                 ", Name='" + Name + '\'' +
-                ", Price='" + Price + '\'' +
+                ", Price=" + Price +
                 ", Socket='" + Socket + '\'' +
                 ", process='" + process + '\'' +
                 ", Core='" + Core + '\'' +
@@ -165,6 +184,8 @@ public class CPU {
                 ", InternalGraphic='" + InternalGraphic + '\'' +
                 ", BundleCooler='" + BundleCooler + '\'' +
                 ", Stock='" + Stock + '\'' +
+                ", PriorityGaming=" + PriorityGaming +
+                ", PriorityTask=" + PriorityTask +
                 '}';
     }
 }

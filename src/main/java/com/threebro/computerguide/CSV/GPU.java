@@ -8,6 +8,15 @@ public class GPU {
     private boolean HDMI;
     private boolean DP;
     private boolean DVI;
+    private int Priority;
+
+    public int getPriority() {
+        return Priority;
+    }
+
+    public void setPriority(int priority) {
+        Priority = priority;
+    }
 
     public String getName() {
         return Name;
@@ -75,6 +84,7 @@ public class GPU {
                 ", HDMI=" + HDMI +
                 ", DP=" + DP +
                 ", DVI=" + DVI +
+                ", Priority=" + Priority +
                 '}';
     }
 }
