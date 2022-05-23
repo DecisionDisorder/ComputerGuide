@@ -6,16 +6,49 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.threebro.computerguide.CSV.Usage;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BudgetSelectionActivity extends AppCompatActivity {
 
     private LinearLayout layout;
     private Button[] budgetButtons;
+
+    private List<com.threebro.computerguide.CSV.Usage> Usage = new ArrayList<>();
+
+    private void readUsageData(){
+        InputStream is = getResources().openRawResource(R.raw.usage);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
+
+        String line ="";
+        try{
+            reader.readLine();
+            while( (line = reader.readLine()) != null){
+                String[] tokens = line.split(",");
+                Usage us = new Usage();
+                us.setUsage(tokens[0]);
+                us.setCpuPriority(Integer.parseInt(tokens[1]));
+                us.setGpuPriority(Integer.parseInt(tokens[2]));
+                Usage.add(us);
+            }
+        } catch (IOException e) {
+            Log.d("MyActivity", "Error reading data file "+line,e);
+            e.printStackTrace();
+        }
+    }//용도에 만
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

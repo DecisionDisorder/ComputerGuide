@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -18,9 +19,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.threebro.computerguide.CSV.Usage;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+
 public class DetailedUsageActivity extends Activity {
 
     private LinearLayout layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +43,7 @@ public class DetailedUsageActivity extends Activity {
         setContentView(R.layout.activity_detailed_usage);
 
         layout = findViewById(R.id.detailedUsageContainer);
+
 
         Intent receivedIntent = getIntent();
         Bundle rcvBundle = receivedIntent.getBundleExtra("typeBundle");

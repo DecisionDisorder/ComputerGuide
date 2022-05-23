@@ -11,6 +11,7 @@ import com.threebro.computerguide.CSV.MainBoard;
 import com.threebro.computerguide.CSV.Power;
 import com.threebro.computerguide.CSV.RAM;
 import com.threebro.computerguide.CSV.Storage;
+import com.threebro.computerguide.CSV.Usage;
 import com.threebro.computerguide.Combi.CPUMB;
 import com.threebro.computerguide.Combi.FinalRes;
 import com.threebro.computerguide.Combi.FinalTwo;
