@@ -42,13 +42,13 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         }
     }
 
-    private void drawBudgetButtons()
-    {
+    private void drawBudgetButtons() {
         int length = 16;
         int budgetMin = 500000;
         int interval = 100000;
+
+        boolean[] availablePriceList = MainActivity.desktopSet.getAvailablePriceList();
         budgetButtons = new Button[length];
-        DecimalFormat formatter =new DecimalFormat("#,###");
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         param.setMargins(100, 50, 100, 0);
@@ -57,35 +57,45 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         lastParam.setMargins(100, 50, 100, 50);
 
         for(int i = 0; i < length; i++) {
-            int price = budgetMin + interval * i;
-            Typeface font = Typeface.createFromAsset(getAssets(), "godo_m.TTF");
-            budgetButtons[i] = new Button(this);
-            budgetButtons[i].setText("\\" + formatter.format(price) + "s");
-            budgetButtons[i].setAllCaps(false);
-            budgetButtons[i].setTypeface(font);
-            budgetButtons[i].setTextSize(Dimension.DP, 60);
-            if(i >= length - 1)
-                budgetButtons[i].setLayoutParams(lastParam);
-            else
-                budgetButtons[i].setLayoutParams(param);
-            budgetButtons[i].setBackground(this.getResources().getDrawable(R.drawable.round_button));
-            layout.addView(budgetButtons[i]);
+            if(availablePriceList[i]) {
+                int price = budgetMin + interval * i;
+
+                if (i >= length - 1)
+                    addBudgetButton(price, i, length, lastParam);
+                else
+                    addBudgetButton(price, i, length, param);
+            }
         }
+    }
+
+    private void addBudgetButton(int price, int i, int length, LinearLayout.LayoutParams param) {
+        DecimalFormat formatter =new DecimalFormat("#,###");
+        Typeface font = Typeface.createFromAsset(getAssets(), "godo_m.TTF");
+        budgetButtons[i] = new Button(this);
+        budgetButtons[i].setText("\\" + formatter.format(price) + "s");
+        budgetButtons[i].setAllCaps(false);
+        budgetButtons[i].setTypeface(font);
+        budgetButtons[i].setTextSize(Dimension.DP, 60);
+        budgetButtons[i].setBackground(this.getResources().getDrawable(R.drawable.round_button));
+        budgetButtons[i].setLayoutParams(param);
+        layout.addView(budgetButtons[i]);
     }
 
     private void setButtonListener(Bundle bundle){
         for(int i = 0; i < budgetButtons.length; i++)
         {
-            final int budgetIndex = i;
-            budgetButtons[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    bundle.putInt("budgetType", budgetIndex);
-                    Intent productListActivity = new Intent(getApplicationContext(), ProductListActivity.class);
-                    productListActivity.putExtra("budgetBundle", bundle);
-                    startActivity(productListActivity);
-                }
-            });
+            if(budgetButtons[i] != null) {
+                final int budgetIndex = i;
+                budgetButtons[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        bundle.putInt("budgetType", budgetIndex);
+                        Intent productListActivity = new Intent(getApplicationContext(), ProductListActivity.class);
+                        productListActivity.putExtra("budgetBundle", bundle);
+                        startActivity(productListActivity);
+                    }
+                });
+            }
         }
     }
 }

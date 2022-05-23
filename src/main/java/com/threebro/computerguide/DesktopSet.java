@@ -406,4 +406,23 @@ public class DesktopSet {
         MakeCPUMB();
         MakeGPUPW();
     }
+
+    public boolean[] getAvailablePriceList() {
+        int length = 16;
+        int budgetMin = 500000;
+        int interval = 100000;
+        boolean[] availablePriceList = new boolean[length];
+
+        for(int i = 0; i < FinalList.size(); i++) {
+            int price = FinalList.get(i).getTotalPrice();
+            int priceIndex = (price - budgetMin) / interval;
+
+            if(priceIndex >= length)
+                priceIndex = length - 1;
+
+            availablePriceList[priceIndex] = true;
+        }
+
+        return availablePriceList;
+    }
 }
