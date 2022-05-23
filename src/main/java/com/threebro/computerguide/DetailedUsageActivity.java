@@ -34,6 +34,7 @@ public class DetailedUsageActivity extends Activity {
     private LinearLayout layout;
 
     private List<Usage> Usage = new ArrayList<>();
+    private String[] detailedUsageTypes;
 
     private void readUsageData(){
         InputStream is = getResources().openRawResource(R.raw.usage);
@@ -72,6 +73,7 @@ public class DetailedUsageActivity extends Activity {
         Intent receivedIntent = getIntent();
         Bundle rcvBundle = receivedIntent.getBundleExtra("typeBundle");
         String usageType = rcvBundle.getString("type");
+        //detailedUsageTypes = getDetailedUsageTypes();
         String computerType = rcvBundle.getString("computerType");
         TextView detailedUsageTitle = findViewById(R.id.detailedUsageTitle);
 
@@ -97,12 +99,31 @@ public class DetailedUsageActivity extends Activity {
         }
     }
 
+    private String[] getDetailedUsageTypes() {
+        ArrayList<String> detailedUsageTypes = new ArrayList<>();
+
+        String[] tempArr = getResources().getStringArray(R.array.game_category);
+        for(int i = 0; i < tempArr.length; i++)
+            detailedUsageTypes.add(tempArr[i]);
+
+        tempArr = getResources().getStringArray(R.array.pro_category);
+        for(int i = 0; i < tempArr.length; i++)
+            detailedUsageTypes.add(tempArr[i]);
+
+        tempArr = getResources().getStringArray(R.array.simple_work_category);
+        for(int i = 0; i < tempArr.length; i++)
+            detailedUsageTypes.add(tempArr[i]);
+
+        return detailedUsageTypes.toArray(new String[detailedUsageTypes.size()]);
+
+    }
+
     private void setDetailedUsageButtons(String[] typeList, String[] typeExampleList,
                                          String computerType, String usageType) {
         DetailedUsageButton[] gameButtons = new DetailedUsageButton[typeList.length];
         for(int i = 0; i < typeList.length; i++)
         {
-            final int detailedUsageType = i;
+            final String detailedUsageType = typeList[i];
             gameButtons[i] = new DetailedUsageButton(this);
 
             if(typeExampleList != null)
@@ -133,11 +154,11 @@ public class DetailedUsageActivity extends Activity {
         return spannableString;
     }
 
-    private void startNextActivityOfDesktop(String usageType, int detailedUsageType, String computerType) {
+    private void startNextActivityOfDesktop(String usageType, String detailedUsageType, String computerType) {
         Intent intent = new Intent(getApplicationContext(), BudgetSelectionActivity.class);
 
         for(int i=0;i<Usage.size();i++){
-            if(usageType.equals(Usage.get(i).getUsage())){
+            if(detailedUsageType.equals(Usage.get(i).getUsage())){
                 MainActivity.desktopSet.FinalCombinationGaming(Usage.get(i).CpuPriority,Usage.get(i).GpuPriority);
             }
         }
@@ -145,17 +166,17 @@ public class DetailedUsageActivity extends Activity {
 
         Bundle bundle = new Bundle();
         bundle.putString("usageType", usageType);
-        bundle.putInt("detailedUsageType", detailedUsageType);
+        bundle.putString("detailedUsageType", detailedUsageType);
         bundle.putString("computerType", computerType);
         intent.putExtra("usageBundle", bundle);
         startActivity(intent);
     }
 
-    private void startNextActivityOfLaptop(String usageType, int detailedUsageType, String computerType) {
+    private void startNextActivityOfLaptop(String usageType, String detailedUsageType, String computerType) {
         Intent intent = new Intent(getApplicationContext(), LaptopSizeActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("usageType", usageType);
-        bundle.putInt("detailedUsageType", detailedUsageType);
+        bundle.putString("detailedUsageType", detailedUsageType);
         bundle.putString("computerType", computerType);
         intent.putExtra("usageBundle", bundle);
         startActivity(intent);

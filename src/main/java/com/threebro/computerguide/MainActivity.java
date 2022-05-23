@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
         desktopSet.readCsvData();
         desktopSet.MakeComBi();
 
-        desktopSet.FinalCombinationGaming(61, 13);
-        desktopSet.FinalCombinationPrice(800000,900000);
-
         LinearLayout desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {
             @Override
