@@ -33,9 +33,33 @@ public class DetailedUsageActivity extends Activity {
 
     private LinearLayout layout;
 
+    private List<Usage> Usage = new ArrayList<>();
+
+    private void readUsageData(){
+        InputStream is = getResources().openRawResource(R.raw.usage);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
+
+        String line ="";
+        try{
+            reader.readLine();
+            while( (line = reader.readLine()) != null){
+                String[] tokens = line.split(",");
+                Usage us = new Usage();
+                us.setUsage(tokens[0]);
+                us.setCpuPriority(Integer.parseInt(tokens[1]));
+                us.setGpuPriority(Integer.parseInt(tokens[2]));
+                Usage.add(us);
+            }
+        } catch (IOException e) {
+            Log.d("MyActivity", "Error reading data file "+line,e);
+            e.printStackTrace();
+        }
+    }//용도에 맡게 입력
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        readUsageData();
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -111,6 +135,14 @@ public class DetailedUsageActivity extends Activity {
 
     private void startNextActivityOfDesktop(String usageType, int detailedUsageType, String computerType) {
         Intent intent = new Intent(getApplicationContext(), BudgetSelectionActivity.class);
+
+        for(int i=0;i<Usage.size();i++){
+            if(usageType.equals(Usage.get(i).getUsage())){
+                MainActivity.desktopSet.FinalCombinationGaming(Usage.get(i).CpuPriority,Usage.get(i).GpuPriority);
+            }
+        }
+
+
         Bundle bundle = new Bundle();
         bundle.putString("usageType", usageType);
         bundle.putInt("detailedUsageType", detailedUsageType);
