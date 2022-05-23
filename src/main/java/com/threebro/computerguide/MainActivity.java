@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import com.threebro.computerguide.CSV.CPU;
 import com.threebro.computerguide.CSV.Case;
@@ -17,8 +16,10 @@ import com.threebro.computerguide.CSV.MainBoard;
 import com.threebro.computerguide.CSV.Power;
 import com.threebro.computerguide.CSV.RAM;
 import com.threebro.computerguide.CSV.Storage;
-import com.threebro.computerguide.Combi.CpuMbCom;
-import com.threebro.computerguide.Combi.GPWCom;
+import com.threebro.computerguide.Combi.CPUMB;
+import com.threebro.computerguide.Combi.FinalRes;
+import com.threebro.computerguide.Combi.FinalTwo;
+import com.threebro.computerguide.Combi.GPUPW;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +27,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Case> CaseList = new ArrayList<>();
     private List<Cooler> CLList = new ArrayList<>();
     private List<Storage> STList = new ArrayList<>();
-    private List<CpuMbCom> CMList = new ArrayList<>();
-    private List<GPWCom> GPWList = new ArrayList<>();
-
-
+    private List<CPUMB> CMList = new ArrayList<>();
+    private List<GPUPW> GPWList = new ArrayList<>();
+    private List<FinalRes> FinalList = new ArrayList<>();
+    private List<FinalTwo> Final2 = new ArrayList<>();
 
 
     private void readStorageData(){
@@ -52,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 Storage st = new Storage();
                 st.setName(tokens[0]);
@@ -76,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 Cooler cl = new Cooler();
                 cl.setName(tokens[0]);
@@ -99,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 Case cs = new Case();
                 cs.setName(tokens[0]);
@@ -122,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
-
                 String[] tokens = line.split(",");
                 Power pw = new Power();
                 pw.setName(tokens[0]);
@@ -148,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
-
                 String[] tokens = line.split(",");
                 GPU gpu = new GPU();
                 gpu.setName(tokens[0]);
@@ -159,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 gpu.setHDMI(Boolean.parseBoolean(tokens[4]));
                 gpu.setDP(Boolean.parseBoolean(tokens[5]));
                 gpu.setDVI(Boolean.parseBoolean(tokens[6]));
+                gpu.setPriority(Integer.parseInt(tokens[7]));// 그래픽 우선순위 때문에
                 GPUList.add(gpu);
             }
         } catch (IOException e) {
@@ -174,8 +171,7 @@ public class MainActivity extends AppCompatActivity {
         String line ="";
         try{
             reader.readLine();
-            while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
+            while( (line = reader.readLine()) != null){ ;
 
                 String[] tokens = line.split(",");
                 RAM rm = new RAM();
@@ -201,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 MainBoard mb = new MainBoard();
                 mb.setManufacturer(tokens[0]);
@@ -231,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 CPU cpu = new CPU();
 
@@ -251,9 +245,10 @@ public class MainActivity extends AppCompatActivity {
                 cpu.setInternalGraphic(tokens[13]);
                 cpu.setBundleCooler(tokens[14]);
                 cpu.setStock(tokens[15]);
+                cpu.setPriorityGaming(Integer.parseInt(tokens[16]));
+                cpu.setPriorityTask(Integer.parseInt(tokens[17]));
 
                 CPUList.add(cpu);
-
             }
 
         } catch (IOException e) {
@@ -264,15 +259,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void MakeCPUMB(){
         for(int i=0;i<CPUList.size();i++){
-            CpuMbCom CPU = new CpuMbCom();
-            CPU.setCPUList(CPUList.get(i));
+            CPUMB CPU = new CPUMB();
+            CPU.setCPU(CPUList.get(i));
             CMList.add(CPU);
 
             for(int j=0;j<mbList.size();j++){
-                if(CMList.get(i).getCPUList().getSocket().equals(mbList.get(j).getSocket())){
+                if(CMList.get(i).getCPU().getSocket().equals(mbList.get(j).getSocket())){
                     MainBoard mb = new MainBoard();
                     mb = mbList.get(j);
-                    mb.setCPUMbPrice(CMList.get(i).getCPUList().getPrice()+mb.getPrice());// cpu가격과 메인보드 가격의 핪ㅇ르 mbPrice에 저장
                     CMList.get(i).getMbList().add(mb);
                 }
             }
@@ -281,15 +275,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void MakeGPUPW(){
         for(int i=0; i<GPUList.size();i++){
-            GPWCom GPU = new GPWCom();
+            GPUPW GPU = new GPUPW();
             GPU.setGPU(GPUList.get(i));
             GPWList.add(GPU);
 
             for(int j=0;j<PWList.size();j++){
-                if((GPWList.get(i).getGPU().getPower())==(PWList.get(j).getSpecification())){
+                if(GPWList.get(i).getGPU().getPower() <= PWList.get(j).getSpecification()){
                     Power pw = new Power();
                     pw = PWList.get(j);
-                    pw.setGPWPrice(GPWList.get(i).getGPU().getPrice()+pw.getPrice());
                     GPWList.get(i).getPower().add(pw);
                 }
             }
@@ -297,11 +290,73 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public void CheckCombi(){
-        for(int i=0;i<GPWList.size();i++){
-            Log.d("MyActivity", "CMList GPU 정보: " + GPWList.get(i).getGPU());
-            for(int j=0; j<GPWList.get(i).getPower().size(); j++){
-                Log.d("MyActivity", "CMList Power 정보: " + GPWList.get(i).getPower().get(j));
+        Log.d("Check","테스트"+FinalList.get(0).getCpu().getMbList().get(1).getPrice());
+        Log.d("Check","테스트"+FinalList.get(0).getCpu().getMbList().get(2).getPrice());
+        Log.d("Check","테스트"+FinalList.get(0).getCpu().getMbList().get(1).getPrice());
+        Log.d("Check","테스트"+FinalList.get(0).getCpu().getMbList().get(2).getPrice());
+
+
+
+    }
+
+
+    public void FinalCombinationGaming(int cpuPriority, int GpuPriority){// price는 원하는 가격대 cpuPriority,gpuPriority는 해당사양cpu 순서도
+        //CPU부터 권장사양의 최저가 부터 가격을 설정후 gpu의 가격 설정
+        for(int i=0;i<CMList.size();i++){
+            if((CMList.get(i).getCPU().getPriorityGaming()) <= cpuPriority){//기존 만들었던 cpu조합에서 원하는 우선순위와 같을경우(cpu가 권장cpu 일경우
+                    for(int k=0;k<GPWList.size();k++){//그래픽 정보 입력
+                        if((GPWList.get(k).getGPU().getPriority()) <= GpuPriority){//그래픽 카드의 성능이 높을경우
+                            FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
+                            FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
+                            FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
+                            FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice());//케이스,저장,램,쿨러가격저장
+                            FR.setTotalPrice(FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
+                            FinalList.add(FR);
+                        }
+                    }
+            }
+        }
+        Collections.sort(FinalList,new PriceCompare());
+
+
+    }
+
+
+    public void FinalCombinationPrice(int price) {
+        int brand=0;//amd랑 인텔 구분 주기위해서
+        int j=0;
+        for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
+            if(FinalList.get(i).getTotalPrice()<=price && brand ==0){//가격보다 작을경우 리턴
+                FinalTwo temp = new FinalTwo();
+                temp.setCa(FinalList.get(i).getCa());
+                temp.setCl(FinalList.get(i).getCl());
+                temp.setSt(FinalList.get(i).getSt());
+                temp.setRm(FinalList.get(i).getRm());
+                temp.setCpu(FinalList.get(i).getCpu().getCPU());
+                temp.setGpu(FinalList.get(i).getGpu().getGPU());
+                temp.setMb(FinalList.get(i).getCpu().getMbList().get(0));
+                temp.setPw(FinalList.get(i).getGpu().getPower().get(0));
+                Final2.add(temp);
+                j++;
+                brand++;
+            }
+        }
+        for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
+            if(FinalList.get(i).getTotalPrice()<=price && FinalList.get(i).getCpu().getCPU().getManufacturer().equals("AMD") && brand==1){//가격보다 작을경우 리턴
+                FinalTwo temp = new FinalTwo();
+                temp.setCa(FinalList.get(i).getCa());
+                temp.setCl(FinalList.get(i).getCl());
+                temp.setSt(FinalList.get(i).getSt());
+                temp.setRm(FinalList.get(i).getRm());
+                temp.setCpu(FinalList.get(i).getCpu().getCPU());
+                temp.setGpu(FinalList.get(i).getGpu().getGPU());
+                temp.setMb(FinalList.get(i).getCpu().getMbList().get(0));
+                temp.setPw(FinalList.get(i).getGpu().getPower().get(0));
+                Final2.add(temp);
+                brand++;
+
             }
         }
 
@@ -323,11 +378,15 @@ public class MainActivity extends AppCompatActivity {
         MakeCPUMB();
 
         MakeGPUPW();
+
+        FinalCombinationGaming(80, 80);
+        FinalCombinationPrice(1500000);
+        //가격받아주는거
         CheckCombi();
 
 
 
-        LinearLayout desktopButton = findViewById(R.id.desktopBtn);
+        Button desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -337,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LinearLayout laptopButton = findViewById(R.id.laptopBtn);
+        Button laptopButton = findViewById(R.id.laptopBtn);
         laptopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -348,3 +407,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
+class PriceCompare implements Comparator<FinalRes>{
+
+    @Override
+    public int compare(FinalRes f1, FinalRes f2) {
+        if(f1.getTotalPrice()>f2.getTotalPrice()){
+            return 1;
+        }
+        else if(f1.getTotalPrice()<f2.getTotalPrice()){
+            return -1;
+        }
+        return 0;
+    }
+}
+
+
+
+
+
+
+
