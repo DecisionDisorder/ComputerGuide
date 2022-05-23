@@ -1,7 +1,7 @@
 ﻿Usage,CPUPriority,GPUPriority
 Low Spec,61,13
-Middle spec,50,13
-Middle high spec,50,12
+Middle Spec,50,13
+Middle-High Spec,50,12
 High Spec,45,7
 Video Editing,45,12
 Video Editing 4K,33,8
