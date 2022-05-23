@@ -311,8 +311,7 @@ public class MainActivity extends AppCompatActivity {
                             FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
                             FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
                             FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
-                            FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice());//케이스,저장,램,쿨러가격저장
-                            FR.setTotalPrice(FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
+                            FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
                             FinalList.add(FR);
                         }
                     }
@@ -324,11 +323,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void FinalCombinationPrice(int price) {
+    public void FinalCombinationPrice(int priceLow,int priceHigh) {
         int brand=0;//amd랑 인텔 구분 주기위해서
         int j=0;
         for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
-            if(FinalList.get(i).getTotalPrice()<=price && brand ==0){//가격보다 작을경우 리턴
+            if(FinalList.get(i).getTotalPrice()>priceLow&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==0){//가격보다 작을경우 리턴
                 FinalTwo temp = new FinalTwo();
                 temp.setCa(FinalList.get(i).getCa());
                 temp.setCl(FinalList.get(i).getCl());
@@ -338,13 +337,14 @@ public class MainActivity extends AppCompatActivity {
                 temp.setGpu(FinalList.get(i).getGpu().getGPU());
                 temp.setMb(FinalList.get(i).getCpu().getMbList().get(0));
                 temp.setPw(FinalList.get(i).getGpu().getPower().get(0));
+                temp.setPrice(temp.getCa().getPrice()+temp.getCl().getPrice()+temp.getSt().getPrice()+temp.getRm().getPrice()+temp.getCpu().getPrice()+temp.getMb().getPrice()+temp.getGpu().getPrice()+temp.getPw().getPrice());
                 Final2.add(temp);
                 j++;
                 brand++;
             }
         }
         for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
-            if(FinalList.get(i).getTotalPrice()<=price && FinalList.get(i).getCpu().getCPU().getManufacturer().equals("AMD") && brand==1){//가격보다 작을경우 리턴
+            if(FinalList.get(i).getTotalPrice()>=priceLow &&FinalList.get(i).getTotalPrice()<priceHigh && FinalList.get(i).getCpu().getCPU().getManufacturer().equals("AMD") && brand==1){//가격보다 작을경우 리턴
                 FinalTwo temp = new FinalTwo();
                 temp.setCa(FinalList.get(i).getCa());
                 temp.setCl(FinalList.get(i).getCl());
@@ -354,6 +354,8 @@ public class MainActivity extends AppCompatActivity {
                 temp.setGpu(FinalList.get(i).getGpu().getGPU());
                 temp.setMb(FinalList.get(i).getCpu().getMbList().get(0));
                 temp.setPw(FinalList.get(i).getGpu().getPower().get(0));
+                temp.setPrice(temp.getCa().getPrice()+temp.getCl().getPrice()+temp.getSt().getPrice()+temp.getRm().getPrice()+temp.getCpu().getPrice()+temp.getMb().getPrice()+temp.getGpu().getPrice()+temp.getPw().getPrice());
+
                 Final2.add(temp);
                 brand++;
 
@@ -380,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
         MakeGPUPW();
 
         FinalCombinationGaming(80, 80);
-        FinalCombinationPrice(1500000);
+        FinalCombinationPrice(700000,800000);
         //가격받아주는거
         CheckCombi();
 
@@ -421,7 +423,6 @@ class PriceCompare implements Comparator<FinalRes>{
         return 0;
     }
 }
-
 
 
 
