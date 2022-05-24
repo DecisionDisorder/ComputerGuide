@@ -42,6 +42,10 @@ public class DesktopSet {
     private List<FinalRes> FinalList = new ArrayList<>();
     private List<FinalTwo> Final2 = new ArrayList<>();
 
+    public List<FinalTwo> getFinal2() {
+        return Final2;
+    }
+
     public DesktopSet(Context context) {
         this.context = context;
     }

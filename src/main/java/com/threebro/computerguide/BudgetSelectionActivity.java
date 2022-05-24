@@ -27,29 +27,6 @@ public class BudgetSelectionActivity extends AppCompatActivity {
     private LinearLayout layout;
     private Button[] budgetButtons;
 
-    private List<com.threebro.computerguide.CSV.Usage> Usage = new ArrayList<>();
-
-    private void readUsageData(){
-        InputStream is = getResources().openRawResource(R.raw.usage);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
-        String line ="";
-        try{
-            reader.readLine();
-            while( (line = reader.readLine()) != null){
-                String[] tokens = line.split(",");
-                Usage us = new Usage();
-                us.setUsage(tokens[0]);
-                us.setCpuPriority(Integer.parseInt(tokens[1]));
-                us.setGpuPriority(Integer.parseInt(tokens[2]));
-                Usage.add(us);
-            }
-        } catch (IOException e) {
-            Log.d("MyActivity", "Error reading data file "+line,e);
-            e.printStackTrace();
-        }
-    }//용도에 만
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +34,12 @@ public class BudgetSelectionActivity extends AppCompatActivity {
 
         layout = findViewById(R.id.budgetLayout);
 
+
         Bundle desktopBundle = getIntent().getBundleExtra("usageBundle");
         Bundle laptopBundle = getIntent().getBundleExtra("brandBundle");
         if(desktopBundle != null) {
             String usageType = desktopBundle.getString("usageType");
-            String detailedUsageType = desktopBundle.getString("detailedUsageType");
+            int detailedUsageType = desktopBundle.getInt("detailedUsageType");
             drawBudgetButtons();
             setButtonListener(desktopBundle);
         }
@@ -156,6 +134,13 @@ public class BudgetSelectionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         bundle.putInt("budgetType", budgetIndex);
+
+                        MainActivity.desktopSet.FinalCombinationPrice(budgetIndex*100000+500000,(budgetIndex+1)*100000+500000);
+                        bundle.putString("Spec1CPU",MainActivity.desktopSet.getFinal2().get(0).getCpu().getName());
+                        bundle.putString("Spec1GPU",MainActivity.desktopSet.getFinal2().get(0).getGpu().getSeries());
+                        bundle.putString("Spec1RAM",MainActivity.desktopSet.getFinal2().get(0).getRm().getRamCapacity());
+                        bundle.putString("Spec1Storage",MainActivity.desktopSet.getFinal2().get(0).getSt().getCapacity());
+                        bundle.putInt("Spec1Price",MainActivity.desktopSet.getFinal2().get(0).getPrice());
                         Intent productListActivity = new Intent(getApplicationContext(), ProductListActivity.class);
                         productListActivity.putExtra("budgetBundle", bundle);
                         startActivity(productListActivity);
