@@ -56,21 +56,25 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_budget_selection);
 
         layout = findViewById(R.id.budgetLayout);
-        drawBudgetButtons();
 
         Bundle desktopBundle = getIntent().getBundleExtra("usageBundle");
         Bundle laptopBundle = getIntent().getBundleExtra("brandBundle");
         if(desktopBundle != null) {
             String usageType = desktopBundle.getString("usageType");
-            int detailedUsageType = desktopBundle.getInt("detailedUsageType");
+            String detailedUsageType = desktopBundle.getString("detailedUsageType");
+            drawBudgetButtons();
             setButtonListener(desktopBundle);
         }
         else if(laptopBundle != null) {
             String usageType = laptopBundle.getString("usageType");
-            int detailedUsageType = laptopBundle.getInt("detailedUsageType");
+            String detailedUsageType = laptopBundle.getString("detailedUsageType");
             int laptopSizeIndex = laptopBundle.getInt("laptopSizeIndex");
             int laptopWeightIndex = laptopBundle.getInt("laptopWeightIndex");
             int brandType = laptopBundle.getInt("brandType");
+            brandType+=1;
+            float wt = (float) (1.5 + 0.5*laptopWeightIndex);
+            float dsize = 13+1*laptopSizeIndex;
+            drawBudgetButtonsLT(usageType, detailedUsageType, dsize, brandType, wt);
             setButtonListener(laptopBundle);
         }
     }
@@ -81,6 +85,35 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         int interval = 100000;
 
         boolean[] availablePriceList = MainActivity.desktopSet.getAvailablePriceList();
+        budgetButtons = new Button[length];
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        param.setMargins(100, 50, 100, 0);
+        LinearLayout.LayoutParams lastParam = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lastParam.setMargins(100, 50, 100, 50);
+
+        for(int i = 0; i < length; i++) {
+            if(availablePriceList[i]) {
+                int price = budgetMin + interval * i;
+
+                if (i >= length - 1)
+                    addBudgetButton(price, i, length, lastParam);
+                else
+                    addBudgetButton(price, i, length, param);
+            }
+        }
+    }
+
+    //이준희 코드
+    private void drawBudgetButtonsLT(String usage, String dusage, float dsize, int company, double wt) {
+        int length = 16;
+        int budgetMin = 500000;
+        int interval = 100000;
+
+        int price1 = MainActivity.laptopSet.Selectprice(usage, dusage, dsize, company, wt);
+
+        boolean[] availablePriceList = MainActivity.laptopSet.getAvailablePriceList(price1);
         budgetButtons = new Button[length];
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

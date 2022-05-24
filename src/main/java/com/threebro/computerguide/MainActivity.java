@@ -35,6 +35,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static DesktopSet desktopSet;
+    static LaptopSet laptopSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         desktopSet.readCsvData();
         desktopSet.MakeComBi();
+
+        if(laptopSet == null)
+            laptopSet = new LaptopSet(this);
+        laptopSet.readLaptop();
 
         LinearLayout desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {

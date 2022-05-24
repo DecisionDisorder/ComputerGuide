@@ -20,7 +20,11 @@ public class LaptopSet {
     private List<Laptop> flaptop = new ArrayList<>();
     private List<Laptop> plaptop = new ArrayList<>();
 
-    private void readLaptop(){
+    public LaptopSet(Context context) {
+        this.context = context;
+    }
+
+    public void readLaptop(){
         InputStream is = context.getResources().openRawResource(R.raw.laptop);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
 
@@ -151,7 +155,7 @@ public class LaptopSet {
         return availablePriceList;
     }
 
-    public void Selectlaptop(String usage, String dusage, float dsize, int company, double wt, double price){
+    public void Selectlaptop(String usage, String dusage, float dsize, int company, double wt, int price){
         int clevel=1;
         int glevel=1;
         int ram=8;
@@ -210,7 +214,7 @@ public class LaptopSet {
 
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram&&LaptopList.get(i).getPrice()<=price){
+                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram&&LaptopList.get(i).getPrice()<=(price+100000)){
                 Laptop lt = new Laptop();
                 lt = LaptopList.get(i);
                 flaptop.add(lt);
