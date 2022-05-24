@@ -2,8 +2,8 @@ package com.threebro.computerguide.CSV;
 
 public class Laptop {
     private String name, company, cpu1,cpu2,cpu3,os,graphic;
-    private float display, memory, ssd, weight, price;
-    private int clv, glv, comnum;
+    private float display, memory, ssd, weight;
+    private int clv, glv, comnum, price;
 
     public int getComnum() {
         return comnum;
@@ -13,11 +13,11 @@ public class Laptop {
         this.comnum = comnum;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
