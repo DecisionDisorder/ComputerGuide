@@ -2,10 +2,12 @@ package com.threebro.computerguide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class EstimateListActivity extends AppCompatActivity {
 
@@ -15,6 +17,13 @@ public class EstimateListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estimate_list);
+
+        Intent rcvintent = getIntent();
+        int index = rcvintent.getIntExtra("index",3);
+
+        TextView price = findViewById(R.id.priceID);
+        price.setText("Total : "+MainActivity.desktopSet.getFinal2().get(index).getPrice()+"원");
+
 
         LinearLayout componentContainer = findViewById(R.id.componentContainer);
         PcComponent[] pcComponents = new PcComponent[PcComponentType.values().length];

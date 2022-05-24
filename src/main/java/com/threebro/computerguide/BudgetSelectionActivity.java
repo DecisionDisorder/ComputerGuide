@@ -136,11 +136,6 @@ public class BudgetSelectionActivity extends AppCompatActivity {
                         bundle.putInt("budgetType", budgetIndex);
 
                         MainActivity.desktopSet.FinalCombinationPrice(budgetIndex*100000+500000,(budgetIndex+1)*100000+500000);
-                        bundle.putString("Spec1CPU",MainActivity.desktopSet.getFinal2().get(0).getCpu().getName());
-                        bundle.putString("Spec1GPU",MainActivity.desktopSet.getFinal2().get(0).getGpu().getSeries());
-                        bundle.putString("Spec1RAM",MainActivity.desktopSet.getFinal2().get(0).getRm().getRamCapacity());
-                        bundle.putString("Spec1Storage",MainActivity.desktopSet.getFinal2().get(0).getSt().getCapacity());
-                        bundle.putInt("Spec1Price",MainActivity.desktopSet.getFinal2().get(0).getPrice());
                         Intent productListActivity = new Intent(getApplicationContext(), ProductListActivity.class);
                         productListActivity.putExtra("budgetBundle", bundle);
                         startActivity(productListActivity);

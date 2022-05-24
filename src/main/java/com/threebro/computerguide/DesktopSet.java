@@ -324,29 +324,6 @@ public class DesktopSet {
         Collections.sort(FinalList,new PriceCompare());
     }
 
-    public void FinalCombinationTask(int cpuPriority, int GpuPriority){// price는 원하는 가격대 cpuPriority,gpuPriority는 해당사양cpu 순서도
-        //CPU부터 권장사양의 최저가 부터 가격을 설정후 gpu의 가격 설정
-        for(int i=0;i<CMList.size();i++){
-            if((CMList.get(i).getCPU().getPriorityTask()) <= cpuPriority){//기존 만들었던 cpu조합에서 원하는 우선순위와 같을경우(cpu가 권장cpu 일경우
-                for(int k=0;k<GPWList.size();k++){//그래픽 정보 입력
-                    if(GpuPriority==0){//내장그래픽 사용시
-                        FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
-                        setInternalGraphic(FR,i,k);
-                        FinalList.add(FR);
-                    }
-                    else if((GPWList.get(k).getGPU().getPriority()) <= GpuPriority ){//그래픽 필요가 안들어올시
-                        FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
-                        FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
-                        FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
-                        FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
-                        FinalList.add(FR);
-                    }
-                }
-            }
-        }
-        Collections.sort(FinalList,new PriceCompare());
-    }
-
     public void setInternalGraphic(FinalRes FR,int i,int k){
         FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
@@ -375,13 +352,15 @@ public class DesktopSet {
     public void FinalCombinationPrice(int priceLow, int priceHigh) {
         int brand=0;//amd랑 인텔 구분 주기위해서
         int j=0;
+        int flag=0;
         for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
-            if(FinalList.get(i).getTotalPrice()>priceLow&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==0){//가격보다 작을경우 리턴
+            if(FinalList.get(i).getTotalPrice()>priceLow&& FinalList.get(i).getCpu().getCPU().getManufacturer().equals("Intel")&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==0){//가격보다 작을경우 리턴
                 FinalTwo temp = new FinalTwo();
                 inPutTemp(temp,i);
                 Final2.add(temp);
                 j++;
                 brand++;
+                flag=i;
             }
         }
         for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
@@ -390,7 +369,17 @@ public class DesktopSet {
                 inPutTemp(temp,i);
                 Final2.add(temp);
                 brand++;
-
+            }
+        }
+        if(brand==1){
+            for(int i=flag+1; i<FinalList.size(); i++){//인텔에서 추출
+                if(FinalList.get(i).getTotalPrice()>=priceLow&& FinalList.get(i).getCpu().getCPU().getManufacturer().equals("Intel")&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==1){//가격보다 작을경우 리턴
+                    FinalTwo temp = new FinalTwo();
+                    inPutTemp(temp,i);
+                    Final2.add(temp);
+                    j++;
+                    brand++;
+                }
             }
         }
 

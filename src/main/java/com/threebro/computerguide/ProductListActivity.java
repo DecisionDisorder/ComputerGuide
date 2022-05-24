@@ -19,10 +19,24 @@ public class ProductListActivity extends AppCompatActivity {
 
         LinearLayout set1SpecContainer = findViewById(R.id.set1SpecContainer);
 
+        TextView spec2 = findViewById(R.id.set2SpecTextView) ;
+
         set1SpecContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                intent.putExtra("index",0);
+                startActivity(intent);
+            }
+        });
+
+
+        LinearLayout set2SpecContainer = findViewById(R.id.set2SpecContainer);
+        set2SpecContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                intent.putExtra("index",1);
                 startActivity(intent);
             }
         });
@@ -42,21 +56,13 @@ public class ProductListActivity extends AppCompatActivity {
         int price = 500000 + 100000 * budgetindex;
         MainActivity.laptopSet.Selectlaptop(usageType, detailedUsageType, dsize, brandType, wt, price);
 
-        LinearLayout set2SpecContainer = findViewById(R.id.set2SpecContainer);
-        set2SpecContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
-                startActivity(intent);
-            }
-        });
-
         ImageView productSet1ImageView = findViewById(R.id.productSet1ImageView);
         ImageView productSet2ImageView = findViewById(R.id.productSet2ImageView);
 
         Intent budgetIntent = getIntent();
         Bundle budgetBundle = budgetIntent.getBundleExtra("budgetBundle");
-        spec1.setText(budgetBundle.getString("Spec1CPU")+"\n"+budgetBundle.getString("Spec1RAM")+"\n"+budgetBundle.getString("Spec1GPU")+"\n"+budgetBundle.getString("Spec1Storage")+"\n"+budgetBundle.getInt("Spec1Price")+"원\n");
+        spec1.setText(MainActivity.desktopSet.getFinal2().get(0).getCpu().getName()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getRm().getRamCapacity()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getGpu().getSeries()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getPrice()+"원");
+        spec2.setText(MainActivity.desktopSet.getFinal2().get(1).getCpu().getName()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getRm().getRamCapacity()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getGpu().getSeries()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getPrice()+"원");
         String computerType = budgetBundle.getString("computerType");
         if(computerType.equals(ComputerType.DESKTOP.toString())) {
             productSet1ImageView.setImageResource(R.drawable.desktop);

@@ -150,8 +150,10 @@ public class LaptopSet {
         if(priceIndex >= length)
             priceIndex = length - 1;
 
-        availablePriceList[priceIndex] = true;
-
+        while(priceIndex<length){
+            availablePriceList[priceIndex] = true;
+            priceIndex++;
+        }
         return availablePriceList;
     }
 
@@ -214,7 +216,8 @@ public class LaptopSet {
 
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram&&LaptopList.get(i).getPrice()<=(price+100000)){
+                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram
+                    &&LaptopList.get(i).getPrice()<=(price+100000)&&LaptopList.get(i).getPrice()>=price){
                 Laptop lt = new Laptop();
                 lt = LaptopList.get(i);
                 flaptop.add(lt);
