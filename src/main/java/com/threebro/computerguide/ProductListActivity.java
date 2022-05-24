@@ -61,8 +61,8 @@ public class ProductListActivity extends AppCompatActivity {
 
         Intent budgetIntent = getIntent();
         Bundle budgetBundle = budgetIntent.getBundleExtra("budgetBundle");
-        spec1.setText(MainActivity.desktopSet.getFinal2().get(0).getCpu().getName()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getRm().getRamCapacity()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getGpu().getSeries()+"\n"+MainActivity.desktopSet.getFinal2().get(0).getPrice()+"원");
-        spec2.setText(MainActivity.desktopSet.getFinal2().get(1).getCpu().getName()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getRm().getRamCapacity()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getGpu().getSeries()+"\n"+MainActivity.desktopSet.getFinal2().get(1).getPrice()+"원");
+        spec1.setText(MainActivity.desktopSet.getSimpleString(0));
+        spec2.setText(MainActivity.desktopSet.getSimpleString(1));
         String computerType = budgetBundle.getString("computerType");
         if(computerType.equals(ComputerType.DESKTOP.toString())) {
             productSet1ImageView.setImageResource(R.drawable.desktop);

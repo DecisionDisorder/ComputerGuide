@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -295,6 +296,16 @@ public class DesktopSet {
             }
 
         }
+    }
+
+    public String getSimpleString(int index) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String price = String.format(formatter.format(Final2.get(index).getPrice()));
+
+        String simple = Final2.get(index).getCpu().getName() + "\n" + Final2.get(index).getRm().getRamCapacity()
+                + "\n" + Final2.get(index).getGpu().getSeries() + "\n" + price + "원";
+
+        return simple;
     }
 
     public void FinalCombinationGaming(int cpuPriority, int GpuPriority){// price는 원하는 가격대 cpuPriority,gpuPriority는 해당사양cpu 순서도
