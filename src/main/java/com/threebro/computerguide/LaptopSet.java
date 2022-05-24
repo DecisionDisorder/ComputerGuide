@@ -46,7 +46,7 @@ public class LaptopSet {
                 lt.setWeight(Float.parseFloat(tokens[11]));
                 lt.setGlv(Integer.parseInt(tokens[12]));
                 lt.setGraphic(tokens[13]);
-                lt.setPrice(Float.parseFloat(tokens[14]));
+                lt.setPrice(Integer.parseInt(tokens[14]));
 
                 LaptopList.add(lt);
             }
@@ -57,12 +57,67 @@ public class LaptopSet {
         }
     }
 
-    public double Selectprice(int clevel, int glevel, float dsize, int company, double wt){
-        double price=0;
+    public int Selectprice(String usage, String dusage, float dsize, int company, double wt){
+        int price=0;
+        int clevel=1;
+        int glevel=1;
+        int ram=8;
+
+        if(usage.equals("game")){
+            if(dusage.equals("Low Spec")){
+                clevel=1;
+                glevel=2;
+                ram=8;
+            }
+            else if(dusage.equals("Middle spec")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else if(dusage.equals("Middle high spec")){
+                clevel=3;
+                glevel=3;
+                ram=16;
+            }
+            else{
+                clevel=4;
+                glevel=4;
+                ram=16;
+            }
+        }
+
+        else if(usage.equals("professional")){
+            if(dusage.equals("Video Editing")){
+                clevel=3;
+                glevel=3;
+                ram=8;
+            }
+            else if(dusage.equals("Coding")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else if(dusage.equals("2D design")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else{
+                clevel=4;
+                glevel=4;
+                ram=16;
+            }
+        }
+
+        else{
+            clevel=1;
+            glevel=1;
+            ram=4;
+        }
 
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize){
+                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram){
                 Laptop lt = new Laptop();
                 lt = LaptopList.get(i);
                 plaptop.add(lt);
@@ -80,10 +135,82 @@ public class LaptopSet {
         return price;
     }
 
-    public void Selectlaptop(int clevel, int glevel, float dsize, int company, double wt, double price){
+    public boolean[] getAvailablePriceList(int price) {
+        int length = 16;
+        int budgetMin = 500000;
+        int interval = 100000;
+        boolean[] availablePriceList = new boolean[length];
+
+        int priceIndex = (price - budgetMin) / interval;
+
+        if(priceIndex >= length)
+            priceIndex = length - 1;
+
+        availablePriceList[priceIndex] = true;
+
+        return availablePriceList;
+    }
+
+    public void Selectlaptop(String usage, String dusage, float dsize, int company, double wt, double price){
+        int clevel=1;
+        int glevel=1;
+        int ram=8;
+
+        if(usage.equals("game")){
+            if(dusage.equals("Low Spec")){
+                clevel=1;
+                glevel=2;
+                ram=8;
+            }
+            else if(dusage.equals("Middle spec")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else if(dusage.equals("Middle high spec")){
+                clevel=3;
+                glevel=3;
+                ram=16;
+            }
+            else{
+                clevel=4;
+                glevel=4;
+                ram=16;
+            }
+        }
+
+        else if(usage.equals("professional")){
+            if(dusage.equals("Video Editing")){
+                clevel=3;
+                glevel=3;
+                ram=8;
+            }
+            else if(dusage.equals("Coding")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else if(dusage.equals("2D design")){
+                clevel=2;
+                glevel=3;
+                ram=16;
+            }
+            else{
+                clevel=4;
+                glevel=4;
+                ram=16;
+            }
+        }
+
+        else{
+            clevel=1;
+            glevel=1;
+            ram=4;
+        }
+
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getPrice()<=price&&LaptopList.get(i).getDisplay()>=dsize){
+                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram&&LaptopList.get(i).getPrice()<=price){
                 Laptop lt = new Laptop();
                 lt = LaptopList.get(i);
                 flaptop.add(lt);
