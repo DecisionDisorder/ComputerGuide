@@ -54,7 +54,7 @@
                 android:gravity="right"
                 android:fontFamily="@font/godo_m"
                 android:text="i5-12400\n16GB\nRTX 3050\n500GB\n\\1,200,000"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:textAlignment="gravity"/>
         </LinearLayout>
@@ -100,7 +100,7 @@
                 android:gravity="right"
                 android:fontFamily="@font/godo_m"
                 android:text="i5-12400\n16GB\nRTX 3050\n500GB\n\\1,200,000"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:textColor="@color/black"
                 android:textAlignment="gravity"/>
         </LinearLayout>
