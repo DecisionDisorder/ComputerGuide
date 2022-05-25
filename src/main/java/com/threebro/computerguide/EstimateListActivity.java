@@ -62,7 +62,7 @@ public class EstimateListActivity extends AppCompatActivity {
             case MB:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getMb().getName();
             case RAM:
-                return MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getName();
+                return MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getName()+"  "+MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getRamCapacity()+"X"+MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getAmount();
             case VGA:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getGpu().getName();
             case SSD:
