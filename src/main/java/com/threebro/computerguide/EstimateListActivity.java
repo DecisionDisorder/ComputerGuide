@@ -10,13 +10,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.threebro.computerguide.CSV.CPU;
+import com.threebro.computerguide.CSV.RAM;
 
 import java.text.DecimalFormat;
 
 public class EstimateListActivity extends AppCompatActivity {
 
-    private enum PcComponentType {
-        CPU, COOLER, MB, RAM, VGA, SSD, HDD, CASE, POWER;
+    private int indexOfSet;
+    private PcComponent[] pcComponents;
+
+    private TextView priceTextView;
+
+    public enum PcComponentType {
+        CPU, COOLER, MB, RAM, VGA, STORAGE, CASE, POWER;
         private static PcComponentType[] allValues = values();
         public static PcComponentType fromOrdinal(int n) {return allValues[n];}
     }
@@ -27,30 +33,38 @@ public class EstimateListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_estimate_list);
 
         Intent rcvintent = getIntent();
-        int index = rcvintent.getIntExtra("index",3);
+        indexOfSet = rcvintent.getIntExtra("index",3);
 
         DecimalFormat formatter = new DecimalFormat("#,###");
-        TextView price = findViewById(R.id.priceID);
-        price.setText("Total : "+formatter.format(MainActivity.desktopSet.getFinal2().get(index).getPrice())+"원");
+        priceTextView = findViewById(R.id.priceID);
+        priceTextView.setText("Total : "+formatter.format(MainActivity.desktopSet.getFinal2().get(indexOfSet).getPrice())+"원");
 
 
         LinearLayout componentContainer = findViewById(R.id.componentContainer);
-        PcComponent[] pcComponents = new PcComponent[PcComponentType.values().length];
+        pcComponents = new PcComponent[PcComponentType.values().length];
 
         String[] componentsNameArr = getResources().getStringArray(R.array.computer_components);
         TypedArray iconIdArr = getResources().obtainTypedArray(R.array.icon_array);
 
         for(int i = 0; i < pcComponents.length; i++) {
-            pcComponents[i] = new PcComponent(this);
+            if(i == PcComponentType.RAM.ordinal()) {
+                int maxAmount = MainActivity.desktopSet.getFinal2().get(indexOfSet).getMb().getSlotAmount();
+                pcComponents[i] = new PcComponent(this, maxAmount);
+                pcComponents[i].setActiveAmountSet(true, getComponentAmount(i));
+            }
+            else
+                pcComponents[i] = new PcComponent(this);
             pcComponents[i].setTitle(componentsNameArr[i]);
             pcComponents[i].setIcon(iconIdArr.getDrawable(i));
 
-            pcComponents[i].setNameAndPrice(getComponentName(i, index), formatter.format(getComponentPrice(i, index)) + "원");
+            pcComponents[i].setNameAndPrice(getComponentName(i), formatter.format(getComponentPrice(i)) + "원");
+            if(i == PcComponentType.VGA.ordinal() || i == PcComponentType.POWER.ordinal())
+                pcComponents[i].setTextSize();
             componentContainer.addView(pcComponents[i]);
         }
     }
 
-    private String getComponentName(int component, int indexOfSet) {
+    public String getComponentName(int component) {
         PcComponentType type = PcComponentType.fromOrdinal(component);
         switch (type) {
             case CPU:
@@ -60,12 +74,11 @@ public class EstimateListActivity extends AppCompatActivity {
             case MB:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getMb().getName();
             case RAM:
-                return MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getName();
+                RAM ram = MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm();
+                return ram.getName() + " " + ram.getRamCapacity();
             case VGA:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getGpu().getName();
-            case SSD:
-                return MainActivity.desktopSet.getFinal2().get(indexOfSet).getSt().getName();
-            case HDD:
+            case STORAGE:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getSt().getName();
             case CASE:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getCa().getName();
@@ -75,7 +88,7 @@ public class EstimateListActivity extends AppCompatActivity {
         return "";
     }
 
-    private int getComponentPrice(int component, int indexOfSet) {
+    public int getComponentPrice(int component) {
         PcComponentType type = PcComponentType.fromOrdinal(component);
         switch (type) {
             case CPU:
@@ -88,9 +101,7 @@ public class EstimateListActivity extends AppCompatActivity {
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getPrice();
             case VGA:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getGpu().getPrice();
-            case SSD:
-                return MainActivity.desktopSet.getFinal2().get(indexOfSet).getSt().getPrice();
-            case HDD:
+            case STORAGE:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getSt().getPrice();
             case CASE:
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getCa().getPrice();
@@ -98,5 +109,32 @@ public class EstimateListActivity extends AppCompatActivity {
                 return MainActivity.desktopSet.getFinal2().get(indexOfSet).getPw().getPrice();
         }
         return 0;
+    }
+
+    public void setComponentAmount(int component, int amount) {
+        if(component == PcComponentType.RAM.ordinal()) {
+            int priorAmount = getComponentAmount(component);
+            MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().setAmount(priorAmount + amount);
+            pcComponents[component].setAmountTextView(getComponentAmount(component));
+            updatePrice(component);
+        }
+    }
+
+    public int getComponentAmount(int component) {
+        if(component == PcComponentType.RAM.ordinal()) {
+            return MainActivity.desktopSet.getFinal2().get(indexOfSet).getRm().getAmount();
+        }
+
+        return 0;
+    }
+
+    private void updatePrice(int changedComponent) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        if(changedComponent == PcComponentType.RAM.ordinal()) {
+            String price = formatter.format(getComponentPrice(changedComponent)) + "원";
+            pcComponents[changedComponent].setNameAndPrice(getComponentName(changedComponent), price);
+        }
+
+        priceTextView.setText("Total : "+formatter.format(MainActivity.desktopSet.getFinal2().get(indexOfSet).getPrice()) + "원");
     }
 }
