@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Dimension;
+
 public class PcComponent extends LinearLayout {
 
     private TextView componentTitleTextView;
@@ -43,6 +45,10 @@ public class PcComponent extends LinearLayout {
 
     public void setNameAndPrice(String name, String price) {
         nameAndPriceTextView.setText(name + "\n" + price);
+    }
+
+    public void setTextSize(){
+        nameAndPriceTextView.setTextSize(Dimension.DP,26);
     }
 
     public void setIcon(Drawable img) {

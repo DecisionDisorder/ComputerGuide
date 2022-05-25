@@ -44,7 +44,9 @@ public class EstimateListActivity extends AppCompatActivity {
             pcComponents[i] = new PcComponent(this);
             pcComponents[i].setTitle(componentsNameArr[i]);
             pcComponents[i].setIcon(iconIdArr.getDrawable(i));
-
+            if(componentsNameArr[i].equals("Power Supply")||componentsNameArr[i].equals("Graphic Card")){
+                pcComponents[i].setTextSize();
+            }
             pcComponents[i].setNameAndPrice(getComponentName(i, index), formatter.format(getComponentPrice(i, index)) + "원");
             componentContainer.addView(pcComponents[i]);
         }
