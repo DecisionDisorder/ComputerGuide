@@ -302,7 +302,7 @@ public class DesktopSet {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String price = String.format(formatter.format(Final2.get(index).getPrice()));
 
-        String simple = Final2.get(index).getCpu().getName() + "\n" + Final2.get(index).getRm().getRamCapacity()
+        String simple = Final2.get(index).getCpu().getName() + "\n" + Final2.get(index).getRm().getRamCapacity()+"X"+Final2.get(index).getRm().getAmount()
                 + "\n" + Final2.get(index).getGpu().getSeries() + "\n" + price + "원";
 
         return simple;
