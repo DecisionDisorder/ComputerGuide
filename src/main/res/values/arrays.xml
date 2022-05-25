@@ -29,7 +29,6 @@
         <item>@drawable/ram</item>
         <item>@drawable/graphic_card</item>
         <item>@drawable/ssd</item>
-        <item>@drawable/hdd</item>
         <item>@drawable/computer_case</item>
         <item>@drawable/power_supply</item>
     </array>
@@ -39,8 +38,7 @@
         <item>@string/mainboard</item>
         <item>@string/ram</item>
         <item>@string/vga</item>
-        <item>@string/ssd</item>
-        <item>@string/hdd</item>
+        <item>@string/storage</item>
         <item>@string/computer_case</item>
         <item>@string/power</item>
     </string-array>

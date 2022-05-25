@@ -16,8 +16,7 @@
     <string name="mainboard">Mainboard</string>
     <string name="ram">RAM</string>
     <string name="vga">Graphic Card</string>
-    <string name="ssd">SSD</string>
-    <string name="hdd">HDD</string>
+    <string name="storage">Storage</string>
     <string name="computer_case">Case</string>
     <string name="power">Power Supply</string>
 

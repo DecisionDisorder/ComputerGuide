@@ -27,7 +27,7 @@ public class FinalRes {
     private CPUMB cpu = new CPUMB();//생성 가능한 모든 CPU,MB조합
     private GPUPW gpu = new GPUPW();//생성 가능한 모든 GPU,PW조합
 
-    private int TotalPrice;// 최종 가격 설정
+    //private int TotalPrice;// 최종 가격 설정
 
     public FinalRes(Case ca, Storage st, RAM rm, Cooler cl){// 초기 조건 넣기위해서
         this.ca = ca;
@@ -86,13 +86,18 @@ public class FinalRes {
         this.gpu = gp;
     }
 
-    public int getTotalPrice() {
+    /*public int getTotalPrice() {
         return TotalPrice;
+    }*/
+
+    public int getTotalPrice() {
+        return getCa().getPrice()+getSt().getPrice() + getRm().getPrice() + getCl().getPrice()
+                + getCpu().getCPU().getPrice()+getCpu().getMbList().get(0).getPrice() + getGpu().getPower().get(0).getPrice();
     }
 
-    public void setTotalPrice(int totalPrice) {
+    /*public void setTotalPrice(int totalPrice) {
         TotalPrice = totalPrice;
-    }
+    }*/
 
 
 }

@@ -210,7 +210,7 @@ public class DesktopSet {
                 mb.setSize(tokens[4]);
                 mb.setDDR(tokens[5]);
                 mb.setMemoryMaxClock(tokens[6]);
-                mb.setSlotAmount(tokens[7]);
+                mb.setSlotAmount(Integer.parseInt(tokens[7]));
                 mb.setMemoryMaxSize(tokens[8]);
                 mb.setStock(tokens[9]);
                 mb.setPrice(Integer.parseInt(tokens[10]));
@@ -319,14 +319,14 @@ public class DesktopSet {
                         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
                         FR.getGpu().getGPU().setName("내장그래픽");
                         FR.getGpu().getGPU().setPrice(0);
-                        FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
+                        //FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
                         FinalList.add(FR);
                     }
                     else if((GPWList.get(k).getGPU().getPriority()) <= GpuPriority ){//그래픽 필요가 안들어올시
                         FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
                         FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
                         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
-                        FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
+                        //FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getGPU().getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
                         FinalList.add(FR);
                     }
                 }
@@ -343,7 +343,7 @@ public class DesktopSet {
         FR.getGpu().getGPU().setSeries("0");
         FR.getGpu().getGPU().setPower(0);
         FR.getGpu().getGPU().setPriority(0);
-        FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
+        //FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
 
     }
 

@@ -22,7 +22,8 @@ public class FinalTwo {
     private int price;
 
     public int getPrice() {
-        return price;
+        return ca.getPrice() + st.getPrice() + cl.getPrice() + rm.getPrice()
+                + cpu.getPrice() + mb.getPrice() + pw.getPrice();
     }
 
     public void setPrice(int price) {

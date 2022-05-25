@@ -9,7 +9,7 @@ public class MainBoard {
     private String DDR;
     private String MemoryMaxClock;
 
-    private String SlotAmount;
+    private int SlotAmount;
     private String MemoryMaxSize;
     private String Stock;
     private int Price;
@@ -79,11 +79,11 @@ public class MainBoard {
         MemoryMaxClock = memoryMaxClock;
     }
 
-    public String getSlotAmount() {
+    public int getSlotAmount() {
         return SlotAmount;
     }
 
-    public void setSlotAmount(String slotAmount) {
+    public void setSlotAmount(int slotAmount) {
         SlotAmount = slotAmount;
     }
 

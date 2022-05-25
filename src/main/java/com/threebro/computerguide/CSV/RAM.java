@@ -7,6 +7,15 @@ public class RAM {
     private String MemoryClock;
     private String Stock;
     private int Price;
+    private int amount = 2;
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public String getName() {
         return Name;
@@ -49,7 +58,7 @@ public class RAM {
     }
 
     public int getPrice() {
-        return Price;
+        return Price * amount;
     }
 
     public void setPrice(int price) {

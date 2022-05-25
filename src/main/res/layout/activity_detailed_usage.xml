@@ -16,8 +16,8 @@
         android:fontFamily="@font/godo_m"
         android:textSize="25dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:background="#999999"/>
+        android:textColor="@color/white"
+        android:background="#242F9B"/>
 
     <LinearLayout
         android:id="@+id/detailedUsageContainer"
