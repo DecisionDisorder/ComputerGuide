@@ -91,8 +91,9 @@ public class FinalRes {
     }*/
 
     public int getTotalPrice() {
-        return getCa().getPrice()+getSt().getPrice() + getRm().getPrice() + getCl().getPrice()
-                + getCpu().getCPU().getPrice()+getCpu().getMbList().get(0).getPrice() + getGpu().getPower().get(0).getPrice();
+        return getCa().getPrice()+getSt().getPrice() + getRm().getPrice() + getCl().getPrice() + getGpu().getGPU().getPrice()
+                + getCpu().getCPU().getPrice() + getCpu().getMbList().get(0).getPrice() + getGpu().getPower().get(0).getPrice()
+                + getCa().getPrice();
     }
 
     /*public void setTotalPrice(int totalPrice) {

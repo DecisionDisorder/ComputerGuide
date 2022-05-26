@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -223,5 +224,15 @@ public class LaptopSet {
                 flaptop.add(lt);
             }
         }
+    }
+    public String getSimpleString(int index) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String price = String.format(formatter.format(flaptop.get(index).getPrice()));
+        String name = flaptop.get(index).getName();
+        name = name.substring(0,12);
+
+        String simple = name + "..\n" + flaptop.get(index).getCpu2()+ "\n" + flaptop.get(index).getGraphic() + "\n" + price + "원";
+
+        return simple;
     }
 }

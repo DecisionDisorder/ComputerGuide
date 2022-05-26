@@ -22,7 +22,7 @@ public class FinalTwo {
     private int price;
 
     public int getPrice() {
-        return ca.getPrice() + st.getPrice() + cl.getPrice() + rm.getPrice()
+        return ca.getPrice() + st.getPrice() + cl.getPrice() + rm.getPrice() + gpu.getPrice()
                 + cpu.getPrice() + mb.getPrice() + pw.getPrice();
     }
 
