@@ -309,6 +309,7 @@ public class DesktopSet {
     }
 
     public void FinalCombinationGaming(int cpuPriority, int GpuPriority){// price는 원하는 가격대 cpuPriority,gpuPriority는 해당사양cpu 순서도
+        FinalList = new ArrayList<>();
         //CPU부터 권장사양의 최저가 부터 가격을 설정후 gpu의 가격 설정
         for(int i=0;i<CMList.size();i++){
             if((CMList.get(i).getCPU().getPriorityGaming()) <= cpuPriority){//기존 만들었던 cpu조합에서 원하는 우선순위와 같을경우(cpu가 권장cpu 일경우
@@ -317,8 +318,7 @@ public class DesktopSet {
                         FinalRes FR = new FinalRes(CaseList.get(1),STList.get(1),RAMList.get(4),CLList.get(17));// 기본삽입정보
                         FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
                         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
-                        FR.getGpu().getGPU().setName("내장그래픽");
-                        FR.getGpu().getGPU().setPrice(0);
+                        setInternalGraphic(FR, i, k);
                         //FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
                         FinalList.add(FR);
                     }
@@ -340,7 +340,7 @@ public class DesktopSet {
         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
         FR.getGpu().getGPU().setName("내장그래픽");
         FR.getGpu().getGPU().setPrice(0);
-        FR.getGpu().getGPU().setSeries("0");
+        FR.getGpu().getGPU().setSeries("내장그래픽");
         FR.getGpu().getGPU().setPower(0);
         FR.getGpu().getGPU().setPriority(0);
         //FR.setTotalPrice(FR.getCa().getPrice()+FR.getSt().getPrice()+FR.getRm().getPrice()+FR.getCl().getPrice()+FR.getCpu().getCPU().getPrice()+FR.getCpu().getMbList().get(0).getPrice()+FR.getGpu().getPower().get(0).getPrice());//둘다 메인보드와 파워는 0으로 설정 최저가 이기 때문에
@@ -364,6 +364,7 @@ public class DesktopSet {
         int brand=0;//amd랑 인텔 구분 주기위해서
         int j=0;
         int flag=0;
+        Final2 = new ArrayList<>();
         for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
             if(FinalList.get(i).getTotalPrice()>priceLow&& FinalList.get(i).getCpu().getCPU().getManufacturer().equals("Intel")&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==0){//가격보다 작을경우 리턴
                 FinalTwo temp = new FinalTwo();
