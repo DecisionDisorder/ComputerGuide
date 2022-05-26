@@ -96,12 +96,21 @@ public class SampleModel extends LinearLayout {
 
     public void setSpec(RecommendedSet set) {
         FinalTwo estimate = set.getRecommendedSet();
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        String price = formatter.format(estimate.getPrice());
-        String spec = estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount() + "\n" +
-                estimate.getGpu().getName() + "\n" + estimate.getSt().getName() + "\n" + price + "원";
+        String spec = getSimpleString(estimate);
+                /*estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount() + "\n" +
+                estimate.getGpu().getName() + "\n" + estimate.getSt().getName() + "\n" + price + "원";*/
 
         modelSpecTextView.setText(spec);
+    }
+
+    private String getSimpleString(FinalTwo estimate) {
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String price = String.format(formatter.format(estimate.getPrice()));
+
+        String simple = estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount()
+                + "\n" + estimate.getGpu().getSeries() + "\n" + estimate.getSt().getCapacity() + "\n" + price + "원";
+
+        return simple;
     }
 
     public void setIcon(String type) {
