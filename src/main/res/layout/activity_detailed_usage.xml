@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:textSize="25dp"
         android:textAlignment="center"
         android:textColor="@color/white"

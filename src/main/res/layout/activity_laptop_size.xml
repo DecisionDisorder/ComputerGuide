@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:text="13 inches"
         android:textAllCaps="false"
         android:textSize="22dp"/>
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:text="14 inches"
         android:textAllCaps="false"
         android:textSize="22dp"/>
@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:text="15 inches"
         android:textAllCaps="false"
         android:textSize="22dp"/>
@@ -75,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:text="16 inches"
         android:textAllCaps="false"
         android:textSize="22dp"/>
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_button"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_b"
         android:text="17+ inches"
         android:textAllCaps="false"
         android:textSize="22dp"/>

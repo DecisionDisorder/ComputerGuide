@@ -30,7 +30,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:fontFamily="@font/godo_m"/>
+                    android:fontFamily="@font/nanum_square_l"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/compareSet2Container"
@@ -48,7 +48,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:fontFamily="@font/godo_m"/>
+                    android:fontFamily="@font/nanum_square_l"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

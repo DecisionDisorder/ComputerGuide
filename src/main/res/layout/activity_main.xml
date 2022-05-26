@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/godo_m"
+            android:fontFamily="@font/nanum_square_b"
             android:text="@string/desktop"
             android:textSize="35dp"
             android:textColor="@color/black"/>
@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/godo_m"
+            android:fontFamily="@font/nanum_square_b"
             android:text="@string/laptop"
             android:textSize="35dp"
             android:textColor="@color/black"/>

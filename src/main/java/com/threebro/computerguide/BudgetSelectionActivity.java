@@ -137,7 +137,7 @@ public class BudgetSelectionActivity extends AppCompatActivity {
 
     private void addBudgetButton(int price, int i, int length, LinearLayout.LayoutParams param) {
         DecimalFormat formatter =new DecimalFormat("#,###");
-        Typeface font = Typeface.createFromAsset(getAssets(), "godo_m.TTF");
+        Typeface font = Typeface.createFromAsset(getAssets(), "nanum_square_l.ttf");
         budgetButtons[i] = new Button(this);
         budgetButtons[i].setText("\\" + formatter.format(price) + "s");
         budgetButtons[i].setAllCaps(false);

@@ -52,7 +52,7 @@
                 android:layout_marginRight="20dp"
                 android:text="@string/compare"
                 android:textColor="@color/black"
-                android:fontFamily="@font/godo_m"
+                android:fontFamily="@font/nanum_square_l"
                 android:textSize="15dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -83,7 +83,7 @@
         android:textSize="17dp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:fontFamily="@font/godo_m"/>
+        android:fontFamily="@font/nanum_square_l"/>
 
     <fragment
         android:id="@+id/bottomBarFragment"

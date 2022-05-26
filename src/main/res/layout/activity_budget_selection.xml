@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:text="@string/no_budget_message"
-        android:fontFamily="@font/godo_m"
+        android:fontFamily="@font/nanum_square_l"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"/>
