@@ -14,6 +14,17 @@
         android:layout_height="wrap_content"
         android:name="com.threebro.computerguide.TipFragment"/>
 
+    <TextView
+        android:id="@+id/noBudgetTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/no_budget_message"
+        android:fontFamily="@font/godo_m"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,6 +37,7 @@
 
         </LinearLayout>
     </ScrollView>
+x
     <fragment
         android:id="@+id/bottomBarFragment"
         android:layout_width="match_parent"

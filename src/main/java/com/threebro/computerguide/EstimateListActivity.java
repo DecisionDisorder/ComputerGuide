@@ -40,7 +40,7 @@ public class EstimateListActivity extends AppCompatActivity {
         if(listType.equals("New")) {
             FinalTwo estimate = MainActivity.desktopSet.getFinal2().get(indexOfSet);
             loadEstimateList(estimate);
-            PastModelListActivity.recommendListManager.addCompareList(estimate);
+            PastModelListActivity.recommendListManager.addCompareList(estimate, this);
         }
             else if(listType.equals("Past")) {
             FinalTwo estimate = PastModelListActivity.recommendListManager.recommendedSetList.get(indexOfSet).getRecommendedSet();

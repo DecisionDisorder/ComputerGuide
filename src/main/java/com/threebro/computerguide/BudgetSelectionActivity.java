@@ -3,6 +3,8 @@ package com.threebro.computerguide;
 import androidx.annotation.Dimension;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.threebro.computerguide.CSV.Usage;
 
@@ -26,6 +29,7 @@ public class BudgetSelectionActivity extends AppCompatActivity {
 
     private LinearLayout layout;
     private Button[] budgetButtons;
+    private int availableCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,8 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_budget_selection);
 
         layout = findViewById(R.id.budgetLayout);
-
+        TextView noBudgetTextView = findViewById(R.id.noBudgetTextView);
+        availableCount = 0;
 
         Bundle desktopBundle = getIntent().getBundleExtra("usageBundle");
         Bundle laptopBundle = getIntent().getBundleExtra("brandBundle");
@@ -55,6 +60,23 @@ public class BudgetSelectionActivity extends AppCompatActivity {
             drawBudgetButtonsLT(usageType, detailedUsageType, dsize, brandType, wt);
             setButtonListener(laptopBundle);
         }
+
+        if(availableCount == 0){
+            //noBudgetTextView.setVisibility(View.VISIBLE);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Budget Message").setMessage(getResources().getString(R.string.no_budget_message)).
+                setPositiveButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        BudgetSelectionActivity.this.finish();
+                    }
+                });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else
+            noBudgetTextView.setVisibility(View.GONE);
     }
 
     private void drawBudgetButtons() {
@@ -74,7 +96,7 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         for(int i = 0; i < length; i++) {
             if(availablePriceList[i]) {
                 int price = budgetMin + interval * i;
-
+                availableCount++;
                 if (i >= length - 1)
                     addBudgetButton(price, i, length, lastParam);
                 else
@@ -103,6 +125,7 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         for(int i = 0; i < length; i++) {
             if(availablePriceList[i]) {
                 int price = budgetMin + interval * i;
+                availableCount++;
 
                 if (i >= length - 1)
                     addBudgetButton(price, i, length, lastParam);

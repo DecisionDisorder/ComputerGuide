@@ -152,9 +152,11 @@ public class LaptopSet {
         if(priceIndex >= length)
             priceIndex = length - 1;
 
-        while(priceIndex<length){
-            availablePriceList[priceIndex] = true;
-            priceIndex++;
+        if(priceIndex >= 0) {
+            while (priceIndex < length) {
+                availablePriceList[priceIndex] = true;
+                priceIndex++;
+            }
         }
         return availablePriceList;
     }
@@ -219,11 +221,21 @@ public class LaptopSet {
         flaptop = new ArrayList<>();
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram
-                    &&LaptopList.get(i).getPrice()<=(price+100000)&&LaptopList.get(i).getPrice()>=price){
-                Laptop lt = new Laptop();
-                lt = LaptopList.get(i);
-                flaptop.add(lt);
+                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram){
+                if(price<2000000){
+                    if(LaptopList.get(i).getPrice()<=(price+100000)&&LaptopList.get(i).getPrice()>=price){
+                        Laptop lt = new Laptop();
+                        lt = LaptopList.get(i);
+                        flaptop.add(lt);
+                    }
+                }
+                else{
+                    if(LaptopList.get(i).getPrice()>=price){
+                        Laptop lt = new Laptop();
+                        lt = LaptopList.get(i);
+                        flaptop.add(lt);
+                    }
+                }
             }
         }
     }
@@ -236,5 +248,9 @@ public class LaptopSet {
         String simple = name + "..\n" + flaptop.get(index).getCpu2()+ "\n" + flaptop.get(index).getGraphic() + "\n" + price + "원";
 
         return simple;
+    }
+
+    public List<Laptop> getFlaptop() {
+        return flaptop;
     }
 }

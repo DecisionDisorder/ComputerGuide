@@ -1,5 +1,6 @@
 package com.threebro.computerguide;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.threebro.computerguide.Combi.FinalTwo;
@@ -23,12 +24,9 @@ public class RecommendListManager {
         return estimate;
     }
 
-    public void addCompareList(FinalTwo estimate) {
+    public void addCompareList(FinalTwo estimate, Context context) {
         if(checkOverlap(estimate)) {
-            long now = System.currentTimeMillis();
-            Date date = new Date(now);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            recommendedSetList.add(new RecommendedSet(format.format(date) + " Set", estimate, recommendedSetList.size()));
+            recommendedSetList.add(new RecommendedSet("Set " + (recommendedSetList.size() + 1), estimate, recommendedSetList.size()));
         }
         else
             Log.d("Compare Manager", "Overlap detected");

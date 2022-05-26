@@ -72,8 +72,14 @@ public class ProductListActivity extends AppCompatActivity {
             float dsize = 13 + 1 * laptopSizeIndex;
             int price = 500000 + 100000 * budgetindex;
             MainActivity.laptopSet.Selectlaptop(usageType, detailedUsageType, dsize, brandType, wt, price);
-            spec1.setText(MainActivity.laptopSet.getSimpleString(0));
-            spec2.setText(MainActivity.laptopSet.getSimpleString(1));
+            if(MainActivity.laptopSet.getFlaptop().size()==1){
+                spec1.setText(MainActivity.laptopSet.getSimpleString(0));
+                spec2.setText("No more result");
+            }
+            else{
+                spec1.setText(MainActivity.laptopSet.getSimpleString(0));
+                spec2.setText(MainActivity.laptopSet.getSimpleString(1));
+            }
         }
     }
 }

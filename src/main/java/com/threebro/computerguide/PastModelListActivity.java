@@ -109,7 +109,8 @@ public class PastModelListActivity extends AppCompatActivity {
             setCompareStartActive(true);
         }
         else {
-            setCompareStartActive(false);
+            if(startCompareButton.getVisibility() == View.VISIBLE)
+                setCompareStartActive(false);
         }
         return true;
     }
