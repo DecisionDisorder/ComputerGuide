@@ -17,9 +17,9 @@
     <LinearLayout
         android:id="@+id/set1SpecContainer"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -49,7 +49,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/set1SpecTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:fontFamily="@font/godo_m"
@@ -65,7 +65,7 @@
 
     <LinearLayout
         android:id="@+id/set2SpecContainer"
-        android:layout_margin="40dp"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -95,7 +95,7 @@
                 android:layout_weight="1"/>
             <TextView
                 android:id="@+id/set2SpecTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:fontFamily="@font/godo_m"

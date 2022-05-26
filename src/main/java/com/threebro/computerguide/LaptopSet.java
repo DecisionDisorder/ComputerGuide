@@ -120,6 +120,7 @@ public class LaptopSet {
             ram=4;
         }
 
+        plaptop = new ArrayList<>();
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
                     &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram){
@@ -215,6 +216,7 @@ public class LaptopSet {
             ram=4;
         }
 
+        flaptop = new ArrayList<>();
         for(int i=0; i<LaptopList.size(); i++){
             if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
                     &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram
