@@ -25,6 +25,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                intent.putExtra("ListType", "New");
                 intent.putExtra("index",0);
                 startActivity(intent);
             }
@@ -36,6 +37,7 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                intent.putExtra("ListType", "New");
                 intent.putExtra("index",1);
                 startActivity(intent);
             }

@@ -22,6 +22,8 @@ public class PastModelListActivity extends AppCompatActivity {
     private boolean isCompareMode = false;
     private Button startCompareButton;
 
+    static RecommendListManager recommendListManager = new RecommendListManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,11 @@ public class PastModelListActivity extends AppCompatActivity {
         modelSetList = new ArrayList<>();
         LinearLayout modelContainer = findViewById(R.id.modelContainer);
 
-        for(int i = 0; i < 3; i++) {
-            SampleModel modelSet = new SampleModel(this, this);
-            modelSet.modelTitleTextView.setText("2022.05.04 Set");
+        for(int i = 0; i < recommendListManager.recommendedSetList.size(); i++) {
+            SampleModel modelSet = new SampleModel(this, i);
+            modelSet.setName(recommendListManager.recommendedSetList.get(i).getName());
+            modelSet.setSpec(recommendListManager.recommendedSetList.get(i));
+            modelSet.setIcon("desktop"); //TODO: laptop도 대응
 
             modelSetList.add(modelSet);
             modelContainer.addView(modelSet);
