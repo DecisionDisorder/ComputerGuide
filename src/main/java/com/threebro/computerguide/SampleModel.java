@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.threebro.computerguide.CSV.Laptop;
 import com.threebro.computerguide.Combi.FinalTwo;
 import com.threebro.computerguide.Combi.RecommendedSet;
 
@@ -100,21 +101,15 @@ public class SampleModel extends LinearLayout {
 
     public void setSpec(RecommendedSet set) {
         FinalTwo estimate = set.getRecommendedSet();
-        String spec = getSimpleString(estimate);
-                /*estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount() + "\n" +
-                estimate.getGpu().getName() + "\n" + estimate.getSt().getName() + "\n" + price + "원";*/
+        String spec = DesktopSet.getSimpleString(estimate);
 
         modelSpecTextView.setText(spec);
     }
+    public void setSpec(RecommendLaptopSet set) {
+        Laptop model = set.getRecommendedLaptop();
+        String spec = LaptopSet.getSimpleString(model);
 
-    private String getSimpleString(FinalTwo estimate) {
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        String price = String.format(formatter.format(estimate.getPrice()));
-
-        String simple = estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount()
-                + "\n" + estimate.getGpu().getSeries() + "\n" + estimate.getSt().getCapacity() + "\n" + price + "원";
-
-        return simple;
+        modelSpecTextView.setText(spec);
     }
 
     public void setIcon(String type) {

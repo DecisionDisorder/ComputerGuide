@@ -143,23 +143,22 @@ public class LaptopSet {
         return price;
     }
 
-    public boolean[] getAvailablePriceList(int price) {
+    public boolean[] getAvailablePriceList() {
         int length = 16;
         int budgetMin = 500000;
         int interval = 100000;
         boolean[] availablePriceList = new boolean[length];
 
-        int priceIndex = (price - budgetMin) / interval;
+        for(int i = 0; i < plaptop.size(); i++) {
+            int price = plaptop.get(i).getPrice();
+            int priceIndex = (price - budgetMin) / interval;
 
-        if(priceIndex >= length)
-            priceIndex = length - 1;
+            if(priceIndex >= length)
+                priceIndex = length - 1;
 
-        if(priceIndex >= 0) {
-            while (priceIndex < length) {
-                availablePriceList[priceIndex] = true;
-                priceIndex++;
-            }
+            availablePriceList[priceIndex] = true;
         }
+
         return availablePriceList;
     }
 
@@ -241,13 +240,13 @@ public class LaptopSet {
             }
         }
     }
-    public String getSimpleString(int index) {
+    public static String getSimpleString(Laptop laptop) {
         DecimalFormat formatter = new DecimalFormat("#,###");
-        String price = String.format(formatter.format(flaptop.get(index).getPrice()));
-        String name = flaptop.get(index).getName();
+        String price = String.format(formatter.format(laptop.getPrice()));
+        String name = laptop.getName();
         name = name.substring(0,12);
 
-        String simple = name + "..\n" + flaptop.get(index).getCpu2()+ "\n" + flaptop.get(index).getGraphic() + "\n" + price + "원";
+        String simple = name + "..\n" + laptop.getCpu2()+ "\n" + laptop.getGraphic() + "\n" + price + "원";
 
         return simple;
     }

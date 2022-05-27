@@ -68,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public String getLapResult(){
+    public String getLaptopResult(){
         SQLiteDatabase db = getReadableDatabase();
         String result ="";
         Cursor cursor = db.rawQuery("SELECT * FROM LapProduct",null);
@@ -76,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             Laptop list = new Laptop();
             list = MainActivity.laptopSet.getFlaptop().get(cursor.getInt(0));
+            PastModelListActivity.recommendListManager.addLaptopCompareList(list);
         }
         return result;
     }

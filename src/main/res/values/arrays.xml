@@ -42,6 +42,28 @@
         <item>@string/computer_case</item>
         <item>@string/power</item>
     </string-array>
+    <string-array name="laptop_components">
+        <item>Model Name</item>
+        <item>Company</item>
+        <item>CPU</item>
+        <item>RAM</item>
+        <item>Graphic Card</item>
+        <item>Storage</item>
+        <item>OS</item>
+        <item>Display</item>
+        <item>Weight</item>
+    </string-array>
+    <array name="laptop_icon_array">
+        <item>@color/white</item>
+        <item>@drawable/brand</item>
+        <item>@drawable/cpu</item>
+        <item>@drawable/ram</item>
+        <item>@drawable/graphic_card</item>
+        <item>@drawable/ssd</item>
+        <item>@drawable/os</item>
+        <item>@drawable/display</item>
+        <item>@drawable/weight</item>
+    </array>
     <string-array name="computer_type">
         <item>Desktop</item>
         <item>Laptop</item>

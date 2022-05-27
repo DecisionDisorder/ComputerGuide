@@ -111,9 +111,9 @@ public class BudgetSelectionActivity extends AppCompatActivity {
         int budgetMin = 500000;
         int interval = 100000;
 
-        int price1 = MainActivity.laptopSet.Selectprice(usage, dusage, dsize, company, wt);
+        MainActivity.laptopSet.Selectprice(usage, dusage, dsize, company, wt);
 
-        boolean[] availablePriceList = MainActivity.laptopSet.getAvailablePriceList(price1);
+        boolean[] availablePriceList = MainActivity.laptopSet.getAvailablePriceList();
         budgetButtons = new Button[length];
         LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -13,12 +13,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PastModelListActivity extends AppCompatActivity {
 
     private LinearLayout compareButton;
     private ArrayList<SampleModel> modelSetList;
+    private ArrayList<SampleModel> laptopSetList;
     private boolean isCompareMode = false;
     private Button startCompareButton;
 
@@ -26,6 +28,9 @@ public class PastModelListActivity extends AppCompatActivity {
     private DBHelper dbHelper;
 
     static RecommendListManager recommendListManager= new RecommendListManager();
+
+    private LinearLayout desktopModelContainer;
+    private LinearLayout laptopModelContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +40,30 @@ public class PastModelListActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         dbHelper.getResult();
+        dbHelper.getLaptopResult();
 
         modelSetList = new ArrayList<>();
-        LinearLayout modelContainer = findViewById(R.id.modelContainer);
+        desktopModelContainer = findViewById(R.id.desktopModelContainer);
+        laptopModelContainer = findViewById(R.id.laptopModelContainer);
 
         for(int i = recommendListManager.recommendedSetList.size() - 1; i >= 0; i--) {
             SampleModel modelSet = new SampleModel(this, i);
             modelSet.setName(recommendListManager.recommendedSetList.get(i).getName());
             modelSet.setSpec(recommendListManager.recommendedSetList.get(i));
-            modelSet.setIcon("desktop"); //TODO: laptop도 대응
+            modelSet.setIcon("desktop");
 
             modelSetList.add(modelSet);
-            modelContainer.addView(modelSet);
+            desktopModelContainer.addView(modelSet);
+        }
+
+        for(int i = recommendListManager.recommendLaptopSetList.size() - 1; i >= 0; i--) {
+            SampleModel modelSet = new SampleModel(this, i);
+            modelSet.setName(recommendListManager.recommendLaptopSetList.get(i).getName());
+            modelSet.setSpec(recommendListManager.recommendLaptopSetList.get(i));
+            modelSet.setIcon("laptop");
+
+            laptopSetList.add(modelSet);
+            laptopModelContainer.addView(modelSet);
         }
 
 
@@ -58,7 +75,14 @@ public class PastModelListActivity extends AppCompatActivity {
         computerTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // TODO: Destkop, Laptop 전환
+                if(i == 0) {
+                    desktopModelContainer.setVisibility(View.VISIBLE);
+                    laptopModelContainer.setVisibility(View.GONE);
+                }
+                else {
+                    desktopModelContainer.setVisibility(View.GONE);
+                    laptopModelContainer.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

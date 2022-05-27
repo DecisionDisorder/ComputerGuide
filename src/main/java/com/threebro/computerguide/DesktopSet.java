@@ -346,12 +346,12 @@ public class DesktopSet {
         }
     }
 
-    public String getSimpleString(int index) {
+    public static String getSimpleString(FinalTwo estimate) {
         DecimalFormat formatter = new DecimalFormat("#,###");
-        String price = String.format(formatter.format(Final2.get(index).getPrice()));
+        String price = String.format(formatter.format(estimate.getPrice()));
 
-        String simple = Final2.get(index).getCpu().getName() + "\n" + Final2.get(index).getRm().getRamCapacity()+" x"+Final2.get(index).getRm().getAmount()
-                + "\n" + Final2.get(index).getGpu().getSeries() + "\n" + Final2.get(index).getSt().getCapacity() + "\n" + price + "원";
+        String simple = estimate.getCpu().getName() + "\n" + estimate.getRm().getRamCapacity() + " x" + estimate.getRm().getAmount()
+                + "\n" + estimate.getGpu().getSeries() + "\n" + estimate.getSt().getCapacity() + "\n" + price + "원";
 
         return simple;
     }

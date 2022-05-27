@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.threebro.computerguide.CSV.Laptop;
 import com.threebro.computerguide.CSV.RAM;
 import com.threebro.computerguide.CSV.Storage;
 import com.threebro.computerguide.Combi.FinalTwo;
@@ -15,6 +16,7 @@ public class CompareActivity extends AppCompatActivity {
 
     private int[] compareIndex = new int[2];
     private FinalTwo[] estimateList;
+    private Laptop[] laptops;
 
     private LinearLayout leftContainer;
     private LinearLayout rightContainer;
@@ -33,7 +35,8 @@ public class CompareActivity extends AppCompatActivity {
         Bundle compareBundle = intent.getBundleExtra("CompareBundle");
         compareIndex = compareBundle.getIntArray("CompareIndex");
 
-        estimateList = PastModelListActivity.recommendListManager.getCompareList(compareIndex);
+        estimateList = PastModelListActivity.recommendListManager.getCompareDesktopList(compareIndex);
+        laptops = PastModelListActivity.recommendListManager.getCompareLaptopList(compareIndex);
 
         componentsNameArr = getResources().getStringArray(R.array.computer_components);
 

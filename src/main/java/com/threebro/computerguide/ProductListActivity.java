@@ -25,8 +25,10 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                Bundle productBundle = getIntent().getBundleExtra("budgetBundle");
                 intent.putExtra("ListType", "New");
                 intent.putExtra("index",0);
+                intent.putExtra("productBundle", productBundle);
                 startActivity(intent);
             }
         });
@@ -37,8 +39,10 @@ public class ProductListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), EstimateListActivity.class);
+                Bundle productBundle = getIntent().getBundleExtra("budgetBundle");
                 intent.putExtra("ListType", "New");
                 intent.putExtra("index",1);
+                intent.putExtra("productBundle", productBundle);
                 startActivity(intent);
             }
         });
@@ -52,8 +56,9 @@ public class ProductListActivity extends AppCompatActivity {
         if(computerType.equals(ComputerType.DESKTOP.toString())) {
             productSet1ImageView.setImageResource(R.drawable.desktop);
             productSet2ImageView.setImageResource(R.drawable.desktop);
-            spec1.setText(MainActivity.desktopSet.getSimpleString(0));
-            spec2.setText(MainActivity.desktopSet.getSimpleString(1));
+            spec1.setText(DesktopSet.getSimpleString(MainActivity.desktopSet.getFinal2().get(0)));
+            spec2.setText(DesktopSet.getSimpleString(MainActivity.desktopSet.getFinal2().get(1)));
+            set2SpecContainer.setEnabled(true);
         }
         else {
             productSet1ImageView.setImageResource(R.drawable.laptop);
@@ -73,12 +78,14 @@ public class ProductListActivity extends AppCompatActivity {
             int price = 500000 + 100000 * budgetindex;
             MainActivity.laptopSet.Selectlaptop(usageType, detailedUsageType, dsize, brandType, wt, price);
             if(MainActivity.laptopSet.getFlaptop().size()==1){
-                spec1.setText(MainActivity.laptopSet.getSimpleString(0));
+                spec1.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(0)));
                 spec2.setText("No more result");
+                set2SpecContainer.setEnabled(false);
             }
             else{
-                spec1.setText(MainActivity.laptopSet.getSimpleString(0));
-                spec2.setText(MainActivity.laptopSet.getSimpleString(1));
+                spec1.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(0)));
+                spec1.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(1)));
+                set2SpecContainer.setEnabled(true);
             }
         }
     }

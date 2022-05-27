@@ -92,7 +92,10 @@ public class PcComponent extends LinearLayout {
     }
 
     public void setNameAndPrice(String name, String price) {
-        nameAndPriceTextView.setText(name + "\n" + price);
+        if(price.equals(""))
+            nameAndPriceTextView.setText(name);
+        else
+            nameAndPriceTextView.setText(name + "\n" + price);
     }
 
     public void setTextSize() {

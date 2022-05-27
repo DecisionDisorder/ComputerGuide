@@ -18,14 +18,14 @@ public class LaptopBrandActivity extends AppCompatActivity {
         majorBrandButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openBudgetActivity(0);
+                openBudgetActivity(1);
             }
         });
         Button smeBrandButton = findViewById(R.id.smeBrandButton);
         smeBrandButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openBudgetActivity(1);
+                openBudgetActivity(0);
             }
         });
     }
@@ -34,7 +34,7 @@ public class LaptopBrandActivity extends AppCompatActivity {
     {
         Intent intent = new Intent(getApplicationContext(), BudgetSelectionActivity.class);
         Bundle bundle = getIntent().getBundleExtra("weightBundle");
-        bundle.putInt("brandType", brandType);// TODO: 0을 다른 코드로 바꾸기(enum?)
+        bundle.putInt("brandType", brandType);
         intent.putExtra("brandBundle", bundle);
         startActivity(intent);
     }
