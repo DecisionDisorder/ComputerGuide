@@ -10,4 +10,6 @@
     <color name="main_background">#c5c5e6</color>
     <color name="active_color">#C1FF79</color>
     <color name="unactive_color">#cfcfcf</color>
+    <color name="better_color">#04B404</color>
+    <color name="worse_color">#DF013A</color>
 </resources>

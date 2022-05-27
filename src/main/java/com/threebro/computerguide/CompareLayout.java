@@ -40,4 +40,12 @@ public class CompareLayout extends LinearLayout {
     public void setComponentName(String name) {
         nameTextView.setText(name);
     }
+    public void setCompareColor(boolean isBetter) {
+        if(isBetter) {
+            nameTextView.setTextColor(getResources().getColor(R.color.better_color));
+        }
+        else {
+            nameTextView.setTextColor(getResources().getColor(R.color.worse_color));
+        }
+    }
 }

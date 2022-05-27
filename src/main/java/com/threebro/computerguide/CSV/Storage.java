@@ -75,4 +75,21 @@ public class Storage {
                 ", Price=" + Price +
                 '}';
     }
+
+    /*public boolean isLeftBetterStorage(Storage storageLeft, Storage storageRight) {
+        if(storageLeft.getType().contains("SSD") && storageRight.getType().contains("SSD")) {
+            if(storageLeft.getCapacity() > storageRight.getCapacity())
+                return true;
+            else if()
+        }
+        else if(storageLeft.getType().contains("SSD")) {
+
+        }
+        else if(storageRight.getType().contains("SSD")) {
+
+        }
+        else {
+
+        }
+    }*/
 }
