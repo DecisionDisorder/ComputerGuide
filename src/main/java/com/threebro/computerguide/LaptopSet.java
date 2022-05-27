@@ -28,7 +28,7 @@ public class LaptopSet {
     public void readLaptop(){
         InputStream is = context.getResources().openRawResource(R.raw.laptop);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i=0;
         String line ="";
         try{
             reader.readLine();
@@ -52,6 +52,8 @@ public class LaptopSet {
                 lt.setGlv(Integer.parseInt(tokens[12]));
                 lt.setGraphic(tokens[13]);
                 lt.setPrice(Integer.parseInt(tokens[14]));
+                lt.setIndex(i);
+                i++;
 
                 LaptopList.add(lt);
             }
