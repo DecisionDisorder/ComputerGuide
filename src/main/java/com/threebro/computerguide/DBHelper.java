@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.threebro.computerguide.CSV.Laptop;
 import com.threebro.computerguide.Combi.FinalTwo;
 import com.threebro.computerguide.Combi.RecommendedSet;
 
@@ -13,10 +14,14 @@ import java.util.ArrayList;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "ProductList.db";
+    public static final String DATABASE_NAME = "ProductList.db";//저장되는 db이름
     public static final String AP_TABLE = "Product";
+    public static final String LAP_TABLE = "LapProduct";
+    //테이블에 인서트하는 애들 입력
     public static final String AP_CREATE = "CREATE TABLE 'Product' "
             + "('Cpu' INTEGER, 'Gpu' INTEGER, 'MainBoard' INTEGER, 'Power' INTEGER,'Ram' INTEGER,'RamCapacity' INTEGER, 'RamAmount' INTEGER,'ComputerCase' INTEGER,'Storage' INTEGER,'StorageAmount' INTEGER,'Cooler' INTEGER,'TotPrice' INTEGER)";
+    public static final String LAP_CREATE = "CREATE TABLE 'LapProduct' "
+            + "('LapTopIndex' INTEGER)";
     public DBHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
     }
@@ -24,17 +29,19 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AP_CREATE);
+        db.execSQL(LAP_CREATE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP TABLE IF EXISTS " + AP_CREATE);
+        db.execSQL("DROP TABLE IF EXISTS " + AP_CREATE);//기존에 테이블 존재할시에 drop하고 추가
+        db.execSQL("DROP TABLE IF EXISTS " + LAP_CREATE);//기존에 테이블 존재할시에 drop하고 추가
         onCreate(db);
     }
 
     public boolean addProductList(FinalTwo List) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues cv = new ContentValues();
+        ContentValues cv = new ContentValues();//캔버스 파일에 value넣어서 insert into 명령어 사용하는거
         cv.put("Cpu", List.getCpu().getIndex());
         cv.put("Gpu", List.getGpu().getIndex());
         cv.put("MainBoard", List.getMb().getIndex());
@@ -50,6 +57,27 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(AP_TABLE, null, cv);
         System.out.println("Adding done");
         return true;
+    }
+
+    public boolean addLabProductList(Laptop List) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();//캔버스 파일에 value넣어서 insert into 명령어 사용하는거
+        cv.put("LapTopIndex", List.getIndex());
+        db.insert(LAP_TABLE, null, cv);
+        System.out.println("Adding done");
+        return true;
+    }
+
+    public String getLapResult(){
+        SQLiteDatabase db = getReadableDatabase();
+        String result ="";
+        Cursor cursor = db.rawQuery("SELECT * FROM LapProduct",null);
+        PastModelListActivity.recommendListManager.recommendedSetList = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            Laptop list = new Laptop();
+            list = MainActivity.laptopSet.getFlaptop().get(cursor.getInt(0));
+        }
+        return result;
     }
 
     public String getResult(){
