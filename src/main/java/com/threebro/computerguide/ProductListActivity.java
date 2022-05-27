@@ -84,7 +84,7 @@ public class ProductListActivity extends AppCompatActivity {
             }
             else{
                 spec1.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(0)));
-                spec1.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(1)));
+                spec2.setText(LaptopSet.getSimpleString(MainActivity.laptopSet.getFlaptop().get(1)));
                 set2SpecContainer.setEnabled(true);
             }
         }

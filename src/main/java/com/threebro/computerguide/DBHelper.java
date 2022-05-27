@@ -75,7 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         PastModelListActivity.recommendListManager.recommendLaptopSetList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Laptop list = new Laptop();
-            list = MainActivity.laptopSet.getFlaptop().get(cursor.getInt(0));
+            list = MainActivity.laptopSet.getLaptopList().get(cursor.getInt(0));
             PastModelListActivity.recommendListManager.addLaptopCompareList(list);
         }
         return result;

@@ -132,4 +132,11 @@ public class Laptop {
     public void setWeight(float weight) {
         this.weight = weight;
     }
+
+    public boolean isContainOS() {
+        if(os.contains("프리도스"))
+            return false;
+        else
+            return true;
+    }
 }

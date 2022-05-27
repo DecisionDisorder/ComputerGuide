@@ -30,4 +30,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_budget_message">There is no budget range available.</string>
+
+    <string name="empty_list">There is no recommended list.</string>
 </resources>

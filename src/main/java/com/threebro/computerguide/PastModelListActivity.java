@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -32,6 +33,11 @@ public class PastModelListActivity extends AppCompatActivity {
     private LinearLayout desktopModelContainer;
     private LinearLayout laptopModelContainer;
 
+    private TextView emptyDesktopText;
+    private TextView emptyLaptopText;
+
+    private ComputerType computerType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +49,19 @@ public class PastModelListActivity extends AppCompatActivity {
         dbHelper.getLaptopResult();
 
         modelSetList = new ArrayList<>();
+        laptopSetList = new ArrayList<>();
         desktopModelContainer = findViewById(R.id.desktopModelContainer);
         laptopModelContainer = findViewById(R.id.laptopModelContainer);
+
+        emptyDesktopText = findViewById(R.id.emptyDesktopTextView);
+        emptyLaptopText = findViewById(R.id.emptyLaptopTextView);
 
         for(int i = recommendListManager.recommendedSetList.size() - 1; i >= 0; i--) {
             SampleModel modelSet = new SampleModel(this, i);
             modelSet.setName(recommendListManager.recommendedSetList.get(i).getName());
             modelSet.setSpec(recommendListManager.recommendedSetList.get(i));
             modelSet.setIcon("desktop");
-
+            modelSet.setType(ComputerType.DESKTOP);
             modelSetList.add(modelSet);
             desktopModelContainer.addView(modelSet);
         }
@@ -61,10 +71,11 @@ public class PastModelListActivity extends AppCompatActivity {
             modelSet.setName(recommendListManager.recommendLaptopSetList.get(i).getName());
             modelSet.setSpec(recommendListManager.recommendLaptopSetList.get(i));
             modelSet.setIcon("laptop");
-
+            modelSet.setType(ComputerType.LAPTOP);
             laptopSetList.add(modelSet);
             laptopModelContainer.addView(modelSet);
         }
+        setEmptyText(computerType);
 
 
         Spinner computerTypeSpinner = findViewById(R.id.computerTypeSpinner);
@@ -78,11 +89,16 @@ public class PastModelListActivity extends AppCompatActivity {
                 if(i == 0) {
                     desktopModelContainer.setVisibility(View.VISIBLE);
                     laptopModelContainer.setVisibility(View.GONE);
+                    computerType = ComputerType.DESKTOP;
+                    resetCheckBoxes();
                 }
                 else {
                     desktopModelContainer.setVisibility(View.GONE);
                     laptopModelContainer.setVisibility(View.VISIBLE);
+                    computerType = ComputerType.LAPTOP;
+                    resetCheckBoxes();
                 }
+                setEmptyText(computerType);
             }
 
             @Override
@@ -106,11 +122,38 @@ public class PastModelListActivity extends AppCompatActivity {
                 Intent compareIntent = new Intent(getApplicationContext(), CompareActivity.class);
                 Bundle compareBundle = new Bundle();
                 compareBundle.putIntArray("CompareIndex", compareIndex);
+                compareBundle.putString("ComputerType", computerType.toString());
 
                 compareIntent.putExtra("CompareBundle", compareBundle);
                 startActivity(compareIntent);
             }
         });
+    }
+
+    private void setEmptyText(ComputerType type) {
+        if(type == ComputerType.DESKTOP) {
+            if (modelSetList.size() == 0)
+                emptyDesktopText.setVisibility(View.VISIBLE);
+            else
+                emptyDesktopText.setVisibility(View.GONE);
+            emptyLaptopText.setVisibility(View.GONE);
+        }
+        else {
+            emptyDesktopText.setVisibility(View.GONE);
+            if(laptopSetList.size() == 0)
+                emptyLaptopText.setVisibility(View.VISIBLE);
+            else
+                emptyLaptopText.setVisibility(View.GONE);
+        }
+    }
+
+    private void resetCheckBoxes() {
+        for(int i = 0; i < modelSetList.size(); i++) {
+            modelSetList.get(i).setCompareCheckBox(false);
+        }
+        for(int i = 0; i < laptopSetList.size(); i++) {
+            laptopSetList.get(i).setCompareCheckBox(false);
+        }
     }
 
     private void setActiveCompare(boolean active) {
@@ -119,16 +162,27 @@ public class PastModelListActivity extends AppCompatActivity {
         else
             compareButton.setBackgroundColor(getResources().getColor(R.color.unactive_color));
 
-        for(int i = 0; i < modelSetList.size(); i++) {
+        for (int i = 0; i < modelSetList.size(); i++) {
             modelSetList.get(i).setActiveCheckBox(active);
+        }
+        for (int i = 0; i < laptopSetList.size(); i++) {
+            laptopSetList.get(i).setActiveCheckBox(active);
         }
     }
 
     private int getCheckedAmount() {
         int count = 0;
-        for(int i = 0; i < modelSetList.size(); i++) {
-            if(modelSetList.get(i).isChecked())
-                count++;
+        if(computerType == ComputerType.DESKTOP) {
+            for (int i = 0; i < modelSetList.size(); i++) {
+                if (modelSetList.get(i).isChecked())
+                    count++;
+            }
+        }
+        else {
+            for (int i = 0; i < laptopSetList.size(); i++) {
+                if (laptopSetList.get(i).isChecked())
+                    count++;
+            }
         }
         return count;
     }

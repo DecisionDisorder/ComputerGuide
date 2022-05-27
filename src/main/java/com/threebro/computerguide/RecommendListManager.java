@@ -44,7 +44,7 @@ public class RecommendListManager {
 
     public void addLaptopCompareList(Laptop model) {
         if(checkOverlap(model)) {
-            recommendLaptopSetList.add(new RecommendLaptopSet("Laptop model " + (recommendedSetList.size() + 1), model, recommendLaptopSetList.size()));
+            recommendLaptopSetList.add(new RecommendLaptopSet("Laptop model " + (recommendLaptopSetList.size() + 1), model, recommendLaptopSetList.size()));
         }
         else
             Log.d("RecommendListManager", "Overlap detected");

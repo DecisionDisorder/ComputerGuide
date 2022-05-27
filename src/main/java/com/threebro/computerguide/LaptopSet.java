@@ -33,7 +33,7 @@ public class LaptopSet {
         try{
             reader.readLine();
             while( (line = reader.readLine()) != null){
-                Log.d("MyActivity","Line: " + line);
+                //Log.d("MyActivity","Line: " + line);
                 String[] tokens = line.split(",");
                 Laptop lt = new Laptop();
 
@@ -254,4 +254,9 @@ public class LaptopSet {
     public List<Laptop> getFlaptop() {
         return flaptop;
     }
+
+    public List<Laptop> getLaptopList() {
+        return LaptopList;
+    }
+
 }

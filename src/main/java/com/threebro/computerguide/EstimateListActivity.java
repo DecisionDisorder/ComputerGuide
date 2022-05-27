@@ -70,7 +70,7 @@ public class EstimateListActivity extends AppCompatActivity {
                 loadEstimateList(ComputerType.LAPTOP);
                 db.addLabProductList(laptopEstimate);
             } else if (listType.equals("Past")) {
-                desktopEstimate = PastModelListActivity.recommendListManager.recommendedSetList.get(indexOfSet).getRecommendedSet();
+                laptopEstimate = PastModelListActivity.recommendListManager.recommendLaptopSetList.get(indexOfSet).getRecommendedLaptop();
                 loadEstimateList(ComputerType.LAPTOP);
             }
         }
@@ -182,7 +182,7 @@ public class EstimateListActivity extends AppCompatActivity {
             case COMPANY:
                 return laptopEstimate.getCompany();
             case CPU:
-                return laptopEstimate.getCpu3();
+                return laptopEstimate.getCpu1() + " " + laptopEstimate.getCpu2() + " " + laptopEstimate.getCpu3();
             case RAM:
                 return (int)laptopEstimate.getMemory() + "GB";
             case VGA:
@@ -192,9 +192,9 @@ public class EstimateListActivity extends AppCompatActivity {
             case OS:
                 return laptopEstimate.getOs();
             case DISPLAY:
-                return laptopEstimate.getDisplay() + "inch";
+                return laptopEstimate.getDisplay() + " inch";
             case WEIGHT:
-                return laptopEstimate.getWeight() + "kg";
+                return laptopEstimate.getWeight() + " kg";
         }
         return "";
     }

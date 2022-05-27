@@ -2,6 +2,7 @@ package com.threebro.computerguide;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ public class SampleModel extends LinearLayout {
     public ImageView modelIconImageView;
     public LinearLayout pastModelContainer;
     private CheckBox compareCheckBox;
+    private ComputerType type;
 
     public SampleModel(Context context, int index) {
         super(context);
@@ -60,6 +62,9 @@ public class SampleModel extends LinearLayout {
                 Intent intent = new Intent(context, EstimateListActivity.class);
                 intent.putExtra("ListType", "Past");
                 intent.putExtra("index", index);
+                Bundle bundle = new Bundle();
+                bundle.putString("computerType", type.toString());
+                intent.putExtra("productBundle", bundle);
                 context.startActivity(intent);
             }
         });
@@ -112,6 +117,10 @@ public class SampleModel extends LinearLayout {
         modelSpecTextView.setText(spec);
     }
 
+    public void setCompareCheckBox(boolean active) {
+        compareCheckBox.setChecked(active);
+    }
+
     public void setIcon(String type) {
         if(type.equals("desktop")) {
             modelIconImageView.setImageDrawable(getResources().getDrawable(R.drawable.desktop));
@@ -119,5 +128,9 @@ public class SampleModel extends LinearLayout {
         else if(type.equals("laptop")) {
             modelIconImageView.setImageDrawable(getResources().getDrawable(R.drawable.laptop));
         }
+    }
+
+    public void setType(ComputerType type) {
+        this.type = type;
     }
 }
