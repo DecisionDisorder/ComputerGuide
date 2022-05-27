@@ -47,6 +47,38 @@ public class DesktopSet {
         return Final2;
     }
 
+    public List<CPU> getCPUList() {
+        return CPUList;
+    }
+
+    public List<MainBoard> getMbList() {
+        return mbList;
+    }
+
+    public List<RAM> getRAMList() {
+        return RAMList;
+    }
+
+    public List<GPU> getGPUList() {
+        return GPUList;
+    }
+
+    public List<Power> getPWList() {
+        return PWList;
+    }
+
+    public List<Case> getCaseList() {
+        return CaseList;
+    }
+
+    public List<Cooler> getCLList() {
+        return CLList;
+    }
+
+    public List<Storage> getSTList() {
+        return STList;
+    }
+
     public DesktopSet(Context context) {
         this.context = context;
     }
@@ -54,7 +86,7 @@ public class DesktopSet {
     private void readStorageData(){
         InputStream is = context.getResources().openRawResource(R.raw.storagecsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i = 0;
         String line ="";
         try{
             reader.readLine();
@@ -66,6 +98,8 @@ public class DesktopSet {
                 st.setPc(tokens[2]);
                 st.setCapacity(tokens[3]);
                 st.setPrice(Integer.parseInt(tokens[4]));
+                st.setIndex(i);
+                i++;
                 STList.add(st);
             }
         } catch (IOException e) {
@@ -77,7 +111,7 @@ public class DesktopSet {
     private void readCoolData(){
         InputStream is = context.getResources().openRawResource(R.raw.coolcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i = 0;
         String line ="";
         try{
             reader.readLine();
@@ -88,6 +122,8 @@ public class DesktopSet {
                 cl.setType(tokens[1]);
                 cl.setPrice(Integer.parseInt(tokens[2]));
                 cl.setRPM(Integer.parseInt(tokens[3]));
+                cl.setIndex(i);
+                i++;
                 CLList.add(cl);
             }
         } catch (IOException e) {
@@ -99,7 +135,7 @@ public class DesktopSet {
     private void readCaseData(){
         InputStream is = context.getResources().openRawResource(R.raw.casecsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i=0;
         String line ="";
         try{
             reader.readLine();
@@ -110,6 +146,8 @@ public class DesktopSet {
                 cs.setType(tokens[1]);
                 cs.setSize(tokens[2]);
                 cs.setPrice(Integer.parseInt(tokens[3]));
+                cs.setIndex(i);
+                i++;
                 CaseList.add(cs);
             }
         } catch (IOException e) {
@@ -121,7 +159,7 @@ public class DesktopSet {
     private void readPWData(){
         InputStream is = context.getResources().openRawResource(R.raw.powercsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i =0;
         String line ="";
         try{
             reader.readLine();
@@ -133,6 +171,8 @@ public class DesktopSet {
                 pw.setSpecification(Integer.parseInt(tokens[2]));
                 pw.setCertification(tokens[3]);
                 pw.setPrice(Integer.parseInt(tokens[4]));
+                pw.setIndex(i);
+                i++;
 
                 PWList.add(pw);
             }
@@ -145,7 +185,7 @@ public class DesktopSet {
     private void readGPUData(){
         InputStream is = context.getResources().openRawResource(R.raw.gpucsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i = 0;
         String line ="";
         try{
             reader.readLine();
@@ -160,6 +200,8 @@ public class DesktopSet {
                 gpu.setDP(Boolean.parseBoolean(tokens[5]));
                 gpu.setDVI(Boolean.parseBoolean(tokens[6]));
                 gpu.setPriority(Integer.parseInt(tokens[7]));// 그래픽 우선순위 때문에
+                gpu.setIndex(i);
+                i++;
                 GPUList.add(gpu);
             }
         } catch (IOException e) {
@@ -171,7 +213,7 @@ public class DesktopSet {
     private void readRAMData(){
         InputStream is = context.getResources().openRawResource(R.raw.ramcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i=0;
         String line ="";
         try{
             reader.readLine();
@@ -185,6 +227,8 @@ public class DesktopSet {
                 rm.setMemoryClock(tokens[3]);
                 rm.setStock(tokens[4]);
                 rm.setPrice(Integer.parseInt(tokens[5]));
+                rm.setIndex(i);
+                i++;
                 RAMList.add(rm);
             }
         } catch (IOException e) {
@@ -196,7 +240,7 @@ public class DesktopSet {
     private void readMBData(){
         InputStream is = context.getResources().openRawResource(R.raw.mbcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i = 0;
         String line ="";
         try{
             reader.readLine();
@@ -214,6 +258,8 @@ public class DesktopSet {
                 mb.setMemoryMaxSize(tokens[8]);
                 mb.setStock(tokens[9]);
                 mb.setPrice(Integer.parseInt(tokens[10]));
+                mb.setIndex(i);
+                i++;
                 mbList.add(mb);
             }
         } catch (IOException e) {
@@ -225,7 +271,7 @@ public class DesktopSet {
     private void readCPUData(){
         InputStream is = context.getResources().openRawResource(R.raw.cpucsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
-
+        int i =0;
         String line ="";
         try{
             reader.readLine();
@@ -251,6 +297,8 @@ public class DesktopSet {
                 cpu.setStock(tokens[15]);
                 cpu.setPriorityGaming(Integer.parseInt(tokens[16]));
                 cpu.setPriorityTask(Integer.parseInt(tokens[17]));
+                cpu.setIndex(i);
+                i++;
 
                 CPUList.add(cpu);
             }
@@ -431,4 +479,5 @@ public class DesktopSet {
 
         return availablePriceList;
     }
+
 }

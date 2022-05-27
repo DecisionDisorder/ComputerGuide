@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class EstimateListActivity extends AppCompatActivity {
     private FinalTwo estimate;
 
     private TextView priceTextView;
+    DBHelper db ;
 
     public enum PcComponentType {
         CPU, COOLER, MB, RAM, VGA, STORAGE, CASE, POWER;
@@ -33,6 +35,7 @@ public class EstimateListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new DBHelper(this);
         setContentView(R.layout.activity_estimate_list);
 
         Intent rcvintent = getIntent();
@@ -42,6 +45,8 @@ public class EstimateListActivity extends AppCompatActivity {
             estimate = MainActivity.desktopSet.getFinal2().get(indexOfSet);
             loadEstimateList();
             PastModelListActivity.recommendListManager.addCompareList(estimate, this);
+            db.addProductList(estimate);
+            Log.d("test",db.getResult());
         }
             else if(listType.equals("Past")) {
             estimate = PastModelListActivity.recommendListManager.recommendedSetList.get(indexOfSet).getRecommendedSet();
