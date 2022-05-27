@@ -5,6 +5,15 @@ public class Cooler {
     private String Type;
     private int Price;
     private int RPM;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public String getName() {
         return Name;

@@ -6,6 +6,24 @@ public class Storage {
     private String Pc;
     private String Capacity;
     private int Price;
+    private int Amount = 1;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public int getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(int amount) {
+        Amount = amount;
+    }
 
     public String getName() {
         return Name;
@@ -40,7 +58,7 @@ public class Storage {
     }
 
     public int getPrice() {
-        return Price;
+        return Price * Amount;
     }
 
     public void setPrice(int price) {

@@ -8,6 +8,15 @@ public class Power {
     private String Certification;
     private int Price;
     private int GPWPrice;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public int getGPWPrice() {
         return GPWPrice;

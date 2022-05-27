@@ -14,6 +14,15 @@ public class MainBoard {
     private String Stock;
     private int Price;
     private int CPUMbPrice;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public int getCPUMbPrice() {
         return CPUMbPrice;
