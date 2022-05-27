@@ -20,35 +20,41 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/round_button"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Set 1"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:fontFamily="@font/nanum_square_l"/>
+                    android:fontFamily="@font/nanum_square_b"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/compareSet2Container"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/round_button"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:text="Set 2"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="20dp"
-                    android:fontFamily="@font/nanum_square_l"/>
+                    android:fontFamily="@font/nanum_square_b"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

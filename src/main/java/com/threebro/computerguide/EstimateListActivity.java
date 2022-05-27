@@ -23,8 +23,10 @@ public class EstimateListActivity extends AppCompatActivity {
     private PcComponent[] pcComponents;
     private FinalTwo estimate;
 
+    static String[] componentsNameArr;
+
     private TextView priceTextView;
-    DBHelper db ;
+    private DBHelper db;
 
     public enum PcComponentType {
         CPU, COOLER, MB, RAM, VGA, STORAGE, CASE, POWER;
@@ -44,7 +46,7 @@ public class EstimateListActivity extends AppCompatActivity {
         if(listType.equals("New")) {
             estimate = MainActivity.desktopSet.getFinal2().get(indexOfSet);
             loadEstimateList();
-            PastModelListActivity.recommendListManager.addCompareList(estimate, this);
+            //PastModelListActivity.recommendListManager.addCompareList(estimate);
             db.addProductList(estimate);
             Log.d("test",db.getResult());
         }
@@ -62,7 +64,7 @@ public class EstimateListActivity extends AppCompatActivity {
         LinearLayout componentContainer = findViewById(R.id.componentContainer);
         pcComponents = new PcComponent[PcComponentType.values().length];
 
-        String[] componentsNameArr = getResources().getStringArray(R.array.computer_components);
+        componentsNameArr = getResources().getStringArray(R.array.computer_components);
         TypedArray iconIdArr = getResources().obtainTypedArray(R.array.icon_array);
 
         for (int i = 0; i < pcComponents.length; i++) {
@@ -76,7 +78,7 @@ public class EstimateListActivity extends AppCompatActivity {
             pcComponents[i].setIcon(iconIdArr.getDrawable(i));
 
             String name = getComponentName(i, estimate);
-            String price = formatter.format(getComponentPrice(i)) + "원";
+            String price = formatter.format(getComponentPrice(i, estimate)) + "원";
             pcComponents[i].setNameAndPrice(name, price);
             if (i == PcComponentType.VGA.ordinal() || i == PcComponentType.POWER.ordinal())
                 pcComponents[i].setTextSize();
@@ -84,7 +86,7 @@ public class EstimateListActivity extends AppCompatActivity {
         }
     }
 
-    public String getComponentName(int component, FinalTwo estimate) {
+    public static String getComponentName(int component, FinalTwo estimate) {
         PcComponentType type = PcComponentType.fromOrdinal(component);
         switch (type) {
             case CPU:
@@ -109,7 +111,7 @@ public class EstimateListActivity extends AppCompatActivity {
         return "";
     }
 
-    public int getComponentPrice(int component) {
+    public static int getComponentPrice(int component, FinalTwo estimate) {
         PcComponentType type = PcComponentType.fromOrdinal(component);
         switch (type) {
             case CPU:
@@ -152,7 +154,7 @@ public class EstimateListActivity extends AppCompatActivity {
     private void updatePrice(int changedComponent) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         if(changedComponent == PcComponentType.RAM.ordinal()) {
-            String price = formatter.format(getComponentPrice(changedComponent)) + "원";
+            String price = formatter.format(getComponentPrice(changedComponent, estimate)) + "원";
             pcComponents[changedComponent].setNameAndPrice(getComponentName(changedComponent, estimate), price);
         }
 

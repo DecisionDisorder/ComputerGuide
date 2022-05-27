@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.threebro.computerguide.Combi.FinalTwo;
 import com.threebro.computerguide.Combi.RecommendedSet;
 
+import java.util.ArrayList;
+
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "ProductList.db";
@@ -54,6 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String result ="";
         Cursor cursor = db.rawQuery("SELECT * FROM Product",null);
+        PastModelListActivity.recommendListManager.recommendedSetList = new ArrayList<>();
         while (cursor.moveToNext()) {
             FinalTwo list = new FinalTwo();
             list.setCpu(MainActivity.desktopSet.getCPUList().get(cursor.getInt(0)));
@@ -67,7 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
             list.getSt().setAmount(cursor.getInt(9));
             list.setCl(MainActivity.desktopSet.getCLList().get(cursor.getInt(10)));
             list.setPrice(cursor.getInt(11));
-
+            PastModelListActivity.recommendListManager.addCompareList(list);
         }
         return result;
     }

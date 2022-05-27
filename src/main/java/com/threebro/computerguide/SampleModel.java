@@ -71,9 +71,13 @@ public class SampleModel extends LinearLayout {
                         compareCheckBox.setChecked(false);
                         Toast.makeText(context, getResources().getString(R.string.maximum_compare_check), Toast.LENGTH_LONG).show();
                     }
+                    else {
+                        pastModelListActivity.setCompareIndex(index);
+                    }
                 }
                 else {
                     pastModelListActivity.isUnderCheckedLimit();
+                    pastModelListActivity.resetCompareIndex(index);
                 }
             }
         });

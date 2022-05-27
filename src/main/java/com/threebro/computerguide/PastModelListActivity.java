@@ -22,17 +22,24 @@ public class PastModelListActivity extends AppCompatActivity {
     private boolean isCompareMode = false;
     private Button startCompareButton;
 
-    static RecommendListManager recommendListManager = new RecommendListManager();
+    private int[] compareIndex = {-1, -1};
+    private DBHelper dbHelper;
+
+    static RecommendListManager recommendListManager= new RecommendListManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_model_list);
 
+        dbHelper = new DBHelper(this);
+
+        dbHelper.getResult();
+
         modelSetList = new ArrayList<>();
         LinearLayout modelContainer = findViewById(R.id.modelContainer);
 
-        for(int i = 0; i < recommendListManager.recommendedSetList.size(); i++) {
+        for(int i = recommendListManager.recommendedSetList.size() - 1; i >= 0; i--) {
             SampleModel modelSet = new SampleModel(this, i);
             modelSet.setName(recommendListManager.recommendedSetList.get(i).getName());
             modelSet.setSpec(recommendListManager.recommendedSetList.get(i));
@@ -73,9 +80,10 @@ public class PastModelListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent compareIntent = new Intent(getApplicationContext(), CompareActivity.class);
-                
-                // TODO: 데이터 번들 전달
-                
+                Bundle compareBundle = new Bundle();
+                compareBundle.putIntArray("CompareIndex", compareIndex);
+
+                compareIntent.putExtra("CompareBundle", compareBundle);
                 startActivity(compareIntent);
             }
         });
@@ -86,6 +94,7 @@ public class PastModelListActivity extends AppCompatActivity {
             compareButton.setBackgroundColor(getResources().getColor(R.color.active_color));
         else
             compareButton.setBackgroundColor(getResources().getColor(R.color.unactive_color));
+
         for(int i = 0; i < modelSetList.size(); i++) {
             modelSetList.get(i).setActiveCheckBox(active);
         }
@@ -113,6 +122,24 @@ public class PastModelListActivity extends AppCompatActivity {
                 setCompareStartActive(false);
         }
         return true;
+    }
+
+    public void setCompareIndex(int index) {
+        if(compareIndex[0] == -1) {
+            compareIndex[0] = index;
+        }
+        else if(compareIndex[1] == -1) {
+            compareIndex[1] = index;
+        }
+    }
+
+    public void resetCompareIndex(int index) {
+        if(compareIndex[0] == index) {
+            compareIndex[0] = -1;
+        }
+        else if(compareIndex[1] == index) {
+            compareIndex[1] = -1;
+        }
     }
 
     private void setCompareStartActive(boolean active) {

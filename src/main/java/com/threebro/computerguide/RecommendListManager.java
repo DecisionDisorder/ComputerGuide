@@ -17,14 +17,14 @@ public class RecommendListManager {
         recommendedSetList = new ArrayList<>();
     }
 
-    public FinalTwo[] getCompareList(int leftIndex, int rightIndex) {
+    public FinalTwo[] getCompareList(int[] compareIndex) {
         FinalTwo[] estimate = new FinalTwo[2];
-        estimate[0] = recommendedSetList.get(leftIndex).getRecommendedSet();
-        estimate[1] = recommendedSetList.get(rightIndex).getRecommendedSet();
+        estimate[0] = recommendedSetList.get(compareIndex[0]).getRecommendedSet();
+        estimate[1] = recommendedSetList.get(compareIndex[1]).getRecommendedSet();
         return estimate;
     }
 
-    public void addCompareList(FinalTwo estimate, Context context) {
+    public void addCompareList(FinalTwo estimate) {
         if(checkOverlap(estimate)) {
             recommendedSetList.add(new RecommendedSet("Set " + (recommendedSetList.size() + 1), estimate, recommendedSetList.size()));
         }
