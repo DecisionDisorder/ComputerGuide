@@ -3,7 +3,15 @@ package com.threebro.computerguide.CSV;
 public class Laptop {
     private String name, company, cpu1,cpu2,cpu3,os,graphic;
     private float display, memory, ssd, weight;
-    private int clv, glv, comnum, price;
+    private int clv, glv, comnum, price,index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public int getComnum() {
         return comnum;
