@@ -26,6 +26,21 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"/>
+    <Button
+        android:id="@+id/comparePriceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp"
+        android:background="@drawable/blue_button"
+        android:visibility="gone"
+        android:fontFamily="@font/nanum_square_b"
+        android:text="@string/compare_price"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"

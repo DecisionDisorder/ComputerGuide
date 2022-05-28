@@ -32,4 +32,5 @@
     <string name="no_budget_message">There is no budget range available.</string>
 
     <string name="empty_list">There is no recommended list.</string>
+    <string name="compare_price">Compare Price</string>
 </resources>

@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     static DesktopSet desktopSet;
     static LaptopSet laptopSet;
 
+    private BackKeyHandler backKeyHandler = new BackKeyHandler(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(laptopIntent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        backKeyHandler.onBackPressed();;
     }
 }
 

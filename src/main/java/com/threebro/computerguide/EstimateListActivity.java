@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +27,7 @@ public class EstimateListActivity extends AppCompatActivity {
     private PcComponent[] pcComponents;
     private FinalTwo desktopEstimate;
     private Laptop laptopEstimate;
+    private String url = "http://search.danawa.com/mobile/dsearch.php?keyword=";
 
     static String[] componentsNameArr;
 
@@ -101,6 +105,7 @@ public class EstimateListActivity extends AppCompatActivity {
 
                 String name = getComponentName(i, desktopEstimate);
                 String price = formatter.format(getComponentPrice(i, desktopEstimate)) + "원";
+                setURL(name, false);
                 pcComponents[i].setNameAndPrice(name, price);
                 if (i == PcComponentType.VGA.ordinal() || i == PcComponentType.POWER.ordinal())
                     pcComponents[i].setTextSize();
@@ -120,6 +125,9 @@ public class EstimateListActivity extends AppCompatActivity {
 
                 String name = getComponentName(i, laptopEstimate);
                 String price = "";
+
+                if(i == LaptopComponentType.NAME.ordinal())
+                    setURL(name, true);
                 pcComponents[i].setNameAndPrice(name, price);
                 componentContainer.addView(pcComponents[i]);
             }
@@ -214,6 +222,31 @@ public class EstimateListActivity extends AppCompatActivity {
         }
 
         return 0;
+    }
+
+    public void setURL(String name, boolean active) {
+        Button comparePriceButton = findViewById(R.id.comparePriceButton);
+        if(active) {
+            comparePriceButton.setVisibility(View.VISIBLE);
+            comparePriceButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String danawaUrl = convertNameToURL(name);
+                    System.out.println(danawaUrl);
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(danawaUrl));
+                    startActivity(intent);
+                }
+            });
+        }
+        else {
+            comparePriceButton.setVisibility(View.GONE);
+        }
+    }
+
+    private String convertNameToURL(String name) {
+        String url = this.url;
+        url += name.replaceAll(" ", "+");
+        return url;
     }
 
     private void updatePrice(int changedComponent) {
