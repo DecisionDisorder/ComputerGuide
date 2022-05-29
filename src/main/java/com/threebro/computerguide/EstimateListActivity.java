@@ -62,7 +62,7 @@ public class EstimateListActivity extends AppCompatActivity {
                 desktopEstimate = MainActivity.desktopSet.getFinal2().get(indexOfSet);
                 loadEstimateList(ComputerType.DESKTOP);
                 db.addProductList(desktopEstimate);
-                Log.d("test", db.getResult());
+                //Log.d("test", db.getResult());
             } else if (listType.equals("Past")) {
                 desktopEstimate = PastModelListActivity.recommendListManager.recommendedSetList.get(indexOfSet).getRecommendedSet();
                 loadEstimateList(ComputerType.DESKTOP);

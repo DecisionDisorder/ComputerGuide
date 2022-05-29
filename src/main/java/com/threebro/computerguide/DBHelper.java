@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put("Power", List.getPw().getIndex());
         cv.put("Ram", List.getRm().getIndex());
         cv.put("RamCapacity", List.getRm().getRamCapacity());
-        cv.put("RamAmount", List.getRm().getIndex());
+        cv.put("RamAmount", List.getRm().getAmount());
         cv.put("ComputerCase", List.getCa().getIndex());
         cv.put("Storage", List.getSt().getIndex());
         cv.put("StorageAmount", List.getSt().getIndex());
@@ -93,7 +93,8 @@ public class DBHelper extends SQLiteOpenHelper {
             list.setMb(MainActivity.desktopSet.getMbList().get(cursor.getInt(2)));
             list.setPw(MainActivity.desktopSet.getPWList().get(cursor.getInt(3)));
             list.setRm(MainActivity.desktopSet.getRAMList().get(cursor.getInt(4)));
-            list.getRm().setAmount(cursor.getInt(6));
+            int amount = cursor.getInt(6);
+            list.getRm().setAmount(amount);
             list.setCa(MainActivity.desktopSet.getCaseList().get(cursor.getInt(7)));
             list.setSt(MainActivity.desktopSet.getSTList().get(cursor.getInt(8)));
             list.getSt().setAmount(cursor.getInt(9));

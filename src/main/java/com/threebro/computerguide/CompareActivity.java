@@ -15,6 +15,7 @@ import com.threebro.computerguide.Combi.FinalTwo;
 public class CompareActivity extends AppCompatActivity {
 
     private int[] compareIndex = new int[2];
+    private String[] compareSetNames;
     private FinalTwo[] estimateList;
     private Laptop[] laptops;
 
@@ -35,16 +36,21 @@ public class CompareActivity extends AppCompatActivity {
         Bundle compareBundle = intent.getBundleExtra("CompareBundle");
         String computerType = compareBundle.getString("ComputerType");
         compareIndex = compareBundle.getIntArray("CompareIndex");
+        compareSetNames = compareBundle.getStringArray("SetNames");
 
-        estimateList = PastModelListActivity.recommendListManager.getCompareDesktopList(compareIndex);
-        laptops = PastModelListActivity.recommendListManager.getCompareLaptopList(compareIndex);
+        TextView leftTitleTextView = findViewById(R.id.leftSetTitleText);
+        TextView rightTitleTextView = findViewById(R.id.rightSetTitleText);
+        leftTitleTextView.setText(compareSetNames[0]);
+        rightTitleTextView.setText(compareSetNames[1]);
 
         if(computerType.equals(ComputerType.DESKTOP.toString())) {
+            estimateList = PastModelListActivity.recommendListManager.getCompareDesktopList(compareIndex);
             componentsNameArr = getResources().getStringArray(R.array.computer_components);
 
             initDesktopCompareList();
         }
         else{
+            laptops = PastModelListActivity.recommendListManager.getCompareLaptopList(compareIndex);
             componentsNameArr = getResources().getStringArray(R.array.laptop_components);
 
             initLaptopCompareList();

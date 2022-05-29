@@ -26,6 +26,7 @@ public class PastModelListActivity extends AppCompatActivity {
     private Button startCompareButton;
 
     private int[] compareIndex = {-1, -1};
+    private String[] compareSetNames = new String[2];
     private DBHelper dbHelper;
 
     static RecommendListManager recommendListManager= new RecommendListManager();
@@ -123,6 +124,7 @@ public class PastModelListActivity extends AppCompatActivity {
                 Bundle compareBundle = new Bundle();
                 compareBundle.putIntArray("CompareIndex", compareIndex);
                 compareBundle.putString("ComputerType", computerType.toString());
+                compareBundle.putStringArray("SetNames", compareSetNames);
 
                 compareIntent.putExtra("CompareBundle", compareBundle);
                 startActivity(compareIntent);
@@ -217,6 +219,15 @@ public class PastModelListActivity extends AppCompatActivity {
         }
         else if(compareIndex[1] == index) {
             compareIndex[1] = -1;
+        }
+    }
+
+    public void setSelectedSetNames(String name) {
+        if(compareIndex[0] == -1) {
+            compareSetNames[0] = name;
+        }
+        else if(compareIndex[1] == -1) {
+            compareSetNames[1] = name;
         }
     }
 

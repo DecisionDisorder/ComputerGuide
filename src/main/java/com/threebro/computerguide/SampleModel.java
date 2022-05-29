@@ -78,6 +78,7 @@ public class SampleModel extends LinearLayout {
                         Toast.makeText(context, getResources().getString(R.string.maximum_compare_check), Toast.LENGTH_LONG).show();
                     }
                     else {
+                        pastModelListActivity.setSelectedSetNames(modelTitleTextView.getText().toString());
                         pastModelListActivity.setCompareIndex(index);
                     }
                 }
