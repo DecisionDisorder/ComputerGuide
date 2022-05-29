@@ -101,8 +101,8 @@ public class CompareActivity extends AppCompatActivity {
         EstimateListActivity.PcComponentType type = EstimateListActivity.PcComponentType.fromOrdinal(component);
         switch (type) {
             case CPU:
-                leftPerformance = estimateList[0].getCpu().getPriorityGaming();
-                rightPerformance = estimateList[1].getCpu().getPriorityGaming();
+                leftPerformance = 100 - estimateList[0].getCpu().getPriorityGaming();
+                rightPerformance = 100 - estimateList[1].getCpu().getPriorityGaming();
                 break;
             case COOLER:
                 break;
@@ -111,8 +111,8 @@ public class CompareActivity extends AppCompatActivity {
             case RAM:
                 break;
             case VGA:
-                leftPerformance = estimateList[0].getGpu().getPriority();
-                rightPerformance = estimateList[1].getGpu().getPriority();
+                leftPerformance = 100 - estimateList[0].getGpu().getPriority();
+                rightPerformance = 100 - estimateList[1].getGpu().getPriority();
                 break;
             case STORAGE:
                 break;
