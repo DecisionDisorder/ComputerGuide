@@ -12,14 +12,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RecommendListManager {
-    public ArrayList<RecommendedSet> recommendedSetList;
-    public ArrayList<RecommendLaptopSet> recommendLaptopSetList;
+    public ArrayList<RecommendedSet> recommendedSetList;            // Desktop recommended list
+    public ArrayList<RecommendLaptopSet> recommendLaptopSetList;    // Laptop recommended list
 
     public RecommendListManager() {
+        // Initialize array lists
         recommendedSetList = new ArrayList<>();
         recommendLaptopSetList = new ArrayList<>();
     }
 
+    // Return two desktop estimates to compare
     public FinalTwo[] getCompareDesktopList(int[] compareIndex) {
         FinalTwo[] estimate = new FinalTwo[2];
         estimate[0] = recommendedSetList.get(compareIndex[0]).getRecommendedSet();
@@ -27,6 +29,7 @@ public class RecommendListManager {
         return estimate;
     }
 
+    // Return two laptop model to compare
     public Laptop[] getCompareLaptopList(int[] compareIndex) {
         Laptop[] model = new Laptop[2];
         model[0] = recommendLaptopSetList.get(compareIndex[0]).getRecommendedLaptop();
@@ -34,6 +37,7 @@ public class RecommendListManager {
         return model;
     }
 
+    // Add new desktop estimate to the list if there's no overlapped data
     public void addCompareList(FinalTwo estimate) {
         if(checkOverlap(estimate)) {
             recommendedSetList.add(new RecommendedSet("Set " + (recommendedSetList.size() + 1), estimate, recommendedSetList.size()));
@@ -42,6 +46,7 @@ public class RecommendListManager {
             Log.d("RecommendListManager", "Overlap detected");
     }
 
+    // Add new laptop model to the list if there's no overlapped data
     public void addLaptopCompareList(Laptop model) {
         if(checkOverlap(model)) {
             recommendLaptopSetList.add(new RecommendLaptopSet("Laptop model " + (recommendLaptopSetList.size() + 1), model, recommendLaptopSetList.size()));
@@ -50,6 +55,7 @@ public class RecommendListManager {
             Log.d("RecommendListManager", "Overlap detected");
     }
 
+    // Check if there's any overlapped data in the desktop list
     private boolean checkOverlap(FinalTwo estimate) {
         for (int i = 0; i < recommendedSetList.size(); i++) {
             FinalTwo est = recommendedSetList.get(i).getRecommendedSet();
@@ -60,6 +66,7 @@ public class RecommendListManager {
         return true;
     }
 
+    // Check if there's any overlapped data in the laptop list
     private boolean checkOverlap(Laptop model) {
         for(int i = 0; i < recommendLaptopSetList.size(); i++) {
             Laptop laptop = recommendLaptopSetList.get(i).getRecommendedLaptop();

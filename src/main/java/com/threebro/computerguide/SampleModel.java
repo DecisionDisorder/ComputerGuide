@@ -23,14 +23,14 @@ import java.text.DecimalFormat;
 
 public class SampleModel extends LinearLayout {
 
-    PastModelListActivity pastModelListActivity;
+    PastModelListActivity pastModelListActivity;    // Recommended List activity (Activity that created this class)
 
-    public TextView modelTitleTextView;
-    public TextView modelSpecTextView;
-    public ImageView modelIconImageView;
-    public LinearLayout pastModelContainer;
-    private CheckBox compareCheckBox;
-    private ComputerType type;
+    public TextView modelTitleTextView;             // Model title text view
+    public TextView modelSpecTextView;              // Model simple specification text view
+    public ImageView modelIconImageView;            // Model icon Image view
+    public LinearLayout pastModelContainer;         // Root layout container
+    private CheckBox compareCheckBox;               // Compare check box
+    private ComputerType type;                      // Current model's computer type
 
     public SampleModel(Context context, int index) {
         super(context);
@@ -44,18 +44,21 @@ public class SampleModel extends LinearLayout {
         init(context, index);
     }
 
+    // Initialize this sample model
     private void init(Context context, int index){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.sample_model_layout, this, true);
 
         pastModelListActivity = (PastModelListActivity)context;
 
+        // Get UI views from activity xml
         pastModelContainer = findViewById(R.id.pastModelContainer);
         modelTitleTextView = findViewById(R.id.modelTitleTextView);
         modelSpecTextView = findViewById(R.id.modelSpecTextView);
         modelIconImageView = findViewById(R.id.modelIconImg);
         compareCheckBox = findViewById(R.id.compareCheckBox);
 
+        // Set button listener to start detailed estimate activity
         pastModelContainer.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +72,7 @@ public class SampleModel extends LinearLayout {
             }
         });
 
+        // Set checkbox event listener that check if checked amount is under limit and enabling start compare button
         compareCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -90,6 +94,7 @@ public class SampleModel extends LinearLayout {
         });
     }
 
+    // Set CheckBox active/unactive
     public void setActiveCheckBox(boolean active) {
         if(active)
             compareCheckBox.setVisibility(VISIBLE);
@@ -97,20 +102,24 @@ public class SampleModel extends LinearLayout {
             compareCheckBox.setVisibility(GONE);
     }
 
+    // Get if this checkbox is checked
     public boolean isChecked() {
         return compareCheckBox.isChecked();
     }
 
+    // Set this set's name
     public void setName(String name) {
         modelTitleTextView.setText(name);
     }
 
+    // set this set's desktop simple spec
     public void setSpec(RecommendedSet set) {
         FinalTwo estimate = set.getRecommendedSet();
         String spec = DesktopSet.getSimpleString(estimate);
 
         modelSpecTextView.setText(spec);
     }
+    // set this set's laptop simple spec
     public void setSpec(RecommendLaptopSet set) {
         Laptop model = set.getRecommendedLaptop();
         String spec = LaptopSet.getSimpleString(model);
@@ -118,10 +127,12 @@ public class SampleModel extends LinearLayout {
         modelSpecTextView.setText(spec);
     }
 
+    // Set checkbox checked/unchecked
     public void setCompareCheckBox(boolean active) {
         compareCheckBox.setChecked(active);
     }
 
+    // Set icon desktop or laptop
     public void setIcon(String type) {
         if(type.equals("desktop")) {
             modelIconImageView.setImageDrawable(getResources().getDrawable(R.drawable.desktop));
@@ -131,6 +142,7 @@ public class SampleModel extends LinearLayout {
         }
     }
 
+    // Set computer type to desktop or laptop
     public void setType(ComputerType type) {
         this.type = type;
     }

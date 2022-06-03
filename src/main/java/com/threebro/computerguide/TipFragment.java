@@ -21,21 +21,25 @@ import java.util.Random;
 
 public class TipFragment extends Fragment {
 
-    private ArrayList<String[]> tips;
-    private String[] tipsCategories;
+    private ArrayList<String[]> tips;   // Tips string array list
+    private String[] tipsCategories;    // Tip categories
 
-    private TextView tipTextView;
+    private TextView tipTextView;       // Tip text view
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate this fragment
         ViewGroup view = (ViewGroup) inflater.inflate(R.layout.fragment_tip, container, false);
 
+        // Get textview from fragment xml
         tipTextView = view.findViewById(R.id.tipTextView);
 
+        // Load tip data from json and get result
         boolean result = initData(view.getContext());
 
+        // If loading is successful, show the appropriate tip
         if(result) {
             setTip(getAppropriateTip());
         }
@@ -43,6 +47,7 @@ public class TipFragment extends Fragment {
         return view;
     }
 
+    // Get index of activity with name
     private int getActivityIndex (String activityName) {
         for(int i = 0; i < tipsCategories.length; i++) {
             if(tipsCategories[i].equals(activityName))
@@ -51,9 +56,12 @@ public class TipFragment extends Fragment {
         return -1;
     }
 
+    // Get appropriate tip according to current activity
     private String getAppropriateTip() {
+        // Get current activity's name
         String activityName = getActivity().getClass().getSimpleName();
 
+        // return current activity's index and get tip of that activity
         int activityIndex = getActivityIndex(activityName);
         if(activityIndex != -1) {
             Random random = new Random();
@@ -64,15 +72,18 @@ public class TipFragment extends Fragment {
         return "";
     }
 
+    // Set tip textview
     private void setTip(String tip) {
         tipTextView.setText(tip);
     }
 
+    // Load json data, parse, and return if successful
     private boolean initData (Context context) {
         String json = getJsonString(context);
         return parseJson(json);
     }
 
+    // Read json data from json file of asset directory
     private String getJsonString(Context context) {
         String json = "";
 
@@ -94,14 +105,17 @@ public class TipFragment extends Fragment {
         return json;
     }
 
+    // Parse json string to tip array list
     private boolean parseJson(String json) {
         try {
+            // Get json array with json library
             JSONObject jsonObject = new JSONObject(json);
-
             JSONArray tipsArray = jsonObject.getJSONArray("tips");
+            // Initialize array list and array
             tips = new ArrayList<>();
             tipsCategories = new String[tipsArray.length()];
 
+            // Read data from json array object and add to tip list
             for(int i = 0; i < tipsArray.length(); i++)
             {
                 JSONObject tipOnActivityObj = tipsArray.getJSONObject(i);
@@ -119,6 +133,7 @@ public class TipFragment extends Fragment {
             return true;
 
         } catch (JSONException e) {
+            // If there's any error, return false
             System.out.println(e.getMessage());
             return false;
         }

@@ -14,9 +14,11 @@ public class UsageSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usage_selection);
 
+        // Get computer type from prior activity
         Intent rcvIntent = getIntent();
         String type = rcvIntent.getStringExtra("computerType");
 
+        // Set usage:game button listener
         Button gameButton = findViewById(R.id.gameBtn);
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,6 +27,7 @@ public class UsageSelectionActivity extends AppCompatActivity {
             }
         });
 
+        // Set usage:professional button listener
         Button proWorkButton = findViewById(R.id.professionBtn);
         proWorkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +36,7 @@ public class UsageSelectionActivity extends AppCompatActivity {
             }
         });
 
+        // Set usage:simple_work button listener
         Button simpleWorkButton = findViewById(R.id.simpleWorkBtn);
         simpleWorkButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,12 +46,13 @@ public class UsageSelectionActivity extends AppCompatActivity {
         });
     }
 
+    // Start popup detailed usage activity
     private void openDetailedPopup(String computerType, String detailedType) {
-        Intent gamePopup = new Intent(this, DetailedUsageActivity.class);
+        Intent detailedUsagePopup = new Intent(this, DetailedUsageActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("type", detailedType);
         bundle.putString("computerType", computerType);
-        gamePopup.putExtra("typeBundle", bundle);
-        startActivity(gamePopup);
+        detailedUsagePopup.putExtra("typeBundle", bundle);
+        startActivity(detailedUsagePopup);
     }
 }

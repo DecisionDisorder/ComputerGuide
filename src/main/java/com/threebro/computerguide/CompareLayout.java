@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 
 public class CompareLayout extends LinearLayout {
 
-    private TextView titleTextView;
-    private TextView nameTextView;
+    private TextView titleTextView; // Comparing component's title
+    private TextView nameTextView;  // Comparing component's name
 
     public CompareLayout(Context context) {
         super(context);
@@ -25,6 +25,7 @@ public class CompareLayout extends LinearLayout {
         init(context);
     }
 
+    // Initialize inflation and view
     private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.compare_layout, this, true);
@@ -33,13 +34,17 @@ public class CompareLayout extends LinearLayout {
         nameTextView = findViewById(R.id.compareNameTextView);
     }
 
+    // Set component title TextView with parameter title
     public void setComponentTitle(String title) {
         titleTextView.setText(title);
     }
 
+    // Set component name TextView with parameter name
     public void setComponentName(String name) {
         nameTextView.setText(name);
     }
+
+    // Set better color to green and worse color to red
     public void setCompareColor(boolean isBetter) {
         if(isBetter) {
             nameTextView.setTextColor(getResources().getColor(R.color.better_color));

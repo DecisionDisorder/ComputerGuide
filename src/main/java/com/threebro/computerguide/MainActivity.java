@@ -34,9 +34,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static DesktopSet desktopSet;
-    static LaptopSet laptopSet;
+    static DesktopSet desktopSet;   // Static objects that retain the desktop estimate list
+    static LaptopSet laptopSet;     // Static objects that retain the laptop model list
 
+    // Create a listener object to exit the app by pressing the Back button twice
     private BackKeyHandler backKeyHandler = new BackKeyHandler(this);
 
     @Override
@@ -44,16 +45,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Create a new desktop set if empty (prevent duplicate creation)
         if(desktopSet == null)
             desktopSet = new DesktopSet(this);
 
+        // Read desktop csv data and Considering compatibility, make the basic combination.
         desktopSet.readCsvData();
         desktopSet.MakeComBi();
 
+        // Create a new laptop set if empty (prevent duplicate creation)
         if(laptopSet == null)
             laptopSet = new LaptopSet(this);
+        // Read laptop csv data
         laptopSet.readLaptop();
 
+        // Set desktop button listener
         LinearLayout desktopButton = findViewById(R.id.desktopBtn);
         desktopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Set laptop button listener
         LinearLayout laptopButton = findViewById(R.id.laptopBtn);
         laptopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,14 +82,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Override back key event and call back key handler method
     @Override
     public void onBackPressed() {
-        backKeyHandler.onBackPressed();;
+        backKeyHandler.onBackPressed();
     }
 }
 
 class PriceCompare implements Comparator<FinalRes>{
 
+    // Compare the total cost of the two estimates
     @Override
     public int compare(FinalRes f1, FinalRes f2) {
         if(f1.getTotalPrice()>f2.getTotalPrice()){

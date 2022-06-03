@@ -346,6 +346,7 @@ public class DesktopSet {
         }
     }
 
+    // Returns a simple specification to be marked on the Product List
     public static String getSimpleString(FinalTwo estimate) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String price = String.format(formatter.format(estimate.getPrice()));
@@ -461,19 +462,22 @@ public class DesktopSet {
         MakeGPUPW();
     }
 
+    // Only the price range on the estimate list is returned with a boolean array converted to true.
     public boolean[] getAvailablePriceList() {
-        int length = 16;
-        int budgetMin = 500000;
-        int interval = 100000;
+        int length = 16;        // Number of budget ranges (500,000~2,000,000)
+        int budgetMin = 500000; // Minimum budget range
+        int interval = 100000;  // Interval of budget ranges
         boolean[] availablePriceList = new boolean[length];
 
         for(int i = 0; i < FinalList.size(); i++) {
-            int price = FinalList.get(i).getTotalPrice();
-            int priceIndex = (price - budgetMin) / interval;
+            int price = FinalList.get(i).getTotalPrice();   // Get total price
+            int priceIndex = (price - budgetMin) / interval;// Set price index according to price
 
+            // Set price index upper bound
             if(priceIndex >= length)
                 priceIndex = length - 1;
 
+            // Set available price to be true
             availablePriceList[priceIndex] = true;
         }
 

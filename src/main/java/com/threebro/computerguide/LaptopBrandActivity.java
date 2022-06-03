@@ -14,6 +14,7 @@ public class LaptopBrandActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laptop_brand);
 
+        // Set major brand button listener
         Button majorBrandButton = findViewById(R.id.majorBrandButton);
         majorBrandButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -21,6 +22,8 @@ public class LaptopBrandActivity extends AppCompatActivity {
                 openBudgetActivity(1);
             }
         });
+
+        // Set Small and Medium Enterprise button listener
         Button smeBrandButton = findViewById(R.id.smeBrandButton);
         smeBrandButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,6 +33,7 @@ public class LaptopBrandActivity extends AppCompatActivity {
         });
     }
 
+    // Start Budget Selection activity with prior activity's bundle and selected brand type
     private void openBudgetActivity(int brandType)
     {
         Intent intent = new Intent(getApplicationContext(), BudgetSelectionActivity.class);

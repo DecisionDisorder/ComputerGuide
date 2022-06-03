@@ -14,35 +14,40 @@ import com.threebro.computerguide.Combi.FinalTwo;
 
 public class CompareActivity extends AppCompatActivity {
 
-    private int[] compareIndex = new int[2];
-    private String[] compareSetNames;
-    private FinalTwo[] estimateList;
-    private Laptop[] laptops;
+    private int[] compareIndex = new int[2];    // Two indexes to be compared
+    private String[] compareSetNames;           // Names of set to be compared
+    private FinalTwo[] estimateList;            // List of two desktop estimates to be compared
+    private Laptop[] laptops;                   // List of two laptop models to be compared
 
-    private LinearLayout leftContainer;
-    private LinearLayout rightContainer;
+    private LinearLayout leftContainer;         // Left container of estimate(model) 0
+    private LinearLayout rightContainer;        // Right container of estimate(model) 1
 
-    String[] componentsNameArr;
+    String[] componentsNameArr;                 // Component names of each computer type
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
 
+        // Get UI views from activity xml
         leftContainer = findViewById(R.id.compareSet1Container);
         rightContainer = findViewById(R.id.compareSet2Container);
 
+        // Get intent and bundle data received from prior activity
         Intent intent = getIntent();
         Bundle compareBundle = intent.getBundleExtra("CompareBundle");
         String computerType = compareBundle.getString("ComputerType");
         compareIndex = compareBundle.getIntArray("CompareIndex");
         compareSetNames = compareBundle.getStringArray("SetNames");
 
+        // Get and set UI views from activity xml
         TextView leftTitleTextView = findViewById(R.id.leftSetTitleText);
         TextView rightTitleTextView = findViewById(R.id.rightSetTitleText);
         leftTitleTextView.setText(compareSetNames[0]);
         rightTitleTextView.setText(compareSetNames[1]);
 
+        // Initialize by loading specifications and names of components,
+        // depending on the type of computer user wants to compare
         if(computerType.equals(ComputerType.DESKTOP.toString())) {
             estimateList = PastModelListActivity.recommendListManager.getCompareDesktopList(compareIndex);
             componentsNameArr = getResources().getStringArray(R.array.computer_components);
@@ -57,8 +62,10 @@ public class CompareActivity extends AppCompatActivity {
         }
     }
 
+    // Initialize desktop compare list for all components
     private void initDesktopCompareList() {
         for(int i = 0; i < componentsNameArr.length; i++) {
+            // Set Left and Right component list with title and name
             CompareLayout leftComponent = new CompareLayout(this);
             leftComponent.setComponentTitle("[" + componentsNameArr[i] + "]");
             if(i != EstimateListActivity.PcComponentType.RAM.ordinal())
@@ -75,11 +82,15 @@ public class CompareActivity extends AppCompatActivity {
                 rightComponent.setComponentName(EstimateListActivity.getComponentName(i, estimateList[1]) + " x" + estimateList[1].getRm().getAmount());
             rightContainer.addView(rightComponent);
 
+            // Set the color of text that indicates which one is better
             setDesktopCompareColor(leftComponent, rightComponent, i);
         }
     }
+
+    // Initialize laptop compare list for all components
     private void initLaptopCompareList() {
         for(int i = 0; i < componentsNameArr.length; i++) {
+            // Set Left and Right component list with title and name
             CompareLayout leftComponent = new CompareLayout(this);
             leftComponent.setComponentTitle("[" + componentsNameArr[i] + "]");
             leftComponent.setComponentName(EstimateListActivity.getComponentName(i, laptops[0]));
@@ -90,13 +101,15 @@ public class CompareActivity extends AppCompatActivity {
             rightComponent.setComponentName(EstimateListActivity.getComponentName(i, laptops[1]));
             rightContainer.addView(rightComponent);
 
+            // Set the color of text that indicates which one is better
             setLaptopCompareColor(leftComponent, rightComponent, i);
         }
     }
 
+    // Set the color of text that indicates which one is better
     private void setDesktopCompareColor(CompareLayout leftComponent, CompareLayout rightComponent, int component) {
-        int leftPerformance = 0;
-        int rightPerformance = 0;
+        int leftPerformance = 0;    // Left component's performance (Higher is better)
+        int rightPerformance = 0;   // Right component's performance (Higher is better)
 
         EstimateListActivity.PcComponentType type = EstimateListActivity.PcComponentType.fromOrdinal(component);
         switch (type) {
@@ -122,20 +135,22 @@ public class CompareActivity extends AppCompatActivity {
                 break;
         }
 
-
+        // If left component is better, set left color to positive and right color to negative color
         if(leftPerformance > rightPerformance) {
             leftComponent.setCompareColor(true);
             rightComponent.setCompareColor(false);
         }
+        // If right component is better, set right color to positive and left color to negative color
         else if(rightPerformance > leftPerformance) {
             rightComponent.setCompareColor(true);
             leftComponent.setCompareColor(false);
         }
     }
 
+    // Set the color of text that indicates which one is better
     private void setLaptopCompareColor(CompareLayout leftComponent, CompareLayout rightComponent, int component) {
-        int leftPerformance = 0;
-        int rightPerformance = 0;
+        int leftPerformance = 0;    // Left component's performance (Higher is better)
+        int rightPerformance = 0;   // Right component's performance (Higher is better)
 
         EstimateListActivity.LaptopComponentType type = EstimateListActivity.LaptopComponentType.fromOrdinal(component);
         switch (type) {
@@ -163,11 +178,12 @@ public class CompareActivity extends AppCompatActivity {
                 break;
         }
 
-
+        // If left component is better, set left color to positive and right color to negative color
         if(leftPerformance > rightPerformance) {
             leftComponent.setCompareColor(true);
             rightComponent.setCompareColor(false);
         }
+        // If right component is better, set right color to positive and left color to negative color
         else if(rightPerformance > leftPerformance) {
             rightComponent.setCompareColor(true);
             leftComponent.setCompareColor(false);

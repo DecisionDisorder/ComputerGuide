@@ -14,6 +14,7 @@ public class LaptopSizeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laptop_size);
 
+        // Set screen size button
         Button[] sizeButtons = new Button[5];
         sizeButtons[0] = findViewById(R.id.size13Button);
         sizeButtons[1] = findViewById(R.id.size14Button);
@@ -21,13 +22,13 @@ public class LaptopSizeActivity extends AppCompatActivity {
         sizeButtons[3] = findViewById(R.id.size16Button);
         sizeButtons[4] = findViewById(R.id.size17Button);
 
+        // Set screen size button listener that starts next activity with prior activity's bundle and size data
         for(int i = 0; i < sizeButtons.length; i++)
         {
             final int sizeIndex = i;
             sizeButtons[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int size = sizeIndex; // TODO: 그냥 sizeIndex를 써도 될지 확인해보기
                     Bundle bundle = getIntent().getBundleExtra("usageBundle");
                     bundle.putInt("laptopSizeIndex", sizeIndex);
                     Intent weightActivity = new Intent(getApplicationContext(), LaptopWeightActivity.class);

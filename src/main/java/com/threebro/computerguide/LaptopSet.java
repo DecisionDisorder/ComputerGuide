@@ -64,7 +64,7 @@ public class LaptopSet {
         }
     }
 
-    public int Selectprice(String usage, String dusage, float dsize, int company, double wt){
+    public int SelectPrice(String usage, String dusage, float dsize, int company, double wt){
         int price=0;
         int clevel=1;
         int glevel=1;
@@ -143,26 +143,29 @@ public class LaptopSet {
         return price;
     }
 
+    // Only the price range on the estimate list is returned with a boolean array converted to true.
     public boolean[] getAvailablePriceList() {
-        int length = 16;
-        int budgetMin = 500000;
-        int interval = 100000;
+        int length = 16;        // Number of budget ranges (500,000~2,000,000)
+        int budgetMin = 500000; // Minimum budget range
+        int interval = 100000;  // Interval of budget ranges
         boolean[] availablePriceList = new boolean[length];
 
         for(int i = 0; i < plaptop.size(); i++) {
-            int price = plaptop.get(i).getPrice();
-            int priceIndex = (price - budgetMin) / interval;
+            int price = plaptop.get(i).getPrice();           // Get total price
+            int priceIndex = (price - budgetMin) / interval; // Set price index according to price
 
+            // Set price index upper bound
             if(priceIndex >= length)
                 priceIndex = length - 1;
 
+            // Set available price to be true
             availablePriceList[priceIndex] = true;
         }
 
         return availablePriceList;
     }
 
-    public void Selectlaptop(String usage, String dusage, float dsize, int company, double wt, int price){
+    public void SelectLaptop(String usage, String dusage, float dsize, int company, double wt, int price){
         int clevel=1;
         int glevel=1;
         int ram=8;
@@ -221,8 +224,8 @@ public class LaptopSet {
 
         flaptop = new ArrayList<>();
         for(int i=0; i<LaptopList.size(); i++){
-            if(LaptopList.get(i).getClv()>=clevel&&LaptopList.get(i).getGlv()>=glevel&&LaptopList.get(i).getComnum()==company
-                    &&LaptopList.get(i).getWeight()<=wt&&LaptopList.get(i).getDisplay()>=dsize&&LaptopList.get(i).getMemory()>=ram){
+            if(LaptopList.get(i).getClv() >= clevel && LaptopList.get(i).getGlv() >= glevel&&LaptopList.get(i).getComnum() == company
+                    && LaptopList.get(i).getWeight() <= wt && LaptopList.get(i).getDisplay() >= dsize&&LaptopList.get(i).getMemory() >= ram){
                 if(price<2000000){
                     if(LaptopList.get(i).getPrice()<=(price+100000)&&LaptopList.get(i).getPrice()>=price){
                         Laptop lt = new Laptop();
@@ -240,6 +243,8 @@ public class LaptopSet {
             }
         }
     }
+
+    // Returns a simple specification to be marked on the Product List
     public static String getSimpleString(Laptop laptop) {
         DecimalFormat formatter = new DecimalFormat("#,###");
         String price = String.format(formatter.format(laptop.getPrice()));

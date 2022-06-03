@@ -27,7 +27,7 @@
     <string name="compare">Compare</string>
     <string name="maximum_compare_check">You can select up to two sets.</string>
     <string name="start_compare">Start Compare</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_budget_message">There is no budget range available.</string>
 

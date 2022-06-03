@@ -1,8 +1,6 @@
 package com.threebro.computerguide;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -12,8 +10,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.annotation.Dimension;
 
 public class PcComponent extends LinearLayout {
 
@@ -108,12 +104,12 @@ public class PcComponent extends LinearLayout {
 
     private void addAmount() {
         if(estimateListActivity.getComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal()) < maxAmount)
-            estimateListActivity.setComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal(), 1);
+            estimateListActivity.addComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal(), 1);
     }
 
     private void subtractAmount() {
         if(estimateListActivity.getComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal()) > 1)
-            estimateListActivity.setComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal(), -1);
+            estimateListActivity.addComponentAmount(EstimateListActivity.PcComponentType.RAM.ordinal(), -1);
     }
 
     public void setAmountTextView(int amount) {
