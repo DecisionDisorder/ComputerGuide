@@ -28,16 +28,17 @@ Apps for who have difficulty choosing a computer.
 - https://danawa.com/
 
 ## Screenshots
-<img src="/screenshots/mainScreen.png" width="144" height="282" title="Main Screen" alt="Main Screen"/>
+<img src="/screenshots/mainScreen.png" width="144" height="282" title="Main Screen" alt="Main Screen"></img>
 <img src="/screenshots/usageScreen.png" width="144" height="282" title="Usage" alt="Usage"/>
 <img src="/screenshots/detailedUsage(Game).png" width="144" height="282" title="Detailed Usage(Game)" alt="Detailed Usage(Game)"/>
 <img src="/screenshots/budget.png" width="144" height="282" title="Budget" alt="Budget"/>
 <img src="/screenshots/productListScreen.png" width="144" height="282" title="Product List" alt="Product List"/>
-<img src="/screenshots/estimateList.jpg" width="144" height="282" title="Estimate List" alt="Estimate List"/>
 <img src="/screenshots/screenSize.png" width="144" height="282" title="Screen Size" alt="Screen Size"/>
 <img src="/screenshots/weight.png" width="144" height="282" title="Weight" alt="Weight"/>
 <img src="/screenshots/manufacturer.png" width="144" height="282" title="Manufacturer" alt="Manufacturer"/>
-<img src="/screenshots/laptopSpec.jpg" width="144" height="282" title="Laptop Spec" alt="Laptop Spec"/>
 <img src="/screenshots/pastListScreen.png" width="144" height="282" title="Past List" alt="Past List"/>
 <img src="/screenshots/compareSelection.png" width="144" height="282" title="Compare Selection" alt="Compare Selection"/>
 <img src="/screenshots/compareDesktop.png" width="144" height="282" title="Compare Desktop" alt="Compare Desktop"/>
+</br>
+<img src="/screenshots/estimateList.jpg" width="144" height="409" title="Estimate List" alt="Estimate List"/>
+<img src="/screenshots/laptopSpec.jpg" width="144" height="458" title="Laptop Spec" alt="Laptop Spec"/>
