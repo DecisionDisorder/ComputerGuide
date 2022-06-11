@@ -14,14 +14,15 @@ import java.util.ArrayList;
 
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "ProductList.db";//저장되는 db이름
-    public static final String AP_TABLE = "Product";
-    public static final String LAP_TABLE = "LapProduct";
-    //테이블에 인서트하는 애들 입력
+    public static final String DATABASE_NAME = "ProductList.db";//DATABASE name
+    public static final String AP_TABLE = "Product";//Product Table name
+    public static final String LAP_TABLE = "LapProduct";//Laptop Table name
+    //Insert Taple value
     public static final String AP_CREATE = "CREATE TABLE 'Product' "
             + "('Cpu' INTEGER, 'Gpu' INTEGER, 'MainBoard' INTEGER, 'Power' INTEGER,'Ram' INTEGER,'RamCapacity' INTEGER, 'RamAmount' INTEGER,'ComputerCase' INTEGER,'Storage' INTEGER,'StorageAmount' INTEGER,'Cooler' INTEGER,'TotPrice' INTEGER)";
     public static final String LAP_CREATE = "CREATE TABLE 'LapProduct' "
             + "('LapTopIndex' INTEGER)";
+
     public DBHelper(Context context){
         super(context, DATABASE_NAME, null, 1);
     }
@@ -38,10 +39,10 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + LAP_CREATE);//기존에 테이블 존재할시에 drop하고 추가
         onCreate(db);
     }
-
+    //Insert desktop component into cv and save it into db
     public boolean addProductList(FinalTwo List) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues cv = new ContentValues();//캔버스 파일에 value넣어서 insert into 명령어 사용하는거
+        ContentValues cv = new ContentValues();
         cv.put("Cpu", List.getCpu().getIndex());
         cv.put("Gpu", List.getGpu().getIndex());
         cv.put("MainBoard", List.getMb().getIndex());
@@ -58,20 +59,21 @@ public class DBHelper extends SQLiteOpenHelper {
         System.out.println("Adding done");
         return true;
     }
-
+    //Insert Laptop component into cv and save it into db
     public boolean addLabProductList(Laptop List) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues cv = new ContentValues();//캔버스 파일에 value넣어서 insert into 명령어 사용하는거
+        ContentValues cv = new ContentValues();
         cv.put("LapTopIndex", List.getIndex());
         db.insert(LAP_TABLE, null, cv);
         System.out.println("Adding done");
         return true;
     }
 
+    //get Laptop List from db Table
     public String getLaptopResult(){
         SQLiteDatabase db = getReadableDatabase();
         String result ="";
-        Cursor cursor = db.rawQuery("SELECT * FROM LapProduct",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM LapProduct",null);//Location of Cursor
         PastModelListActivity.recommendListManager.recommendLaptopSetList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Laptop list = new Laptop();
@@ -81,12 +83,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //get Desktop List from db Table
     public String getResult(){
         SQLiteDatabase db = getReadableDatabase();
         String result ="";
         Cursor cursor = db.rawQuery("SELECT * FROM Product",null);
         PastModelListActivity.recommendListManager.recommendedSetList = new ArrayList<>();
-        while (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {//getCursor and get from db line by line
             FinalTwo list = new FinalTwo();
             list.setCpu(MainActivity.desktopSet.getCPUList().get(cursor.getInt(0)));
             list.setGpu(MainActivity.desktopSet.getGPUList().get(cursor.getInt(1)));
