@@ -83,6 +83,7 @@ public class DesktopSet {
         this.context = context;
     }
 
+    // READ From Csv File about strage data
     private void readStorageData(){
         InputStream is = context.getResources().openRawResource(R.raw.storagecsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -108,6 +109,7 @@ public class DesktopSet {
         }
     }
 
+    // READ From Csv File about cooler data
     private void readCoolData(){
         InputStream is = context.getResources().openRawResource(R.raw.coolcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -132,6 +134,7 @@ public class DesktopSet {
         }
     }
 
+    // READ From Csv File about Case data
     private void readCaseData(){
         InputStream is = context.getResources().openRawResource(R.raw.casecsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -156,6 +159,7 @@ public class DesktopSet {
         }
     }
 
+    // READ From Csv File about Power data
     private void readPWData(){
         InputStream is = context.getResources().openRawResource(R.raw.powercsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -182,6 +186,7 @@ public class DesktopSet {
         }
     }
 
+    // READ From Csv File about Gpu data
     private void readGPUData(){
         InputStream is = context.getResources().openRawResource(R.raw.gpucsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -210,6 +215,7 @@ public class DesktopSet {
         }
     }
 
+    // READ From Csv File about Memory data
     private void readRAMData(){
         InputStream is = context.getResources().openRawResource(R.raw.ramcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -237,6 +243,7 @@ public class DesktopSet {
         }
     }
 
+    // // READ From Csv File about Mainboard data
     private void readMBData(){
         InputStream is = context.getResources().openRawResource(R.raw.mbcsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -268,6 +275,7 @@ public class DesktopSet {
         }
     }
 
+    // // READ From Csv File about CPU data
     private void readCPUData(){
         InputStream is = context.getResources().openRawResource(R.raw.cpucsv);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -313,6 +321,7 @@ public class DesktopSet {
         this.context = context;
     }
 
+    // Combination CPU + MAINBOARD by Socket ( if socket is same combine with one combination )
     public void MakeCPUMB(){
         for(int i=0;i<CPUList.size();i++){
             CPUMB CPU = new CPUMB();
@@ -329,6 +338,7 @@ public class DesktopSet {
         }
     }
 
+    // Combination GPU + Power by Capacity ( if socket is same combine with one combination )
     public void MakeGPUPW(){
         for(int i=0; i<GPUList.size();i++){
             GPUPW GPU = new GPUPW();
@@ -384,6 +394,7 @@ public class DesktopSet {
         Collections.sort(FinalList,new PriceCompare());
     }
 
+    // If they dont need gpu set graphic information to 내장긍래픽
     public void setInternalGraphic(FinalRes FR,int i,int k){
         FR.setCpu(CMList.get(i));// CPU를 만족하는거니깐 그대로 배열 입력
         FR.setGp(GPWList.get(k));//FinalList에 GPU 입력
@@ -424,7 +435,7 @@ public class DesktopSet {
                 flag=i;
             }
         }
-        for(int i=0; i<FinalList.size(); i++){//인텔에서 추출
+        for(int i=0; i<FinalList.size(); i++){//AMD에서 추출
             if(FinalList.get(i).getTotalPrice()>=priceLow &&FinalList.get(i).getTotalPrice()<priceHigh && FinalList.get(i).getCpu().getCPU().getManufacturer().equals("AMD") && brand==1){//가격보다 작을경우 리턴
                 FinalTwo temp = new FinalTwo();
                 inPutTemp(temp,i);
@@ -433,7 +444,7 @@ public class DesktopSet {
             }
         }
         if(brand==1){
-            for(int i=flag+1; i<FinalList.size(); i++){//인텔에서 추출
+            for(int i=flag+1; i<FinalList.size(); i++){//If tehy cant extract two compnay because component is small
                 if(FinalList.get(i).getTotalPrice()>=priceLow&& FinalList.get(i).getCpu().getCPU().getManufacturer().equals("Intel")&&FinalList.get(i).getTotalPrice()<=priceHigh && brand ==1){//가격보다 작을경우 리턴
                     FinalTwo temp = new FinalTwo();
                     inPutTemp(temp,i);
