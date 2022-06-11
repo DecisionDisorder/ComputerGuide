@@ -6,7 +6,7 @@ Emails
 - 류상연 (teryas@gachon.ac.kr)
 - 이준희 (ljntiger325@naver.com)
 
-Demo Video
+Trailer Video
 - https://youtu.be/lhSULws6KUE
 
 ## Introduction
