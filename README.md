@@ -24,7 +24,7 @@ Apps for who have difficulty choosing a computer.
 - minSdkVersion: 21
 - targetSdkVersion: 31
 
-## PC Data source
+## PC Data Reference
 - https://danawa.com/
 
 ## Screenshots
