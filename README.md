@@ -7,7 +7,7 @@ Emails
 - 이준희 (ljntiger325@naver.com)
 
 Demo Video
-- https://
+- https://youtu.be/lhSULws6KUE
 
 ## Introduction
 Apps for who have difficulty choosing a computer.
