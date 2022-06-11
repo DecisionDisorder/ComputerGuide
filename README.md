@@ -1,5 +1,5 @@
 # ComputerGuide
-Term project for Mobile Programming
+Term project for Mobile Programming lecture
 
 Emails
 - 김현종 (guswhd5738@gachon.ac.kr)
