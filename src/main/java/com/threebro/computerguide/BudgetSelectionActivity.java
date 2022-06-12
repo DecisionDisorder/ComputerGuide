@@ -47,6 +47,8 @@ public class BudgetSelectionActivity extends AppCompatActivity {
             int laptopWeightIndex = laptopBundle.getInt("laptopWeightIndex");
             int brandType = laptopBundle.getInt("brandType");
             // Some data is converted to a processable form.
+            // ex) weight and display size data is index
+            // convert to real data
             brandType+=1;
             float wt = (float) (1.5 + 0.5 * laptopWeightIndex);
             float dsize = 13 + 1 * laptopSizeIndex;

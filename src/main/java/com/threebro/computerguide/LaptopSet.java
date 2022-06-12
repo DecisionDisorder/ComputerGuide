@@ -25,6 +25,7 @@ public class LaptopSet {
         this.context = context;
     }
 
+    // read data from laptop.csv
     public void readLaptop(){
         InputStream is = context.getResources().openRawResource(R.raw.laptop);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is , Charset.forName("UTF-8")));
@@ -64,6 +65,8 @@ public class LaptopSet {
         }
     }
 
+    // Laptop set selection algorithm to get available price range
+    // Use dynamic activity
     public int SelectPrice(String usage, String dusage, float dsize, int company, double wt){
         int price=0;
         int clevel=1;
@@ -165,6 +168,7 @@ public class LaptopSet {
         return availablePriceList;
     }
 
+    //Laptop select algorithm by user selection ( usage, display size, company, weight, price )
     public void SelectLaptop(String usage, String dusage, float dsize, int company, double wt, int price){
         int clevel=1;
         int glevel=1;
