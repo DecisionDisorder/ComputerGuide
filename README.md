@@ -1,12 +1,12 @@
 # ComputerGuide
 Term project for Mobile Programming lecture
 
-Emails
+[Emails]
 - 김현종 (guswhd5738@gachon.ac.kr)
 - 류상연 (teryas@gachon.ac.kr)
 - 이준희 (ljntiger325@naver.com)
 
-Trailer Video
+[Demo Video]
 - https://youtu.be/lhSULws6KUE
 
 ## Introduction
